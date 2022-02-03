@@ -57,9 +57,7 @@ const color = require("./routes/color");
 const size = require("./routes/size");
 const reason = require("./routes/reason");
 const transfer_type = require("./routes/transfer_type");
-
-
- 
+const operators = require("./routes/operators");
 
  
 
@@ -109,6 +107,7 @@ app.use("/", color);
 app.use("/", size);
 app.use("/", reason);
 app.use("/", transfer_type);
+app.use("/", operators);
 
 
 
