@@ -46,7 +46,7 @@ request(options, function (error, response) {
     res.json(error) ;
   } 
   
-  console.log(response.body);
+  //console.log(response.body);
   res.send(response.body);
    var serverRes = response.body
    return serverRes
