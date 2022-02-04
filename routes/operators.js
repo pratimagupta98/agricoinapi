@@ -1,15 +1,15 @@
-const express = require("express");
-const router = express.Router();
+// const express = require("express");
+// const router = express.Router();
 
-const {
-    operators,accesstoken
+// const {
+//     operators,accesstoken
   
-} = require("../controller/operators");
+// } = require("../controller/operators");
 
-//Paths
+// //Paths
 
-router.get("/admin/accesstoken", accesstoken);
+// router.get("/admin/accesstoken", accesstoken);
 
-router.get("/admin/operators", operators);
+// router.get("/admin/operators", operators);
     
-module.exports = router;
+// module.exports = router;
