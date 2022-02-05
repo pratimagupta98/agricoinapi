@@ -54,7 +54,49 @@ request(options, function (error, response) {
  
 }
 
- 
+exports.getoperatorbyid = async(req,res) =>{
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://topups-sandbox.reloadly.com/operators/128?suggestedAmounts=true&suggestedAmountsMap=true',
+  'headers': {
+    'Authorization': `Bearer ${req.headers.token}`,
+    'Accept': 'application/com.reloadly.topups-v1+json'
+  }
+};
+request(options, function (error, response) {
+  if (error){
+   throw new Error(error);
+   res.json(error) ;
+  console.log(response.body);
+  }
+  res.send(response.body);
+  var serverRes = response.body
+  return serverRes
+}); 
+}
 
 
- 
+
+exports.detectoperator = async(req,res) =>{
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://topups-sandbox.reloadly.com/operators/auto-detect/phone/03238482221/countries/PK?suggestedAmountsMap=true&SuggestedAmounts=true',
+  'headers': {
+    'Authorization': `Bearer ${req.headers.token}`,
+    'Accept': 'application/com.reloadly.topups-v1+json'
+  }
+};
+request(options, function (error, response) {
+  if (error) {
+  throw new Error(error);
+  res.json(error) ;
+ // console.log(response.body);
+  }
+  res.send(response.body);
+  var serverRes = response.body
+  return serverRes
+})
+
+}
