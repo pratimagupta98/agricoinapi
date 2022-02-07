@@ -100,3 +100,31 @@ request(options, function (error, response) {
 })
 
 }
+
+exports.getallcountries = async(req,res) =>{
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://topups.reloadly.com/countries?page=1&size=1',
+  'headers': {
+    'Accept': 'application/com.reloadly.topups-v1+json',
+    'Authorization': `Bearer ${req.headers.token}`
+  }
+};
+request(options, function (error, response) {
+  if (error){
+   throw new Error(error);
+   res.json(error) ;
+  console.log(response.body);
+  }
+  res.send(response.body);
+  var serverRes = response.body
+  return serverRes
+}); 
+
+}
+
+
+
+
+

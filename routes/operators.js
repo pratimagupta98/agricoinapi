@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    operators,accesstoken,detectoperator,getoperatorbyid
+    operators,accesstoken,detectoperator,getoperatorbyid,getallcountries
   
 } = require("../controller/operators");
 
@@ -13,6 +13,7 @@ router.get("/admin/accesstoken", accesstoken);
 router.get("/admin/operators", operators);
 router.get("/admin/detectoperator", detectoperator);
 router.get("/admin/getoperatorbyid/:id", getoperatorbyid);
+router.get("/admin/getallcountries", getallcountries);
 
     
 module.exports = router;
