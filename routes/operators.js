@@ -11,7 +11,7 @@ const {
 router.get("/admin/accesstoken", accesstoken);
 
 router.get("/admin/operators", operators);
-router.get("/admin/detectoperator", detectoperator);
+router.get("/admin/operators/auto-detect/:phone/:country", detectoperator);
 router.get("/admin/getoperatorbyid/:id", getoperatorbyid);
 router.get("/admin/getallcountries", getallcountries);
 
