@@ -34,7 +34,7 @@ res.send(response.body)
 exports.operators = async (req,res)=>{
 var options = {
   'method': 'GET',
-  'url': 'https://topups-sandbox.reloadly.com/operators?page=1&size=10&includeBundles=true&includeData=true&includePin=true&suggestedAmounts=true&suggestedAmountsMap=true',
+  'url': 'https://topups-sandbox.reloadly.com/operators?page=1&size=100&includeBundles=true&includeData=true&includePin=true&suggestedAmounts=true&suggestedAmountsMap=true',
   'headers': {
     'Authorization': `Bearer ${req.headers.token}`,
     'Accept': 'application/com.reloadly.topups-v1+json',
