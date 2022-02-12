@@ -30,6 +30,7 @@ res.send(response.body)
 });
 // res.end()
 }
+//CONSOLE
 
 exports.operators = async (req,res)=>{
 var options = {
