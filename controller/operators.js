@@ -34,7 +34,7 @@ res.send(response.body)
 exports.operators = async (req,res)=>{
 var options = {
   'method': 'GET',
-  'url': 'https://topups-sandbox.reloadly.com/operators?page=1&size=2&includeBundles=true&includeData=true&includePin=true&suggestedAmounts=true&suggestedAmountsMap=true',
+  'url': 'https://topups-sandbox.reloadly.com/operators?page=1&size=10&includeBundles=true&includeData=true&includePin=true&suggestedAmounts=true&suggestedAmountsMap=true',
   'headers': {
     'Authorization': `Bearer ${req.headers.token}`,
     'Accept': 'application/com.reloadly.topups-v1+json',
@@ -82,7 +82,7 @@ exports.detectoperator = async(req,res) =>{
 var request = require('request');
 var options = {
   'method': 'GET',
-  'url': `https://topups-sandbox.reloadly.com/operators/auto-detect/phone/${req.params.phone}/countries/PK?suggestedAmountsMap=true&SuggestedAmounts=true`,
+  'url': `https://topups-sandbox.reloadly.com/operators/auto-detect/phone/${req.params.phone}/countries/${req.params.phone}?suggestedAmountsMap=true&SuggestedAmounts=true`,
   'headers': {
     'Authorization': `Bearer ${req.headers.token}`,
     'Accept': 'application/com.reloadly.topups-v1+json'
