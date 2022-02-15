@@ -83,7 +83,7 @@ exports.detectoperator = async(req,res) =>{
 var request = require('request');
 var options = {
   'method': 'GET',
-  'url': `https://topups-sandbox.reloadly.com/operators/auto-detect/phone/${req.params.phone}/countries/${req.params.phone}?suggestedAmountsMap=true&SuggestedAmounts=true`,
+  'url': `https://topups-sandbox.reloadly.com/operators/auto-detect/phone/${req.params.phone}/countries/${req.params.country}?suggestedAmountsMap=true&SuggestedAmounts=true`,
   'headers': {
     'Authorization': `Bearer ${req.headers.token}`,
     'Accept': 'application/com.reloadly.topups-v1+json'
