@@ -31,7 +31,7 @@ const altunit = require("./routes/altunit");
 const privacypolicy = require("./routes/privacypolicy");
 const cart = require("./routes/cart");
 const contact_form = require("./routes/contact_form");
- const termsandconditions = require("./routes/termsandconditions")
+const termsandconditions = require("./routes/termsandconditions");
 const user_address = require("./routes/user_address");
 const addwishlist = require("./routes/addwishlist");
 const employee = require("./routes/employee");
@@ -49,18 +49,15 @@ const trendingstore = require("./routes/trendingstore");
 const newpurchaseorder = require("./routes/newpurchaseorder");
 const gstrate = require("./routes/gstrate");
 
- const billinginvoice = require("./routes/billinginvoice");
+const billinginvoice = require("./routes/billinginvoice");
 const review = require("./routes/review");
 //const mail = require("./routes/mail");
- 
+
 const color = require("./routes/color");
 const size = require("./routes/size");
 const reason = require("./routes/reason");
 const transfer_type = require("./routes/transfer_type");
 const operators = require("./routes/operators");
-
- 
-
 
 //use
 app.use("/", customer);
@@ -100,7 +97,7 @@ app.use("/", stockadjustment);
 app.use("/", trendingstore);
 app.use("/", newpurchaseorder);
 app.use("/", gstrate);
- app.use("/", billinginvoice);
+app.use("/", billinginvoice);
 app.use("/", review);
 //app.use("/", mail);
 app.use("/", color);
@@ -108,10 +105,6 @@ app.use("/", size);
 app.use("/", reason);
 app.use("/", transfer_type);
 app.use("/", operators);
-
-
-
-
 
 app.get("/", (req, res) => {
   res.send("Hello World!!!!");
@@ -122,7 +115,7 @@ mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     // useFindAndModify: false,
-    useNewUrlParser: true,                 
+    useNewUrlParser: true,
     useUnifiedTopology: true,
     //useFindAndModify: false,
   })
