@@ -205,7 +205,7 @@ exports.getoneseller = async (req, res) => {
 //   });
 // };
 
-exports.sellerlogin = async (req, res) => {
+exports.login = async (req, res) => {
   const { mobile, email, password } = req.body;
   const user = await Seller.findOne({
     $or: [{ mobile: mobile }, { email: email }],

@@ -12,7 +12,7 @@ const {
   editseller,
   getoneseller,
   totalseller,
-  sellerlogin,
+  login,
   sendOtp,
   emailsend,
   verifyOtp,
@@ -52,13 +52,13 @@ router.post("/admin/signup", uploads.single("image"), signup);
 router.get("/admin/getseller", tokenverify, getseller);
 
 //router.post("/admin/Adminlogin", Adminlogin);
-router.post("/admin/sellerlogin", sellerlogin);
+router.post("/admin/login", login);
 
-router.post("/admin/editseller",tokenverify, editseller);
+router.post("/admin/editseller", tokenverify, editseller);
 
 router.get("/admin/delSeller/:id", del_seller);
 //router.get("/admin/storebyseller/:id", storebyseller);
-router.get("/admin/getoneseller", tokenverify,  getoneseller);
+router.get("/admin/getoneseller", tokenverify, getoneseller);
 router.get("/admin/totalseller", totalseller);
 router.post("/admin/sendOtp", sendOtp);
 //router.post("/admin/emailsend", emailsend);
