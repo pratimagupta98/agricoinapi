@@ -49,7 +49,7 @@ let uploads = multer({ storage: storage });
 
 //Paths
 router.post("/admin/signup", uploads.single("image"), signup);
-router.get("/admin/getseller", tokenverify, getseller);
+router.get("/admin/getseller", getseller);
 
 //router.post("/admin/Adminlogin", Adminlogin);
 router.post("/admin/login", login);
