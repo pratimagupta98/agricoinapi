@@ -47,7 +47,7 @@ exports.signup = async (req, res) => {
 
   const newCustomer = new Customer({
     customerId: random_string,
-   // seller :req.sellerId,
+    // seller :req.sellerId,
     firstname: firstname,
     lastname: lastname,
     email: email,
@@ -191,7 +191,7 @@ exports.editcustomer = async (req, res) => {
 };
 
 exports.allcustomer = async (req, res) => {
-  const findall = await Customer.find({customer : req.userId}).sort({ sortorder: 1 });
+  const findall = await Customer.find().sort({ sortorder: 1 });
   if (findall) {
     res.status(200).json({
       status: true,
@@ -208,8 +208,9 @@ exports.allcustomer = async (req, res) => {
 };
 
 exports.Customerbysellerbytoken = async (req, res) => {
-  const findall = await Customer.find({ seller: req.sellerId })
-    .sort({ sortorder: 1 })
+  const findall = await Customer.find({ seller: req.sellerId }).sort({
+    sortorder: 1,
+  });
   if (findall) {
     res.status(200).json({
       status: true,
@@ -224,7 +225,6 @@ exports.Customerbysellerbytoken = async (req, res) => {
     });
   }
 };
-
 
 exports.getonecustomer = async (req, res) => {
   const findone = await Customer.findOne({ customer: req.userId });
@@ -487,7 +487,6 @@ exports.verifyotp = async (req, res) => {
 //   // }
 // }
 
-
 exports.resetpassword = async (req, res) => {
   const { email, password } = req.body;
 
@@ -514,6 +513,3 @@ exports.resetpassword = async (req, res) => {
     });
   }
 };
-
-
- 
