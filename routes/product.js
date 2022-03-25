@@ -5,7 +5,6 @@ const multer = require("multer");
 //const { verifytoken } = require("../functions/verifytoken");
 const { tokenverify } = require("../functions/tokenverify");
 
-
 const {
   addproduct,
   getproduct,
@@ -27,7 +26,7 @@ const {
   getuniquetag,
   productbycolor,
   productbypricerange,
-  productbysellerbytoken
+  productbysellerbytoken,
 } = require("../controller/product");
 
 const storage = multer.diskStorage({
@@ -58,13 +57,18 @@ const fileFilter = (req, file, cb) => {
 
 let uploads = multer({ storage: storage });
 //Paths
-router.post("/admin/addproduct", uploads.array("product_img"),tokenverify, addproduct);
+router.post(
+  "/admin/addproduct",
+  uploads.array("product_img"),
+  tokenverify,
+  addproduct
+);
 router.post(
   "/admin/editproduct/:id",
   uploads.array("product_img"),
   editproduct
 );
-router.get("/admin/getproduct", getproduct);
+router.get("/admin/getproduct", tokenverify, getproduct);
 router.get("/admin/getoneproduct/:id", getoneproduct);
 router.get("/admin/productbycategory/:id", productbycategory);
 router.get("/admin/productbybrand/:id", productbybrand);
@@ -85,8 +89,10 @@ router.get("/admin/productbysize/:id", productbysize);
 router.get("/admin/productbycolor/:id", productbycolor);
 router.get("/admin/getuniquetag", getuniquetag);
 router.post("/admin/productbypricerange", productbypricerange);
-router.get("/admin/productbysellerbytoken",tokenverify, productbysellerbytoken);
+router.get(
+  "/admin/productbysellerbytoken",
+  tokenverify,
+  productbysellerbytoken
+);
 
-
- 
 module.exports = router;

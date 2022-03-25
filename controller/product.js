@@ -16,7 +16,7 @@ cloudinary.config({
 
 exports.addproduct = async (req, res) => {
   const {
-     store,
+    store,
     discount_perc,
     product_name,
     sku_no,
@@ -263,7 +263,7 @@ exports.editproduct = async (req, res) => {
 };
 
 exports.getproduct = async (req, res) => {
-  const findall = await Product.find()
+  const findall = await Product.find({ seller: req.sellerId })
     .sort({ sortorder: 1 })
     .populate("gstrate")
     .populate("productcategory")
@@ -582,7 +582,7 @@ exports.productbysellerbytoken = async (req, res) => {
     .populate("brand")
     .populate("color")
     .populate("size")
-     .populate("store");
+    .populate("store");
 
   if (findall) {
     res.status(200).json({
