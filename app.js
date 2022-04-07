@@ -1,8 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
-require("dotenv").config();
+ require("dotenv").config();
 const mongoose = require("mongoose");
 //const cors = require("cors");
 
@@ -58,7 +57,11 @@ const size = require("./routes/size");
 const reason = require("./routes/reason");
 const transfer_type = require("./routes/transfer_type");
 const operators = require("./routes/operators");
+const mo_recharge = require("./routes/mo_recharge");
 
+
+
+ 
 //use
 app.use("/", customer);
 app.use("/", product);
@@ -105,7 +108,10 @@ app.use("/", size);
 app.use("/", reason);
 app.use("/", transfer_type);
 app.use("/", operators);
+app.use("/", mo_recharge);
 
+
+ 
 app.get("/", (req, res) => {
   res.send("Hello World!!!!");
 });
