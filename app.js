@@ -58,6 +58,7 @@ const reason = require("./routes/reason");
 const transfer_type = require("./routes/transfer_type");
 const operators = require("./routes/operators");
 const mo_recharge = require("./routes/mo_recharge");
+const utility_bill = require("./routes/utility_bill");
 
 
 
@@ -109,8 +110,9 @@ app.use("/", reason);
 app.use("/", transfer_type);
 app.use("/", operators);
 app.use("/", mo_recharge);
+app.use("/", utility_bill);
 
-
+ 
  
 app.get("/", (req, res) => {
   res.send("Hello World!!!!");

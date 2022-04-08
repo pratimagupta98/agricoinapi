@@ -101,3 +101,39 @@ exports.mobileRecharge = async (req,res)=>{
     });
     // res.end()
     }
+
+    exports.mobileRecharge = async (req,res)=>{
+    var request = require('request');
+    
+    var options = {
+      'method': 'POST',
+      "body" : req.body,
+    //  'url': 'https://auth.reloadly.com/oauth/token',
+      'url'  :"https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=[MobileNo]&APIKey=[APIKey]&REQTYPE=RECH&REFNO=[REFNO]&SERCODE=[ServiceCode/OperatorCode]&CUSTNO=[ConsumerNo]&REFMOBILENO=[CustomerMobileNo]&AMT=[AMOUNT]&STV=[IsSTV]&RESPTYPE=JSON",
+      'headers': {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+    
+        "APIKey": "vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG",
+       
+      })
+    
+    };
+    request(options, function (error, response) {
+      if (error) {
+      throw new Error(error);
+      res.json(error)
+    }
+    res.send(response.body)
+      console.log(response.body);
+      //const serverRes = response.body
+      //return response.body
+    
+    });
+    // res.end()
+    }
+
+
+
+   
