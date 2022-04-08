@@ -13,7 +13,7 @@ const {
 router.post("/admin/utilitybill", utilitybill);
  
 
- 
+ //console.log
 
     
 module.exports = router;
