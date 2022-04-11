@@ -63,7 +63,7 @@ exports.mo_recharge = async (req, res) => {
 // res.json(response)
 //     }
 
-exports.mobileRecharge = async (req, res) => {
+exports.abc = async (req, res) => {
   var request = require("request");
 
   var options = {
