@@ -63,7 +63,7 @@ exports.mo_recharge = async (req, res) => {
 // res.json(response)
 //     }
 
-exports.abc = async (req, res) => {
+exports.mobileRecharge = async (req, res) => {
   var request = require("request");
 
   var options = {
@@ -97,32 +97,32 @@ exports.abc = async (req, res) => {
   // res.end()
 };
 
-exports.mobileRecharge = async (req, res) => {
-  var request = require("request");
+// exports.mobileRecharge = async (req, res) => {
+//   var request = require("request");
 
-  var options = {
-    method: "POST",
-    body: req.body,
-    //  'url': 'https://auth.reloadly.com/oauth/token',
-    url: "https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=8121787777&APIKey=vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG&REQTYPE=RECH&REFNO=AB81217877AA912&SERCODE=ID&CUSTNO=7489651191&REFMOBILENO=8461809095&AMT=10&STV=0&RESPTYPE=JSON",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      APIKey: "vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG",
-    }),
-  };
-  request(options, function (error, response) {
-    if (error) {
-      throw new Error(error);
-      res.json(error);
-    }
-    res.send(response.body);
-    console.log(response.body);
-    //const serverRes = response.body
-    //return response.body
-  });
-  // res.end()
-};
+//   var options = {
+//     method: "POST",
+//     body: req.body,
+//     //  'url': 'https://auth.reloadly.com/oauth/token',
+//     url: "https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=8121787777&APIKey=vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG&REQTYPE=RECH&REFNO=AB81217877AA912&SERCODE=ID&CUSTNO=7489651191&REFMOBILENO=8461809095&AMT=10&STV=0&RESPTYPE=JSON",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       APIKey: "vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG",
+//     }),
+//   };
+//   request(options, function (error, response) {
+//     if (error) {
+//       throw new Error(error);
+//       res.json(error);
+//     }
+//     res.send(response.body);
+//     console.log(response.body);
+//     //const serverRes = response.body
+//     //return response.body
+//   });
+//   // res.end()
+// };
 
 // console
