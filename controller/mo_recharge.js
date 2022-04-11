@@ -104,7 +104,7 @@ exports.mobileRecharge = async (req, res) => {
     method: "POST",
     body: req.body,
     //  'url': 'https://auth.reloadly.com/oauth/token',
-    url: "https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=8121787777&APIKey=vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG&REQTYPE=RECH&REFNO=AB81217877AA&SERCODE=ID&CUSTNO=8461809095&REFMOBILENO=8461809095&AMT=1&STV=0&RESPTYPE=JSON",
+    url: "https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=8121787777&APIKey=vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG&REQTYPE=RECH&REFNO=AB81217877AA&SERCODE=ID&CUSTNO=8461809095&REFMOBILENO=8461809095&AMT=10&STV=0&RESPTYPE=JSON",
     headers: {
       "Content-Type": "application/json",
     },
