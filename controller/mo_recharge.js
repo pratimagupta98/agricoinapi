@@ -99,6 +99,8 @@ exports.moRecharge = async (req,res)=>{
   }
   
 
+// exports.mobileRecharge = async (req, res) => {
+//   var request = require("request");
 
 exports.balanceApi = async (req,res)=>{
     // const{MobileNo,REQTYPE,} = req.body
