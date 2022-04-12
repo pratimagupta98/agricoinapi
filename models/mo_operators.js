@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const RechargeSchema = new Schema(
+const OperatorSchema = new Schema(
   {
-    
+    service: {
+      type: String,
+    },
+    code: {
+      type: String,
+    },
     REQTYPE: {
       type: String,
     },
@@ -14,7 +19,8 @@ const RechargeSchema = new Schema(
       type: String,
     },
     REFNO: {
-      type: String,
+      type: Number,
+      generated: true
     },
     SERCODE: {
       type: String,
@@ -34,10 +40,17 @@ const RechargeSchema = new Schema(
     RESPTYPE: {
       type: String,
     },
-     
-     
+    service :{
+      type :String
+    },
+    code : {
+      type : String
+    },
+    re_type : {
+      type:String
+    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("mo_recharge", RechargeSchema);
+module.exports = mongoose.model("mo_operators", OperatorSchema);

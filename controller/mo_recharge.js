@@ -1,139 +1,133 @@
-const Recharge = require("../models/mo_recharge");
+const Recharge = require("../models/mo_operators");
 
- 
-exports.mo_recharge = async (req,res)=>{
-  const { MobileNo, APIKey, REQTYPE,RESPTYPE } = req.body;
 
-    var request = require('request');
-    
+// exports.moRecharge= async (req, res) => {
 
-    const API_KEY = "vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG"
-    var options = {
-      'method': 'POST',
-      "body" : req.body,
-      "APIKey": "vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG",
-      'url'  :`https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=8121787777&APIKey=vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG&REQTYPE=BAL&RESPTYPE=JSON`,
-      'headers': {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "APIKey": "vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG",
- 
-      })
-    
-    };
-    request(options, function (error, response) {
-      if (error) {
-      throw new Error(error);
-      res.json(error)
+//     const {
+//         MobileNo,
+//         REQTYPE,
+//         APIKey,
+//         RESPTYPE,
+//         REFNO,
+//         SERCODE,
+//         CUSTNO,
+//         REFMOBILENO,
+//         AMT,
+//         STV,
+         
+
+//       } = req.body;
+
+//       const newRecharge = new Recharge({
+//         MobileNo :MobileNo,
+//         REQTYPE:REQTYPE,
+//         APIKey:APIKey,
+//         RESPTYPE:RESPTYPE,
+//         REFNO:REFNO,
+//         SERCODE:SERCODE,
+//         CUSTNO:CUSTNO,
+//         REFMOBILENO:REFMOBILENO,
+//         AMT:AMT,
+//         STV:STV,
+//         RESPTYPE:RESPTYPE,
+//         'url': 'https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx',
+//       })
+//       newRecharge.save()
+//       .then(
+//         res.status(200).json({
+//           status: true,
+//           msg: "success",
+//           data: newRecharge,
+//         })
+//       )
+//       .catch((error) => {
+//         res.status(400).json({
+//           status: false,
+//           msg: "error",
+//           error: error,
+//         });
+//       });
+//   }
+
+exports.moRecharge = async (req,res)=>{
+    // const{MobileNo,REQTYPE,} = req.body
+   var request = require('request');
+
+   create_randomString(7);
+  function create_randomString(string_length) {
+    (randomString = ""),
+      (characters =
+        'ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ');
+    for (var i, i = 0; i < string_length; i++) {
+      randomString += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
     }
-    res.send(response.body)
-      console.log(response.body);
-      //const serverRes = response.body
-      //return response.body
-    
-    });
-    // res.end()
-    }
-
+    return randomString;
+  }
+   var options = {
+     'method': 'POST',
+    //  'url': 'https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=[MobileNo]&APIKey=[APIKey]&REQTYPE=RECH&REFNO=[REFNO]&SERCODE=[ServiceCode/OperatorCode]&CUSTNO=[ConsumerNo]&REFMOBILENO=[CustomerMobileNo]&AMT=[AMOUNT]&STV=[IsSTV]&RESPTYPE=JSON',
      
-//     exports.mobileRecharge = async (req,res)=>{
-//         var options = {
-//             "method": "POST",
-//             "body" : "req.body",
-//           //  'url': 'https://auth.reloadly.com/oauth/token',
-//             'url'  :'https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx',
-//             'headers': {
-//               'Content-Type': 'application/json',
-//             },
-//         }
-//         // const response = await fetch(url , options)
-//         // .then(res => res.json())
-//         // .catch(e =>{
-//         //     console.error({
-//         //         "message " : "success",
-//         //         "error" : e,
-//         //     })
-//         // })
-
-//         const request = async (url) => {
-//             const response = await fetch(url);
-//             const json = await JSON.stringify(response.json());
-//             return json;
-//         }
-//         let tree = request('humans.json');
-    
-//         console.log(tree);
-    
-// console.log("RESPONSE : ",response )
-// res.json(response)
-//     }
-
-
-exports.mobileRecharge = async (req,res)=>{
-    var request = require('request');
-    
-    var options = {
-      'method': 'POST',
-      "body" : req.body,
-    //  'url': 'https://auth.reloadly.com/oauth/token',
-      'url'  :"https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=[MobileNo]&APIKey=[APIKey]&REQTYPE=RECH&REFNO=[REFNO]&SERCODE=[ServiceCode/OperatorCode]&CUSTNO=[ConsumerNo]&REFMOBILENO=[CustomerMobileNo]&AMT=[AMOUNT]&STV=[IsSTV]&RESPTYPE=JSON",
-      'headers': {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-    
-        "APIKey": "vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG",
-       
-      })
-    
-    };
-    request(options, function (error, response) {
-      if (error) {
-      throw new Error(error);
-      res.json(error)
+     body: JSON.stringify({
+        REFNO : req.body.REFNO,
+       MobileNo:req.body.MobileNo,
+       APIKey : req.body.APIKey,
+       REQTYPE:req.body.REQTYPE,
+       SERCODE: req.body.SERCODE,
+       CUSTNO : req.body.CUSTNO,
+       REFMOBILENO :req.body.REFMOBILENO ,
+       AMT : req.body.AMT ,
+       STV : req.body.STV ,
+       RESPTYPE :req.body.RESPTYPE,
+     }),
+     'url': `https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=${req.body.MobileNo}&APIKey=${req.body.APIKey}&REQTYPE=${req.body.REQTYPE}&REFNO=${req.body.REFNO}&SERCODE=${req.body.SERCODE}&CUSTNO=${req.body.CUSTNO}&REFMOBILENO=${req.body.REFMOBILENO}&AMT=${req.body.AMT}&STV=${req.body.STV}&RESPTYPE=JSON`,
+   
+   };
+   console.log(options);
+   request(options, function (error, response) {
+    if (error){
+     throw new Error(error);
+     res.json(error) ;
+    console.log(response.body);
     }
-    res.send(response.body)
-      console.log(response.body);
-      //const serverRes = response.body
-      //return response.body
-    
-    });
-    // res.end()
+    res.send(response.body);
+    var serverRes = response.body
+    return serverRes
+  }); 
+  
+  }
+  
+
+
+exports.balanceApi = async (req,res)=>{
+    // const{MobileNo,REQTYPE,} = req.body
+   var request = require('request');
+
+   
+   var options = {
+     'method': 'POST',
+     
+     body: JSON.stringify({
+       MobileNo:req.body.MobileNo,
+       APIKey : req.body.APIKey,
+       REQTYPE:req.body.REQTYPE,
+       RESPTYPE :req.body.RESPTYPE,
+     }),
+     'url': `https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=${req.body.MobileNo}&APIKey=${req.body.APIKey}&REQTYPE=${req.body.REQTYPE}&RESPTYPE=${req.body.RESPTYPE}`,
+   
+   };
+   console.log(options);
+   request(options, function (error, response) {
+    if (error){
+     throw new Error(error);
+     res.json(error) ;
+    console.log(response.body);
     }
-
-    exports.mobileRecharge = async (req,res)=>{
-    var request = require('request');
-    
-    var options = {
-      'method': 'POST',
-      "body" : req.body,
-    //  'url': 'https://auth.reloadly.com/oauth/token',
-      'url'  :"https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=8121787777&APIKey=vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG&REQTYPE=RECH&REFNO=12853434561&SERCODE=ID&CUSTNO=8461809095&REFMOBILENO=8461809095&AMT=1&STV=0&RESPTYPE=JSON",
-      'headers': {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-    
-        "APIKey": "vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG",
-       
-      })
-    
-    };
-    request(options, function (error, response) {
-      if (error) {
-      throw new Error(error);
-      res.json(error)
-    }
-    res.send(response.body)
-      console.log(response.body);
-      //const serverRes = response.body
-      //return response.body
-    
-    });
-    // res.end()
-    }
-
-
-
-   // console
+    res.send(response.body);
+    var serverRes = response.body
+    return serverRes
+  }); 
+  
+  }
+  
