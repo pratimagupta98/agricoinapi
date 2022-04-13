@@ -1,17 +1,26 @@
 const Wallet = require("../models/wallet");
-const { v4: uuidv4 } = require("uuid");
+//const { v4: uuidv4 } = require("uuid");
+const cloudinary = require("cloudinary").v2;
+const fs = require("fs");
 
-exports.addwallet = async (req, res) => {
-  const { first_name, last_name, userId, amount } = req.body;
+
+exports.deposite_wallet = async (req, res) => {
+  const {userId, amount,pay_method,depsite_file } = req.body;
 
   const newWallet = new Wallet({
-    first_name: first_name,
-    last_name: last_name,
     userId: userId,
-    walletId: uuidv4(),
+    //walletId: uuidv4(),
     amount: amount,
+    depsite_file : depsite_file,
+    pay_method :pay_method
   });
-
+    
+  if(req.file){
+    const resp = await cloudinary.uploader.upload(req.file.path);
+      if (resp) {
+        newWallet.depsite_file = resp.secure_url;
+        fs.unlinkSync(req.file.path);
+  
   newWallet.save(function (err, data) {
     if (err) {
       res.status(400).json({
@@ -27,7 +36,9 @@ exports.addwallet = async (req, res) => {
       });
     }
   });
+}
 };
+}
 
 //   (function (err, data) {
 //     if (err) {
@@ -64,3 +75,36 @@ exports.getwallet = async (req, res) => {
       });
     });
 };
+
+
+ 
+exports.balanceApi = async (req,res)=>{
+  // const{MobileNo,REQTYPE,} = req.body
+ var request = require('request');
+
+ 
+ var options = {
+   'method': 'POST',
+   
+   body: JSON.stringify({
+     MobileNo:req.body.MobileNo,
+     APIKey : req.body.APIKey,
+     REQTYPE:req.body.REQTYPE,
+     RESPTYPE :req.body.RESPTYPE,
+   }),
+   'url': `https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=${req.body.MobileNo}&APIKey=${req.body.APIKey}&REQTYPE=${req.body.REQTYPE}&RESPTYPE=${req.body.RESPTYPE}`,
+ 
+ };
+ console.log(options);
+ request(options, function (error, response) {
+  if (error){
+   throw new Error(error);
+   res.json(error) ;
+  console.log(response.body);
+  }
+  res.send(response.body);
+  var serverRes = response.body
+  return serverRes
+}); 
+
+}

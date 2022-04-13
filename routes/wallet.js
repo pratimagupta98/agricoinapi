@@ -1,11 +1,44 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const fs = require("fs");
+const { tokenverify } = require("../functions/tokenverify");
 
-const { addwallet, getwallet } = require("../controller/wallet");
 
+const { deposite_wallet, getwallet ,balanceApi} = require("../controller/wallet");
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      let path = `./img`;
+      if (!fs.existsSync("img")) {
+        fs.mkdirSync("img");
+      }
+      cb(null, path);
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    },
+  });
+  
+  const fileFilter = (req, file, cb) => {
+    if (
+      file.mimetype.includes("jpeg") ||
+      file.mimetype.includes("png") ||
+      file.mimetype.includes("jpg")
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  };
+  
+  let uploads = multer({ storage: storage });
+
+  
 // Paths
 
-router.post("/admin/addwallet", addwallet);
+router.post("/admin/deposite_wallet",uploads.single("depsite_file"), deposite_wallet);
 router.get("/admin/getwallet", getwallet);
-
+router.post("/admin/balanceApi", balanceApi);
 module.exports = router;

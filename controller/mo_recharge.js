@@ -58,34 +58,34 @@ exports.moRecharge = async (req,res)=>{
 // exports.mobileRecharge = async (req, res) => {
 //   var request = require("request");
 
-exports.balanceApi = async (req,res)=>{
-    // const{MobileNo,REQTYPE,} = req.body
-   var request = require('request');
+// exports.balanceApi = async (req,res)=>{
+//     // const{MobileNo,REQTYPE,} = req.body
+//    var request = require('request');
 
    
-   var options = {
-     'method': 'POST',
+//    var options = {
+//      'method': 'POST',
      
-     body: JSON.stringify({
-       MobileNo:req.body.MobileNo,
-       APIKey : req.body.APIKey,
-       REQTYPE:req.body.REQTYPE,
-       RESPTYPE :req.body.RESPTYPE,
-     }),
-     'url': `https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=${req.body.MobileNo}&APIKey=${req.body.APIKey}&REQTYPE=${req.body.REQTYPE}&RESPTYPE=${req.body.RESPTYPE}`,
+//      body: JSON.stringify({
+//        MobileNo:req.body.MobileNo,
+//        APIKey : req.body.APIKey,
+//        REQTYPE:req.body.REQTYPE,
+//        RESPTYPE :req.body.RESPTYPE,
+//      }),
+//      'url': `https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=${req.body.MobileNo}&APIKey=${req.body.APIKey}&REQTYPE=${req.body.REQTYPE}&RESPTYPE=${req.body.RESPTYPE}`,
    
-   };
-   console.log(options);
-   request(options, function (error, response) {
-    if (error){
-     throw new Error(error);
-     res.json(error) ;
-    console.log(response.body);
-    }
-    res.send(response.body);
-    var serverRes = response.body
-    return serverRes
-  }); 
+//    };
+//    console.log(options);
+//    request(options, function (error, response) {
+//     if (error){
+//      throw new Error(error);
+//      res.json(error) ;
+//     console.log(response.body);
+//     }
+//     res.send(response.body);
+//     var serverRes = response.body
+//     return serverRes
+//   }); 
   
-  }
+//   }
   

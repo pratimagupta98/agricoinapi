@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {
     moRecharge,
-    balanceApi
+    
  // mobileRecharge,
   
 } = require("../controller/mo_recharge");
@@ -11,7 +11,7 @@ const {
 //Paths
 
 router.post("/admin/moRecharge", moRecharge);
-router.post("/admin/balanceApi", balanceApi);
+ 
  
 
 
