@@ -21,13 +21,13 @@ exports.addOperators = async (req, res) => {
       data: {},
     });
   } else {
-    newRecharge
+    newOperators
       .save()
       .then(
         res.status(200).json({
           status: true,
           msg: "success",
-          data: newRecharge,
+          data: newOperators,
         })
       )
       .catch((error) => {
