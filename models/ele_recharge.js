@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const OperatorSchema = new Schema(
+const ele_RechargeSchema = new Schema(
   {
     service: {
       type: String,
@@ -12,7 +12,7 @@ const OperatorSchema = new Schema(
     REQTYPE: {
       type: String,
     },
-    APIKey : {
+    APIKey: {
       type: String,
     },
     RESPTYPE: {
@@ -20,7 +20,7 @@ const OperatorSchema = new Schema(
     },
     REFNO: {
       type: Number,
-      generated: true
+      generated: true,
     },
     SERCODE: {
       type: String,
@@ -40,9 +40,8 @@ const OperatorSchema = new Schema(
     RESPTYPE: {
       type: String,
     },
-   
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("mo_operators", OperatorSchema);
+module.exports = mongoose.model("ele_recharge", ele_RechargeSchema);

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
- require("dotenv").config();
+require("dotenv").config();
 const mongoose = require("mongoose");
 //const cors = require("cors");
 
@@ -61,10 +61,8 @@ const mo_operators = require("./routes/mo_operators");
 const utility_bill = require("./routes/utility_bill");
 const mo_recharge = require("./routes/mo_recharge");
 const electricity_operators = require("./routes/electricity_operators");
+const ele_recharge = require("./routes/ele_recharge");
 
-
-
- 
 //use
 app.use("/", customer);
 app.use("/", product);
@@ -115,10 +113,8 @@ app.use("/", mo_operators);
 app.use("/", utility_bill);
 app.use("/", mo_recharge);
 app.use("/", electricity_operators);
+app.use("/", ele_recharge);
 
-
- 
- 
 app.get("/", (req, res) => {
   res.send("Hello World!!!!");
 });
