@@ -26,3 +26,5 @@ router.post("/admin/demo", demo);
 // router.get("/admin/getallcountries", getallcountries);
 
 module.exports = router;
+
+//console.log
