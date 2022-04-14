@@ -46,7 +46,7 @@ const OperatorSchema = new Schema(
     code : {
       type : String
     },
-    re_type : {
+    type : {
       type:String
     },
   },

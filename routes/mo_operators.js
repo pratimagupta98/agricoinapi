@@ -6,7 +6,8 @@ const {
   mobileRecharge,
   addOperators,
   getOperators,
-  demo
+  demo,
+  operatorbytype
 } = require("../controller/mo_operators");
 
 //Paths
@@ -15,6 +16,8 @@ router.post("/admin/totalBalance", totalBalance);
 router.post("/admin/mobileRecharge", mobileRecharge);
 router.post("/admin/addOperators", addOperators);
 router.get("/admin/getOperators", getOperators);
+router.get("/admin/operatorbytype/:id", operatorbytype);
+
 router.post("/admin/demo", demo);
 
 

@@ -4,13 +4,13 @@ exports.addOperators = async (req, res) => {
   const {
     service,
     code,
-    re_type
+    type
   } = req.body;
 
   const newOperators = new Operators({
     service: service,
     code :code,
-    re_type : re_type
+    type : type
   });
 
   const findexist = await Operators.findOne({ service: service });
@@ -37,6 +37,25 @@ exports.addOperators = async (req, res) => {
           error: error,
         });
       });
+  }
+};
+
+exports.operatorbytype = async (req, res) => {
+  const findall = await Operators.find({ type: req.params.id }).sort({
+    sortorder: 1,
+  });
+  if (findall) {
+    res.status(200).json({
+      status: true,
+      msg: "success",
+      data: findall,
+    });
+  } else {
+    res.status(400).json({
+      status: false,
+      msg: "error",
+      error: "error",
+    });
   }
 };
 
