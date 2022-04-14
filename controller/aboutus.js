@@ -1,5 +1,5 @@
 const Aboutus = require("../models/aboutus");
-
+//console
 exports.addaboutus = async (req, res) => {
   const { aboutus_title, display, sortorder, status } = req.body;
 
