@@ -7,6 +7,11 @@ const AdminwalletSchema = new mongoose.Schema(
             ref: "wallet",
 
         },
+        customer: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "customer",
+
+        },
 
         // walletId: {
         //type: mongoose.Schema.Types.ObjectId,
