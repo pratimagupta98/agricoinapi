@@ -5,14 +5,15 @@ const fs = require("fs");
 
 
 exports.deposite_wallet = async (req, res) => {
-  const {customer, amount,pay_method,depsite_file } = req.body;
+  const {customer, amount,pay_method,depsite_file ,status} = req.body;
 
   const newWallet = new Wallet({
     customer: customer,
     //walletId: uuidv4(),
     amount: amount,
     depsite_file : depsite_file,
-    pay_method :pay_method
+    pay_method :pay_method,
+    status :status
   });
     
   if(req.file){
