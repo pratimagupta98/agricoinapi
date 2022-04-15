@@ -5,10 +5,10 @@ const fs = require("fs");
 
 
 exports.deposite_wallet = async (req, res) => {
-  const {userId, amount,pay_method,depsite_file } = req.body;
+  const {customer, amount,pay_method,depsite_file } = req.body;
 
   const newWallet = new Wallet({
-    userId: userId,
+    customer: customer,
     //walletId: uuidv4(),
     amount: amount,
     depsite_file : depsite_file,
@@ -58,7 +58,7 @@ exports.deposite_wallet = async (req, res) => {
 // };
 
 exports.getwallet = async (req, res) => {
-  const findall = await Wallet.find()
+  const findall = await Wallet.find().populate("customer")
     .sort({ sortorder: 1 })
     .then((result) => {
       res.status(200).json({

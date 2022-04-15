@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const walletSchema = new mongoose.Schema(
   {
-    userId: {
+    customer: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-      required: "true",
+      ref: "customer",
+ 
     },
     
     // walletId: {
