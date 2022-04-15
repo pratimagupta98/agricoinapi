@@ -30,6 +30,11 @@ exports.Elec_Recharge = async (req, res) => {
       REFMOBILENO: req.body.REFMOBILENO,
       AMT: req.body.AMT,
       STV: req.body.STV,
+      FIELD1: req.body.FIELD1,
+      FIELD2: req.body.FIELD2,
+      FIELD3: req.body.FIELD3,
+      FIELD4: req.body.FIELD4,
+      FIELD5: req.body.FIELD5,
       PCODE: req.body.PCODE,
       LAT: req.body.LAT,
       LONG: req.body.LONG,
@@ -37,8 +42,7 @@ exports.Elec_Recharge = async (req, res) => {
     }),
     //  'url': `https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=${req.body.MobileNo}&APIKey=${req.body.APIKey}&REQTYPE=${req.body.REQTYPE}&REFNO=${randomString}&SERCODE=${req.body.SERCODE}&CUSTNO=${req.body.CUSTNO}&REFMOBILENO=${req.body.REFMOBILENO}&AMT=${req.body.AMT}&STV=${req.body.STV}&RESPTYPE=JSON`,
 
-    url: `https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=${req.body.MobileNo}&amp;APIKey=${req.body.APIKey}&amp;REQTYPE=${req.body.REQTYPE}&amp;REFNO=${randomString}&amp;SERCODE=${req.body.SERCODE}&amp;CUSTNO=${req.body.CUSTNO}&amp;REFMOBILE
-    NO=${req.body.REFMOBILENO}&amp;AMT=${req.body.AMT}&amp;STV=${req.body.STV}&amp;FIELD1=[FIELD1]&amp;FIELD2=[FIELD2]&amp;FIELD3=[FIELD3]&amp;FIELD4=[FIELD4]&amp;FIELD5=[FIELD5]&amp;PCODE=${req.body.PCODE}&amp;LAT=${req.body.LAT}&amp;LONG=${req.body.LONG}&amp;RESPTYPE=${req.body.JSON}`,
+    url: `https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=${req.body.MobileNo}&amp;APIKey=${req.body.APIKey}&amp;REQTYPE=${req.body.REQTYPE}&amp;REFNO=${randomString}&amp;SERCODE=${req.body.SERCODE}&amp;CUSTNO=${req.body.CUSTNO}&amp;REFMOBILENO=${req.body.REFMOBILENO}&amp;AMT=${req.body.AMT}&amp;STV=${req.body.STV}&amp;FIELD1=${req.body.FIELD1}&amp;FIELD2=${req.body.FIELD2}&amp;FIELD3=${req.body.FIELD3}&amp;FIELD4=${req.body.FIELD4}&amp;FIELD5=${req.body.FIELD5}&amp;PCODE=${req.body.PCODE}&amp;LAT=${req.body.LAT}&amp;LONG=${req.body.LONG}&amp;RESPTYPE=${req.body.JSON}`,
   };
   console.log(options);
   request(options, function (error, response) {
