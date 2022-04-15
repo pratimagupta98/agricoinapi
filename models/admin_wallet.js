@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-//console
+
 const AdminwalletSchema = new mongoose.Schema(
     {
         walletId: {
