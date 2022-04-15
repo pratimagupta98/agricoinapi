@@ -1,16 +1,13 @@
 const Operators = require("../models/mo_operators");
-
+//console
+//console
 exports.addOperators = async (req, res) => {
-  const {
-    service,
-    code,
-    type
-  } = req.body;
+  const { service, code, type } = req.body;
 
   const newOperators = new Operators({
     service: service,
-    code :code,
-    type : type
+    code: code,
+    type: type,
   });
 
   const findexist = await Operators.findOne({ service: service });
@@ -151,21 +148,20 @@ exports.mobileRecharge = async (req, res) => {
     REFMOBILENO,
     AMT,
     STV,
-    RESPTYPE
-
+    RESPTYPE,
   } = req.body;
 
   const newRecharge = new Recharge({
-    MobileNo:MobileNo,
-    APIKey:APIKey,
-    REQTYPE:REQTYPE,
-    REFNO:REFNO,
-    SERCODE:SERCODE,
-    CUSTNO:CUSTNO,
-    REFMOBILENO:REFMOBILENO,
-    AMT:AMT,
-    STV:STV,
-    RESPTYPE:RESPTYPE
+    MobileNo: MobileNo,
+    APIKey: APIKey,
+    REQTYPE: REQTYPE,
+    REFNO: REFNO,
+    SERCODE: SERCODE,
+    CUSTNO: CUSTNO,
+    REFMOBILENO: REFMOBILENO,
+    AMT: AMT,
+    STV: STV,
+    RESPTYPE: RESPTYPE,
   });
 
   const findexist = await Recharge.findOne({ service: service });
@@ -195,16 +191,25 @@ exports.mobileRecharge = async (req, res) => {
   }
 };
 
-
 exports.mobileRecharge = async (req, res) => {
   var request = require("request");
-  const { MobileNo, APIKey, REQTYPE, REFNO,SERCODE,CUSTNO,REFMOBILENO,AMT,STV,RESPTYPE } = req.body;
+  const {
+    MobileNo,
+    APIKey,
+    REQTYPE,
+    REFNO,
+    SERCODE,
+    CUSTNO,
+    REFMOBILENO,
+    AMT,
+    STV,
+    RESPTYPE,
+  } = req.body;
 
   create_randomString(7);
   function create_randomString(string_length) {
     (randomString = ""),
-      (characters =
-        'ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ');
+      (characters = "ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ");
     for (var i, i = 0; i < string_length; i++) {
       randomString += characters.charAt(
         Math.floor(Math.random() * characters.length)
@@ -214,50 +219,48 @@ exports.mobileRecharge = async (req, res) => {
   }
 
   const newRecharge = new Recharge({
-    MobileNo :MobileNo,
-   // APIKey : APIKey,
-    REQTYPE :REQTYPE,
-    REFNO :randomString,
-    SERCODE :SERCODE,
-    CUSTNO : CUSTNO,
-    REFMOBILENO :REFMOBILENO,
-    AMT :AMT,
-    STV :STV,
-    RESPTYPE :RESPTYPE,
-    'url': 'https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx',
-
-  })
-  newRecharge
-  .save()
-  .then(
-    res.status(200).json({
-      status: true,
-      msg: "success",
-      data: newRecharge,
-    })
-  )
-  .catch((error) => {
-    res.status(400).json({
-      status: false,
-      msg: "error",
-      error: error,
-    });
+    MobileNo: MobileNo,
+    // APIKey : APIKey,
+    REQTYPE: REQTYPE,
+    REFNO: randomString,
+    SERCODE: SERCODE,
+    CUSTNO: CUSTNO,
+    REFMOBILENO: REFMOBILENO,
+    AMT: AMT,
+    STV: STV,
+    RESPTYPE: RESPTYPE,
+    url: "https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx",
   });
-}
+  newRecharge
+    .save()
+    .then(
+      res.status(200).json({
+        status: true,
+        msg: "success",
+        data: newRecharge,
+      })
+    )
+    .catch((error) => {
+      res.status(400).json({
+        status: false,
+        msg: "error",
+        error: error,
+      });
+    });
+};
 
-  
-  // var newRecharge = new Recharge({
-  //   MobileNo: MobileNo,
-  //   REQTYPE: REQTYPE,
-  //   REFNO :REFNO,
-  //   SERCODE :SERCODE,
-  //   CUSTNO :CUSTNO,
-  //   REFMOBILENO :REFMOBILENO,
-  //   AMT :AMT,
-  //   STV :STV,
-  //   RESPTYPE :RESPTYPE
-   
-  // });
+// var newRecharge = new Recharge({
+//   MobileNo: MobileNo,
+//   REQTYPE: REQTYPE,
+//   REFNO :REFNO,
+//   SERCODE :SERCODE,
+//   CUSTNO :CUSTNO,
+//   REFMOBILENO :REFMOBILENO,
+//   AMT :AMT,
+//   STV :STV,
+//   RESPTYPE :RESPTYPE
+
+// });
 
 //   var options = {
 //     method: "POST",
@@ -275,18 +278,17 @@ exports.mobileRecharge = async (req, res) => {
 
 //      'url': 'https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx',
 //     // url: `https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx?MobileNo=${req.body.MobileNo}&APIKey=['vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG']&REQTYPE=RECH&REFNO=${req.body.REFNO}&SERCODE=${req.body.ServiceCode}&CUSTNO=${req.body.ConsumerNo}&REFMOBILENO=${req.body.REFMOBILENO}&AMT=${req.body.AMT}&STV=0&RESPTYPE=JSON`,
-    
+
 //     //  headers: {
 //     //   "Content-Type": "application/json",
 //     // },
 //     body: JSON.stringify({
 //       APIKey: "vzfWPhGe8GQRWHarKgzFVXJYxmkgFLdZrUG",
 
-      
 //     }),
-  
+
 //   }
-  
+
 //   console.log(options);
 
 //   Recharge.create(options, function (err, data) {
@@ -343,34 +345,31 @@ exports.mobileRecharge = async (req, res) => {
 //   // res.end()
 // };
 
+exports.demo = async (req, res) => {
+  // const{MobileNo,REQTYPE,} = req.body
+  var request = require("request");
+  var options = {
+    method: "POST",
+    url: "https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx",
 
-exports.demo = async (req,res)=>{
- // const{MobileNo,REQTYPE,} = req.body
-var request = require('request');
-var options = {
-  'method': 'POST',
-  'url': 'https://www.rechargedaddy.in/RDRechargeAPI/RechargeAPI.aspx',
-  
-  body: JSON.stringify({
-    MobileNo:req.body.MobileNo,
-    APIKey : req.body.APIKey,
-    REQTYPE:req.body.REQTYPE,
-    REFNO: req.body.REFNO,
-    SERCODE: req.body.SERCODE,
-    CUSTNO : req.body.CUSTNO,
-    REFMOBILENO :req.body.REFMOBILENO ,
-    AMT : req.body.AMT ,
-    STV : req.body.STV ,
-    RESPTYPE :req.body.RESPTYPE,
-  })
-
+    body: JSON.stringify({
+      MobileNo: req.body.MobileNo,
+      APIKey: req.body.APIKey,
+      REQTYPE: req.body.REQTYPE,
+      REFNO: req.body.REFNO,
+      SERCODE: req.body.SERCODE,
+      CUSTNO: req.body.CUSTNO,
+      REFMOBILENO: req.body.REFMOBILENO,
+      AMT: req.body.AMT,
+      STV: req.body.STV,
+      RESPTYPE: req.body.RESPTYPE,
+    }),
+  };
+  console.log(options);
+  request(options, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(response.body);
+  });
 };
-console.log(options);
-request(options, function (error, response) {
-  if (error) throw new Error(error);
-  console.log(response.body);
-})
-}
-
 
 //console
