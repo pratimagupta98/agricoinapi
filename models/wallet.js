@@ -7,13 +7,6 @@ const walletSchema = new mongoose.Schema(
       ref: "customer",
 
     },
-
-    // walletId: {
-    //type: mongoose.Schema.Types.ObjectId,
-    //ref: "user",
-    //type: String,
-    //required: true,
-    //},
     amount: {
       type: Number,
       default: 0,

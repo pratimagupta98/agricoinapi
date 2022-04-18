@@ -2,6 +2,7 @@ const Wallet = require("../models/wallet");
 //const { v4: uuidv4 } = require("uuid");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
+const wallet = require("../models/wallet");
 
 
 exports.deposite_wallet = async (req, res) => {
@@ -57,6 +58,31 @@ exports.deposite_wallet = async (req, res) => {
 //     }
 //   });
 // };
+
+//exports.updatewallet = async (req,res)=>{
+//   const
+// }
+// 
+
+exports.addwallet = async (req, res) => {
+  const {userId,amount} = req.body
+  let userobject = {
+    userId: userId,
+    amount: amount,
+  };
+  let result = await Wallet.create(userobject);
+  //await DealershipBayMap.insertMany(bay_map);
+const getdata = await wallet.findOne({userId:req.body.id})
+console.log(getdata)
+if(getdata){
+  let oldamt = getdata.amount
+  console.log("amout",oldamt)
+  let currntamt = oldamt+ req.body.amt
+  console.log("Result",currntamt)
+}
+  // res.successr(res, result);
+};
+
 
 exports.getwallet = async (req, res) => {
   const findall = await Wallet.find().populate("customer")

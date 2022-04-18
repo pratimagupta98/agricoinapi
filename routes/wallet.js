@@ -5,7 +5,7 @@ const fs = require("fs");
 const { tokenverify } = require("../functions/tokenverify");
 
 
-const { deposite_wallet, getwallet ,balanceApi} = require("../controller/wallet");
+const { deposite_wallet, getwallet ,balanceApi,addwallet} = require("../controller/wallet");
 
 
 const storage = multer.diskStorage({
@@ -41,4 +41,6 @@ const storage = multer.diskStorage({
 router.post("/admin/deposite_wallet",uploads.single("depsite_file"), deposite_wallet);
 router.get("/admin/getwallet", getwallet);
 router.post("/admin/balanceApi", balanceApi);
+router.post("/admin/addwallet", addwallet);
 module.exports = router;
+ 
