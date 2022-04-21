@@ -43,7 +43,7 @@ router.post("/admin/deposite_wallet",uploads.single("depsite_file"), deposite_wa
 router.get("/admin/getwallet", getwallet);
 router.post("/admin/balanceApi", balanceApi);
 router.post("/admin/addwallet", addwallet);
-router.post("/admin/del_wallet/:id", del_wallet);
+router.get("/admin/del_wallet/:id", del_wallet);
 
 module.exports = router;
  
