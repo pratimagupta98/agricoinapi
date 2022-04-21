@@ -23,6 +23,9 @@ const AdminwalletSchema = new mongoose.Schema(
             type: Number,
 
         },
+        status : {
+            type : String
+        }
 
     },
     { timestamps: true }

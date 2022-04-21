@@ -3,12 +3,13 @@ const AdminWallet = require("../models/admin_wallet");
 
 
 exports.addAmount = async (req, res) => {
-  const {walletId, amount } = req.body;
+  const {walletId, amount ,status} = req.body;
 
   const newAdminWallet = new AdminWallet({
     walletId: walletId,
     //walletId: uuidv4(),
     amount: amount,
+    status:status
     
   });
   newAdminWallet.save().then((data)=>{

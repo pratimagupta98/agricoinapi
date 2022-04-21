@@ -18,9 +18,16 @@ const walletSchema = new mongoose.Schema(
       type: String,
 
     },
+    wallet_balance :{
+      type :Number,
+      default:"Pending"
+    },
     status :{
       type: String,
       default:"Pending"
+    },
+    value :{
+    type :String
     }
   },
   { timestamps: true }

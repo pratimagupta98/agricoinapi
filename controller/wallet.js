@@ -2,27 +2,83 @@ const Wallet = require("../models/wallet");
 //const { v4: uuidv4 } = require("uuid");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
-const wallet = require("../models/wallet");
+ 
 
+
+// exports.deposite_wallet = async (req, res) => {
+//   const {customer, amount,pay_method,depsite_file ,status,wallet_balance} = req.body;
+
+
+//   const getdata = await Wallet.findOne({customer:req.body.id})
+//        console.log(getdata)
+//       if(getdata){
+//         let oldamt = getdata.amount
+//         console.log("amout",oldamt)
+//         let wallet_balance = parseInt(oldamt)+ parseInt(req.body.amount)
+//         console.log("Result",wallet_balance)
+//       }
+//   const newWallet = new Wallet({
+//     customer: customer,
+//     //walletId: uuidv4(),
+//     amount: amount,
+//     depsite_file : depsite_file,
+//     pay_method :pay_method,
+//     status :status,
+//     wallet_balance :wallet_balance
+//   });
+    
+//   if(req.file){
+//     const resp = await cloudinary.uploader.upload(req.file.path);
+//       if (resp) {
+//         newWallet.depsite_file = resp.secure_url;
+//         fs.unlinkSync(req.file.path);
+//   newWallet.save(function (err, data) {
+//     if (err) {
+//       res.status(400).json({
+//         status: false,
+//         msg: "error occured",
+//         error: err,
+//       });
+//     } else {
+//       res.status(200).json({
+//         status: true,
+//         msg: "Amount added to wallet",
+//         data: data,
+//       });
+//     }
+//   });
+// }
+// };
+// }
 
 exports.deposite_wallet = async (req, res) => {
-  const {customer, amount,pay_method,depsite_file ,status} = req.body;
+  const { customer,amount, pay_method,depsite_file ,status } = req.body;
 
+  const getdata = await Wallet.findOne({customer:req.body.id})
+         console.log(getdata)
+        if(getdata){
+      
+          let oldamt = getdata.amount
+          console.log("amout",oldamt)
+         
+           currntbalance = parseInt(oldamt)+ parseInt(req.body.amount)
+          console.log("Result",currntbalance)
+        }
+  
   const newWallet = new Wallet({
     customer: customer,
-    //walletId: uuidv4(),
     amount: amount,
-    depsite_file : depsite_file,
-    pay_method :pay_method,
-    status :status
+    pay_method: pay_method,
+    depsite_file: depsite_file,
+    status: status,
+    wallet_balance  : currntbalance
   });
-    
+
   if(req.file){
     const resp = await cloudinary.uploader.upload(req.file.path);
       if (resp) {
         newWallet.depsite_file = resp.secure_url;
         fs.unlinkSync(req.file.path);
-  
   newWallet.save(function (err, data) {
     if (err) {
       res.status(400).json({
@@ -35,13 +91,102 @@ exports.deposite_wallet = async (req, res) => {
         status: true,
         msg: "Amount added to wallet",
         data: newWallet,
+        wallet_balance : currntbalance
       });
     }
+  
   });
-}
 };
+  }
 }
 
+
+
+exports.getone = async (req, res) => {
+  const getdata = await Wallet.findOne({customer:req.params.id})
+  console.log(getdata)
+ if(getdata){
+
+   let oldamt = getdata.amount
+   console.log("amout",oldamt)
+  
+    currntbalance = parseInt(oldamt)+ parseInt(req.body.amount)
+   console.log("Result",currntbalance)
+ 
+
+    
+   // console.log(sum);
+    //console.log(findone)
+    res.status(200).json({
+      status: true,
+      msg: "success",
+      data: findone,
+        total: sum,
+    });
+  } else {
+    res.status(400).json({
+      status: false,
+      msg: "error",
+      error: "error",
+    });
+  }
+};
+
+
+
+
+
+// exports.deposite_wallet = async (req, res) => {
+
+//     const {customer, amount,pay_method,depsite_file ,status,wallet_balance} = req.body;
+    
+//     const getdata = await wallet.findOne({userId:req.body.id})
+//     console.log(getdata)
+//     if(getdata){
+//       let oldamt = getdata.amount
+//       console.log("amout",oldamt)
+//       let currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
+//       console.log("Result",currntamt)
+//     }
+    
+   
+
+ 
+
+
+
+
+// exports.updatewallet = async (req, res) => {
+
+  // const findandUpdateEntry = await Wallet.findOneAndUpdate(
+
+    
+  //   {
+      
+  //     $and: [
+  //       { userId: req.body.id },
+  //       { amount: currntamt },
+  //     ],
+  //   },
+  //   { $set: req.body },
+  //   { new: true }
+  // );
+  // if (findandUpdateEntry) {
+  //   res.status(200).json({
+  //     status: true,
+  //     msg: "success",
+  //     data: findandUpdateEntry,
+  //   });
+  // } else {
+  //   res.status(400).json({
+  //     status: false,
+  //     msg: "error",
+  //     error: "error",
+  //   });
+  // }
+
+
+///////////
 //   (function (err, data) {
 //     if (err) {
 //       res.status(400).json({
@@ -64,6 +209,46 @@ exports.deposite_wallet = async (req, res) => {
 // }
 // 
 
+
+// exports.deposite_wallet = async (req, res) => {
+//   const { customer, amount,pay_method,depsite_file,status} = req.body;
+
+//   const newWallet = new Wallet({
+//     customer: customer,
+//     amount: amount,
+//     pay_method :pay_method,
+//     depsite_file :depsite_file,
+//     status :status,
+//     wallet_balance : wallet_balance
+//   });
+ 
+//   if(req.file){
+//         const resp = await cloudinary.uploader.upload(req.file.path);
+//           if (resp) {
+//             newWallet.depsite_file = resp.secure_url;
+//             fs.unlinkSync(req.file.path);
+            
+//   newWallet.save(data).then((data)=>{
+//     res.status(200).json({
+//         status : true,
+//         msg : "success",
+//         data : data
+//     })
+// }).catch((error)=>{
+//     res.status(400).json({
+//         status : false,
+//         error : "error",
+//         error : error
+//     })
+// })
+
+// }
+
+//   }
+
+
+
+
 exports.addwallet = async (req, res) => {
   const {userId,amount} = req.body
   let userobject = {
@@ -77,7 +262,7 @@ console.log(getdata)
 if(getdata){
   let oldamt = getdata.amount
   console.log("amout",oldamt)
-  let currntamt = oldamt+ req.body.amt
+  let currntamt = oldamt+ req.body.amount
   console.log("Result",currntamt)
 }
   // res.successr(res, result);
@@ -135,3 +320,20 @@ exports.balanceApi = async (req,res)=>{
 }); 
 
 }
+
+exports.del_wallet = async (req, res) => {
+  try {
+    const deleteentry = await Wallet.deleteOne({ _id: req.params.id });
+    res.status(200).json({
+      status: true,
+      msg: "success",
+      data: deleteentry,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: false,
+      msg: "error",
+      error: error,
+    });
+  }
+};
