@@ -6,32 +6,22 @@ const fs = require("fs");
 
 
 // exports.deposite_wallet = async (req, res) => {
-//   const {customer, amount,pay_method,depsite_file ,status,wallet_balance} = req.body;
+//   const {customer, amount,pay_method,depsite_file } = req.body;
 
-
-//   const getdata = await Wallet.findOne({customer:req.body.id})
-//        console.log(getdata)
-//       if(getdata){
-//         let oldamt = getdata.amount
-//         console.log("amout",oldamt)
-//         let wallet_balance = parseInt(oldamt)+ parseInt(req.body.amount)
-//         console.log("Result",wallet_balance)
-//       }
 //   const newWallet = new Wallet({
 //     customer: customer,
 //     //walletId: uuidv4(),
 //     amount: amount,
 //     depsite_file : depsite_file,
-//     pay_method :pay_method,
-//     status :status,
-//     wallet_balance :wallet_balance
+//     pay_method :pay_method
 //   });
     
-//   if(req.file){
-//     const resp = await cloudinary.uploader.upload(req.file.path);
-//       if (resp) {
-//         newWallet.depsite_file = resp.secure_url;
-//         fs.unlinkSync(req.file.path);
+//   // if(req.file){
+//   //   const resp = await cloudinary.uploader.upload(req.file.path);
+//   //     if (resp) {
+//   //       newWallet.depsite_file = resp.secure_url;
+//   //       fs.unlinkSync(req.file.path);
+  
 //   newWallet.save(function (err, data) {
 //     if (err) {
 //       res.status(400).json({
@@ -43,64 +33,72 @@ const fs = require("fs");
 //       res.status(200).json({
 //         status: true,
 //         msg: "Amount added to wallet",
-//         data: data,
+//         data: newWallet,
 //       });
 //     }
 //   });
 // }
-// };
-// }
+// //};
+//}
 
+ 
 exports.deposite_wallet = async (req, res) => {
-  const { customer,amount, pay_method,depsite_file ,status } = req.body;
+  const { customer, amount, pay_method,  status } = req.body;
 
-  const getdata = await Wallet.findOne({customer:req.body.id})
-         console.log(getdata)
-        if(getdata){
-      
-          let oldamt = getdata.amount
-          console.log("amout",oldamt)
-         
-           currntbalance = parseInt(oldamt)+ parseInt(req.body.amount)
-          console.log("Result",currntbalance)
-        }
-  
   const newWallet = new Wallet({
     customer: customer,
     amount: amount,
     pay_method: pay_method,
-    depsite_file: depsite_file,
+     depsite_file: depsite_file,
     status: status,
-    wallet_balance  : currntbalance
   });
-
-  if(req.file){
-    const resp = await cloudinary.uploader.upload(req.file.path);
+  const getdata = await Wallet.findOne({customer :req.body.customer})
+  console.log("Getdata",getdata)
+  if(getdata){
+    let oldamt = getdata.amount
+      console.log("amout",oldamt)
+      currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
+      console.log("Result",currntamt)
+    }
+  const findandUpdateEntry = await Wallet.findOneAndUpdate(
+      { customer: req.body.customer },
+      
+      {$set: {amount:"currntamt"}} ,
+      
+      
+         
+    
+    
+    //{ $set: {status:"success"} },
+    { new: true }
+  );
+   
+      const resp = await cloudinary.uploader.upload(req.file.path);
       if (resp) {
         newWallet.depsite_file = resp.secure_url;
         fs.unlinkSync(req.file.path);
-  newWallet.save(function (err, data) {
-    if (err) {
-      res.status(400).json({
-        status: false,
-        msg: "error occured",
-        error: err,
-      });
-    } else {
-      res.status(200).json({
-        status: true,
-        msg: "Amount added to wallet",
-        data: newWallet,
-        wallet_balance : currntbalance
-      });
+        newBrand.save().then(
+          res.status(200).json({
+            status: true,
+            msg: "success",
+            data: newWallet,
+          })
+        );
+      } else {
+        res.status(200).json({
+          status: false,
+          msg: "img not uploaded",
+        })
+   
+        .catch((error) => {
+          res.status(400).json({
+            status: false,
+            msg: "error",
+            error: error,
+          });
+        });
     }
-  
-  });
-};
   }
-}
-
-
 
 exports.getone = async (req, res) => {
   const getdata = await Wallet.findOne({customer:req.params.id})
@@ -120,8 +118,8 @@ exports.getone = async (req, res) => {
     res.status(200).json({
       status: true,
       msg: "success",
-      data: findone,
-        total: sum,
+      data: getdata,
+       // total: sum,
     });
   } else {
     res.status(400).json({
@@ -133,140 +131,93 @@ exports.getone = async (req, res) => {
 };
 
 
+exports.updatewallet = async (req, res) => {
 
-
-
-// exports.deposite_wallet = async (req, res) => {
-
-//     const {customer, amount,pay_method,depsite_file ,status,wallet_balance} = req.body;
-    
-//     const getdata = await wallet.findOne({userId:req.body.id})
-//     console.log(getdata)
-//     if(getdata){
-//       let oldamt = getdata.amount
-//       console.log("amout",oldamt)
-//       let currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
-//       console.log("Result",currntamt)
-//     }
-    
-   
-
- 
-
-
-
-
-// exports.updatewallet = async (req, res) => {
-
-  // const findandUpdateEntry = await Wallet.findOneAndUpdate(
+  const findandUpdateEntry = await Wallet.findOneAndUpdate(
 
     
-  //   {
+    {
       
-  //     $and: [
-  //       { userId: req.body.id },
-  //       { amount: currntamt },
-  //     ],
-  //   },
-  //   { $set: req.body },
-  //   { new: true }
-  // );
-  // if (findandUpdateEntry) {
-  //   res.status(200).json({
-  //     status: true,
-  //     msg: "success",
-  //     data: findandUpdateEntry,
-  //   });
-  // } else {
-  //   res.status(400).json({
-  //     status: false,
-  //     msg: "error",
-  //     error: "error",
-  //   });
-  // }
+      $and: [
+        { userId: req.body.id },
+        { amount: currntamt },
+      ],
+    },
+    { $set: req.body },
+    { new: true }
+  );
+  if (findandUpdateEntry) {
+    res.status(200).json({
+      status: true,
+      msg: "success",
+      data: findandUpdateEntry,
+    });
+  } else {
+    res.status(400).json({
+      status: false,
+      msg: "error",
+      error: "error",
+    });
+  }
 
-
-///////////
-//   (function (err, data) {
-//     if (err) {
-//       res.status(400).json({
-//         status: false,
-//         msg: "error occured",
-//         error: err,
-//       });
-//     } else {
-//       res.status(200).json({
-//         status: true,
-//         msg: "Amount added to wallet",
-//         data: newWallet,
-//       });
-//     }
-//   });
-// };
-
-//exports.updatewallet = async (req,res)=>{
-//   const
-// }
-// 
-
-
-// exports.deposite_wallet = async (req, res) => {
-//   const { customer, amount,pay_method,depsite_file,status} = req.body;
-
-//   const newWallet = new Wallet({
-//     customer: customer,
-//     amount: amount,
-//     pay_method :pay_method,
-//     depsite_file :depsite_file,
-//     status :status,
-//     wallet_balance : wallet_balance
-//   });
- 
-//   if(req.file){
-//         const resp = await cloudinary.uploader.upload(req.file.path);
-//           if (resp) {
-//             newWallet.depsite_file = resp.secure_url;
-//             fs.unlinkSync(req.file.path);
-            
-//   newWallet.save(data).then((data)=>{
-//     res.status(200).json({
-//         status : true,
-//         msg : "success",
-//         data : data
-//     })
-// }).catch((error)=>{
-//     res.status(400).json({
-//         status : false,
-//         error : "error",
-//         error : error
-//     })
-// })
-
-// }
-
-//   }
-
-
-
-
-exports.addwallet = async (req, res) => {
-  const {userId,amount} = req.body
-  let userobject = {
-    userId: userId,
-    amount: amount,
-  };
-  let result = await Wallet.create(userobject);
-  //await DealershipBayMap.insertMany(bay_map);
-const getdata = await wallet.findOne({userId:req.body.id})
-console.log(getdata)
-if(getdata){
-  let oldamt = getdata.amount
-  console.log("amout",oldamt)
-  let currntamt = oldamt+ req.body.amount
-  console.log("Result",currntamt)
 }
-  // res.successr(res, result);
-};
+ 
+exports.deposite_wallet = async (req, res) => {
+  const { customer, amount,pay_method,depsite_file,status} = req.body;
+
+  const newWallet = new Wallet({
+    customer: customer,
+    amount: amount,
+    pay_method :pay_method,
+    depsite_file :depsite_file,
+    status :status,
+   
+  });
+ 
+  if(req.file){
+        const resp = await cloudinary.uploader.upload(req.file.path);
+          if (resp) {
+            newWallet.depsite_file = resp.secure_url;
+            fs.unlinkSync(req.file.path);
+          
+  newWallet.save().then((data)=>{
+    res.status(200).json({
+        status : true,
+        msg : "success",
+        data : data
+    })
+}).catch((error)=>{
+    res.status(400).json({
+        status : false,
+        error : "error",
+        error : error
+    })
+})
+  }
+}
+}
+  
+ 
+
+
+// exports.addwallet = async (req, res) => {
+//   const {userId,amount} = req.body
+//   let userobject = {
+//     userId: userId,
+//     amount: amount,
+//   };
+//   let result = await Wallet.create(userobject);
+//   //await DealershipBayMap.insertMany(bay_map);
+// const getdata = await wallet.findOne({userId:req.body.id})
+// console.log(getdata)
+// if(getdata){
+//   let oldamt = getdata.amount
+//   console.log("amout",oldamt)
+//   let currntamt = oldamt+ req.body.amount
+//   console.log("Result",currntamt)
+// }
+//   // res.successr(res, result);
+// };
 
 
 exports.getwallet = async (req, res) => {

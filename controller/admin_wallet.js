@@ -1,22 +1,45 @@
 const AdminWallet = require("../models/admin_wallet");
- 
+const Wallet = require("../models/wallet");
+
 
 
 exports.addAmount = async (req, res) => {
-  const {walletId, amount ,status} = req.body;
+  const {customer, amount ,status} = req.body;
 
   const newAdminWallet = new AdminWallet({
-    walletId: walletId,
+    customer: customer,
     //walletId: uuidv4(),
     amount: amount,
     status:status
     
+    
   });
+
+  const getdata = await Wallet.findOne({customer :req.body.customer})
+  console.log("Getdata",getdata)
+  if(getdata){
+    let oldamt = getdata.amount
+      console.log("amout",oldamt)
+      currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
+      console.log("Result",currntamt)
+    }
+  const findandUpdateEntry = await Wallet.findOneAndUpdate(
+    
+      { customer: req.body.customer },
+      
+      { $set: {amount:currntamt,status:"success"} },
+      
+    //     { amount: currntamt },
+         
+    // { $set: {status:"success"} },
+    { new: true }
+  );
   newAdminWallet.save().then((data)=>{
     res.status(200).json({
         status : true,
         msg : "success",
-        data : data
+        data : data,
+        amount: currntamt, 
     })
 }).catch((error)=>{
     res.status(400).json({

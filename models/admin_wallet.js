@@ -12,6 +12,7 @@ const AdminwalletSchema = new mongoose.Schema(
             ref: "customer",
 
         },
+        
 
         // walletId: {
         //type: mongoose.Schema.Types.ObjectId,
@@ -19,14 +20,16 @@ const AdminwalletSchema = new mongoose.Schema(
         //type: String,
         //required: true,
         //},
-        amount: {
+        wallet_amount: {
             type: Number,
 
         },
         status : {
             type : String
-        }
-
+        },
+        currntamt:{
+type :Number
+}
     },
     { timestamps: true }
 );
