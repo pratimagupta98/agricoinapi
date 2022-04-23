@@ -57,12 +57,13 @@ const size = require("./routes/size");
 const reason = require("./routes/reason");
 const transfer_type = require("./routes/transfer_type");
 const operators = require("./routes/operators");
-const mo_operators = require("./routes/mo_operators");
+//const mo_operators = require("./routes/mo_operators");
 const utility_bill = require("./routes/utility_bill");
 const mo_recharge = require("./routes/mo_recharge");
 const electricity_operators = require("./routes/electricity_operators");
 const ele_recharge = require("./routes/ele_recharge");
 const admin_wallet = require("./routes/admin_wallet");
+const circles_code = require("./routes/circles_code");
 
  
 //use
@@ -111,12 +112,16 @@ app.use("/", size);
 app.use("/", reason);
 app.use("/", transfer_type);
 app.use("/", operators);
-app.use("/", mo_operators);
+//app.use("/", mo_operators);
 app.use("/", utility_bill);
 app.use("/", mo_recharge);
 app.use("/", electricity_operators);
 app.use("/", ele_recharge);
 app.use("/", admin_wallet);
+app.use("/", circles_code );
+
+
+ 
  
 app.get("/", (req, res) => {
   res.send("Hello World!!!!");
