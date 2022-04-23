@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  moRecharge,
+  Recharge,
 
   // mobileRecharge,
 } = require("../controller/mo_recharge");
 
 //Paths
 
-router.post("/admin/moRecharge", moRecharge);
+router.post("/admin/Recharge", Recharge);
 
 // router.get("/admin/operators/auto-detect/:phone/:country", detectoperator);
 // router.get("/admin/getoperatorbyid/:id", getoperatorbyid);
