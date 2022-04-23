@@ -64,6 +64,7 @@ const electricity_operators = require("./routes/electricity_operators");
 const ele_recharge = require("./routes/ele_recharge");
 const admin_wallet = require("./routes/admin_wallet");
 const circles_code = require("./routes/circles_code");
+const mobileRecharge = require("./routes/mobileRecharge");
 
  
 //use
@@ -119,6 +120,7 @@ app.use("/", electricity_operators);
 app.use("/", ele_recharge);
 app.use("/", admin_wallet);
 app.use("/", circles_code );
+app.use("/", mobileRecharge );
 
 
  
