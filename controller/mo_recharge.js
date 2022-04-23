@@ -104,7 +104,7 @@ var options = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/addon/opt_lookup',
   'headers': {
-    'Token': 'ZKEYf2e95f5c4ad2917af5f57bf58',
+    'Token': 'ZKEY6f426c359d25311a48b1287f6',
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
