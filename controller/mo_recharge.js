@@ -97,10 +97,11 @@ const Recharge = require("../models/mo_operators");
 
 
 exports.Recharge = async(req,res) =>{
+  const { number } = req.body;
 
 var request = require('request');
 var options = {
-  
+  'number' :  req.body.number,
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/addon/opt_lookup',
   'headers': {
@@ -137,3 +138,24 @@ request(options, function (error, response) {
 
 
  
+
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': 'https://api.zuelpay.com/utility/addon/browseplan',
+  'headers': {
+    'Token': 'ZKEY6f426c359d25311a48b1287f6',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    "request": {
+      "code": "ATP",
+      "circle_code": 12
+    }
+  })
+
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
