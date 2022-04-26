@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const MorechargeSchema = new Schema(
   {
-    
+    customerId :{
+      type : String
+    },
         amount:{
       type : Number
         },
