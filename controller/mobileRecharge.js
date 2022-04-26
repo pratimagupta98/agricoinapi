@@ -38,7 +38,7 @@ var options = {
   'headers': {
      'Token': 'ZKEY6f426c359d25311a48b1287f6',
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content_Type': 'application/json'
   },
   body: JSON.stringify({
     "request": {

@@ -21,6 +21,12 @@ const MorechargeSchema = new Schema(
         agent_id : {
           type : String
         },
+        headers:[{
+          Token:String,
+          Accept:String,
+          Content_Type:String,        
+          }],
+
     },
   
   { timestamps: true }
