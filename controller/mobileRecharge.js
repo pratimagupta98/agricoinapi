@@ -49,19 +49,19 @@ var data = {
    walletId : req.body.walletId
 }
 
-request(options, function (error, response) {
-  if (error){
-    throw new Error(error);
-    res.json(error) ;
-  } 
+// request(options, function (error, response) {
+//   if (error){
+//     throw new Error(error);
+//     res.json(error) ;
+//   } 
   
-  console.log(response.body);
-  res.send(response.body);
-   var serverRes = response.body
-   return serverRes
-})
+//   console.log(response.body);
+//   res.send(response.body);
+//    var serverRes = response.body
+//    return serverRes
+// })
  
-}
+// }
 
   // body: JSON.stringify({
   //   "request": {
@@ -98,20 +98,20 @@ request(options, function (error, response) {
 
 
 // ************************
-// let result = await Mobilerecharge.create(options);
-// console.log(result)
-// request(options, function (error, response) {
-//   if (error){
-//     throw new Error(error);
-//     res.json(error) ;
-//   } 
+let result = await Mobilerecharge.create(options);
+console.log(result)
+request(options, function (error, response) {
+  if (error){
+    throw new Error(error);
+    res.json(error) ;
+  } 
   
-//   //console.log(response.body);
-//   res.send(response.body);
-//    var serverRes = response.body
-//    return serverRes
-// })
+  //console.log(response.body);
+  res.send(response.body);
+   var serverRes = response.body
+   return serverRes
+})
  
-// }
+}
 // *********************
 
