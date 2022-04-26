@@ -1,8 +1,8 @@
 const Mobilerecharge = require("../models/mobileRecharge");
 
 exports.mobile_recharge = async(req,res)=>{
-  const {walletId,amount,biller_code,number,agent_id} = req.body
-//var request = require('request');
+  const {customerId,amount,biller_code,number,agent_id} = req.body
+var request = require('request');
 
 // const newMobilerecharge = new Mobilerecharge({
 //   customerId : customerId,
@@ -32,9 +32,6 @@ create_randomString(15);
     number : number,
     
   })
-  const findone = await Mobilerecharge.findOne({  $and: [{ walletId: walletId }, { amount: amount }], });
-  const http = require("https");
-if(findone){
 var options = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/recharge/transaction',
@@ -54,69 +51,20 @@ var options = {
 
 };
 
-var req = http.request(options, function (res) {
-  const chunks = [];
 
-  res.on("data", function (chunk) {
-    chunks.push(chunk);
-  });
+let result = await Mobilerecharge.create(options);
+console.log(result)
 
-  res.on("end", function () {
-    const body = Buffer.concat(chunks);
-    console.log(body.toString());
-  });
-});
-
-req.end()
-res.status(200).json({
-  status: true,
-  msg: "success",
-  data : findone,
+request(options, function (error, response) {
+  if (error){
+    throw new Error(error);
+    res.json(error) ;
+  } 
   
-
+  //console.log(response.body);
+  res.send(response.body);
+   var serverRes = response.body
+   return serverRes
 })
-}
-}
-
-
-// let result = await newMobilerecharge.create(options);
-// console.log(result)
-
-// request(options, function (error, response) {
-//   if (error){
-//     throw new Error(error);
-//     res.json(error) ;
-//   } 
-  
-// })
  
-// }
-
-
-
-
-
-
-
-
-
-
-
- //console.log(response.body);
-  // newMobilerecharge
-  // .save()
-  // .then((data) => {
-  //     res.status(200).json({
-  //         status: true,
-  //         msg: "success",
-  //         data: data,
-  //     });
-  // })
-  // .catch((error) => {
-  //     res.status(400).json({
-  //         status: false,
-  //         msg: "error",
-  //         error: error,
-  //     });
-  // });
-  // }
+}
