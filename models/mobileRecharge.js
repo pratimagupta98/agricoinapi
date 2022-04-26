@@ -3,18 +3,19 @@ const Schema = mongoose.Schema;
 
 const MorechargeSchema = new Schema(
   {
-    options:[{ headers:[{
-      Token:String,
-      Accept:String,
-      Content_Type:String,        
-      }],
-      method :[{
-        type : String
-      }],
-      url :[{
-        type : String
-      }],
-    }],
+    // options:[{ headers:[{
+    //   Token:String,
+    //   Accept:String,
+    //   Content_Type:String,        
+    //   }],
+    //   method :[{
+    //     type : String
+    //   }],
+    //   url :[{
+    //     type : String
+    //   }],
+    // }],
+    
     walletId :{
       type: mongoose.Schema.Types.ObjectId,
       ref: "wallet",
