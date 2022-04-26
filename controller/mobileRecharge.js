@@ -40,17 +40,26 @@ var options = {
     'Accept': 'application/json',
     'Content_Type': 'application/json'
   },
-  body: JSON.stringify({
-    "request": {
-      "amount": req.body.amount,
-      "biller_code": req.body.biller_code,
-      "number": req.body.number,
-      "agent_id": "SOXY" +randomString,
-      "walletId" : req.body.walletId
-    }
-  })
+}
+var data = {
+  amount: req.body.amount,
+  biller_code: req.body.biller_code,
+  number: req.body.number,
+  agent_id: "SOXY" +randomString,
+   walletId : req.body.walletId
+}
 
-};
+  // body: JSON.stringify({
+  //   "request": {
+  //     "amount": req.body.amount,
+  //     "biller_code": req.body.biller_code,
+  //     "number": req.body.number,
+  //     "agent_id": "SOXY" +randomString,
+  //     "walletId" : req.body.walletId
+  //   }
+  // })
+
+
 
 
 // let result = await Mobilerecharge.create(options);
@@ -73,7 +82,7 @@ var options = {
 // });
 // };
 
-let result = await Mobilerecharge.create(options,body);
+let result = await Mobilerecharge.create(options,data);
 console.log(result)
 request(options, function (error, response) {
   if (error){
