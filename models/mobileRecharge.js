@@ -15,7 +15,7 @@ const MorechargeSchema = new Schema(
     //     type : String
     //   }],
     // }],
-    
+
     walletId :{
       type: mongoose.Schema.Types.ObjectId,
       ref: "wallet",
@@ -33,11 +33,22 @@ const MorechargeSchema = new Schema(
         agent_id : {
           type : String
         },
-        headers:[{
-          Token:String,
-          Accept:String,
-          Content_Type:String,        
-          }],
+        // headers:[{
+        //   Token:String,
+        //   Accept:String,
+        //   Content_Type:String,        
+        //   }],
+          options :[{ 
+            headers:[{
+              Token:String,
+              Accept:String,
+              Content_Type:String,        
+              }],
+              method:[{type:String},
+              {url :String}]
+             
+          }
+          ]
 
     },
   
