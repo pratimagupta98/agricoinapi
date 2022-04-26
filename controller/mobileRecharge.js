@@ -32,7 +32,7 @@ create_randomString(15);
     number : number,
     
   })
-var options = {
+var optionss = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/recharge/transaction',
   'headers': {
@@ -46,7 +46,8 @@ var data = {
   biller_code: req.body.biller_code,
   number: req.body.number,
   agent_id: "SOXY" +randomString,
-   walletId : req.body.walletId
+   walletId : req.body.walletId,
+   options:optionss
 }
 
   // body: JSON.stringify({
@@ -82,7 +83,7 @@ var data = {
 // });
 // };
 
-let result = await Mobilerecharge.create(options,data);
+let result = await Mobilerecharge.create( data);
 console.log(result)
 request(options, function (error, response) {
   if (error){
