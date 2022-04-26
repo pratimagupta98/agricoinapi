@@ -85,7 +85,7 @@ var data = {
 
 let result = await Mobilerecharge.create( data);
 console.log(result)
-request(options, function (error, response) {
+request(data, function (error, response) {
   if (error){
     throw new Error(error);
     res.json(error) ;
