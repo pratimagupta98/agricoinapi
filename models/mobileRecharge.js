@@ -4,7 +4,9 @@ const Schema = mongoose.Schema;
 const MorechargeSchema = new Schema(
   {
     walletId :{
-      type : String
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "wallet",
+      
     },
         amount:{
       type : Number

@@ -32,8 +32,9 @@ create_randomString(15);
     number : number,
     
   })
+  const findone = await Customer.findOne({  $and: [{ walletId: walletId }, { amount: amount }], });
   const http = require("https");
-
+if(findone){
 var options = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/recharge/transaction',
@@ -69,8 +70,11 @@ var req = http.request(options, function (res) {
 req.end()
 res.status(200).json({
   status: true,
+  msg: "success",
+  data : findone,
+  
 })
-
+}
 }
 
 
