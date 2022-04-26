@@ -72,6 +72,7 @@ res.status(200).json({
   status: true,
   msg: "success",
   data : findone,
+  details : data
 
 })
 }
