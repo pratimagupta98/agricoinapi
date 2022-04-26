@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const MorechargeSchema = new Schema(
   {
+    options:{ type:Array},
     walletId :{
       type: mongoose.Schema.Types.ObjectId,
       ref: "wallet",
@@ -21,6 +22,7 @@ const MorechargeSchema = new Schema(
           type : String
         },
     },
+  
   { timestamps: true }
 );
 
