@@ -144,6 +144,8 @@ const {code,circle_code} = req.body
 var request = require('request');
 var data = {
   'method': 'POST',
+  'code' : req.body.code,
+  'circle_code' : req.body.circle_code,
   'url': 'https://api.zuelpay.com/utility/addon/browseplan',
   'headers': {
     'Token': 'ZKEY6f426c359d25311a48b1287f6',
@@ -166,7 +168,7 @@ request(data, function (error, response) {
     res.json(error) ;
   } 
   
-  //console.log(response.body);
+  console.log(response.body);
   res.send(response.body);
    var serverRes = response.body
    return serverRes
