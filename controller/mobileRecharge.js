@@ -45,26 +45,45 @@ var options = {
       "amount": req.body.amount,
       "biller_code": req.body.biller_code,
       "number": req.body.number,
-      "agent_id": "SOXY" +randomString
+      "agent_id": "SOXY" +randomString,
+      "walletId" : req.body.walletId
     }
   })
 
 };
 
 
-let result = await Mobilerecharge.create(options);
-console.log(result)
+// let result = await Mobilerecharge.create(options);
+// console.log(result)
 
-request(options, function (error, response) {
-  if (error){
-    throw new Error(error);
-    res.json(error) ;
-  } 
+Mobilerecharge.create(options, function (error, response) {
+  if (error) {
+    console.log(error);
+    res.json({
+      error
+    });
+  } else {
+    //callback(null, { payulink: response });
+    // You will get a link in response to redirect to payUMoney
+    res.json({
+      response
+    });
+    console.log(response);
+  }
+});
+};
+
+
+// request(options, function (error, response) {
+//   if (error){
+//     throw new Error(error);
+//     res.json(error) ;
+//   } 
   
-  //console.log(response.body);
-  res.send(response.body);
-   var serverRes = response.body
-   return serverRes
-})
+//   //console.log(response.body);
+//   res.send(response.body);
+//    var serverRes = response.body
+//    return serverRes
+// })
  
-}
+// }
