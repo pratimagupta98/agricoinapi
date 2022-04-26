@@ -2,7 +2,7 @@ const Mobilerecharge = require("../models/mobileRecharge");
 
 exports.mobile_recharge = async(req,res)=>{
   const {walletId,amount,biller_code,number,agent_id} = req.body
-var request = require('request');
+//var request = require('request');
 
 // const newMobilerecharge = new Mobilerecharge({
 //   customerId : customerId,
@@ -32,6 +32,8 @@ create_randomString(15);
     number : number,
     
   })
+  const http = require("https");
+
 var options = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/recharge/transaction',
@@ -51,16 +53,51 @@ var options = {
 
 };
 
-let result = await newMobilerecharge.create(options);
-console.log(result)
+var req = http.request(options, function (res) {
+  const chunks = [];
 
-request(options, function (error, response) {
-  if (error){
-    throw new Error(error);
-    res.json(error) ;
-  } 
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.end()
+res.status(200).json({
+  status: true,
+})
+
+}
+
+
+// let result = await newMobilerecharge.create(options);
+// console.log(result)
+
+// request(options, function (error, response) {
+//   if (error){
+//     throw new Error(error);
+//     res.json(error) ;
+//   } 
   
-  //console.log(response.body);
+// })
+ 
+// }
+
+
+
+
+
+
+
+
+
+
+
+ //console.log(response.body);
   // newMobilerecharge
   // .save()
   // .then((data) => {
@@ -78,6 +115,3 @@ request(options, function (error, response) {
   //     });
   // });
   // }
-})
- 
-}
