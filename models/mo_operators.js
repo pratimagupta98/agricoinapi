@@ -5,7 +5,13 @@ const OperatorSchema = new Schema(
   {
     request:[ {
       number: {type:Number}
-  }]
+  }],
+  circle_code:{
+    type : String
+  },
+  code : {
+    type : String
+  }
   },
   { timestamps: true }
 );

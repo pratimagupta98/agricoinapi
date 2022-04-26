@@ -138,9 +138,11 @@ request(options, function (error, response) {
 
 
  
+exports.Plans = async(req,res) =>{
 
+const {code,circle_code} = req.body
 var request = require('request');
-var options = {
+var data = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/addon/browseplan',
   'headers': {
@@ -149,13 +151,25 @@ var options = {
   },
   body: JSON.stringify({
     "request": {
-      "code": "ATP",
-      "circle_code": 12
+      "code": req.body.code,
+      "circle_code": req.body.circle_code
     }
   })
 
-};
-request(options, function (error, response) {
-  if (error) throw new Error(error);
-  console.log(response.body);
-});
+}
+// let result = await Recharge.create(options);
+// console.log(result)
+
+request(data, function (error, response) {
+  if (error){
+    throw new Error(error);
+    res.json(error) ;
+  } 
+  
+  //console.log(response.body);
+  res.send(response.body);
+   var serverRes = response.body
+   return serverRes
+})
+ 
+}
