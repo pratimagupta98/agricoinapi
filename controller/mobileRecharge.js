@@ -50,19 +50,51 @@ var options = {
   })
 
 };
-let result = await Mobilerecharge.create(options);
-console.log(result)
 
-request(options, function (error, response) {
-  if (error){
-    throw new Error(error);
-    res.json(error) ;
-  } 
+// newMobilerecharge
+// .save()
+// .then((data) => {
+//     res.status(200).json({
+//         status: true,
+//         msg: "success",
+//         data: data,
+//     });
+// })
+// .catch((error) => {
+//     res.status(400).json({
+//         status: false,
+//         msg: "error",
+//         error: error,
+//     });
+// });
+// }
+// let result = await Mobilerecharge.create(options);
+// console.log(result)
+
+// request(options, function (error, response) {
+//   if (error){
+//     throw new Error(error);
+//     res.json(error) ;
+//   } 
   
   //console.log(response.body);
-  res.send(response.body);
-   var serverRes = response.body
-   return serverRes
-})
+  newMobilerecharge
+  .save()
+  .then((data) => {
+      res.status(200).json({
+          status: true,
+          msg: "success",
+          data: data,
+      });
+  })
+  .catch((error) => {
+      res.status(400).json({
+          status: false,
+          msg: "error",
+          error: error,
+      });
+  });
+  }
+// })
  
-}
+// }
