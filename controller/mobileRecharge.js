@@ -1,7 +1,7 @@
 const Mobilerecharge = require("../models/mobileRecharge");
 
 exports.mobile_recharge = async(req,res)=>{
-  const {customerId,amount,biller_code,number,agent_id} = req.body
+  const {walletId,amount,biller_code,number,agent_id} = req.body
 var request = require('request');
 
 // const newMobilerecharge = new Mobilerecharge({
