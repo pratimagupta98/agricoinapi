@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const MorechargeSchema = new Schema(
   {
-    customerId :{
+    walletId :{
       type : String
     },
         amount:{

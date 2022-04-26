@@ -1,7 +1,7 @@
 const Mobilerecharge = require("../models/mobileRecharge");
 
 exports.mobile_recharge = async(req,res)=>{
-  const {customerId,amount,biller_code,number,agent_id} = req.body
+  const {walletId,amount,biller_code,number,agent_id} = req.body
 var request = require('request');
 
 // const newMobilerecharge = new Mobilerecharge({
@@ -26,7 +26,7 @@ create_randomString(15);
   }
   
   const newMobilerecharge = new Mobilerecharge({
-    customerId : customerId,
+    walletId : walletId,
     amount : amount,
     biller_code : biller_code,
     number : number,
@@ -51,50 +51,33 @@ var options = {
 
 };
 
-// newMobilerecharge
-// .save()
-// .then((data) => {
-//     res.status(200).json({
-//         status: true,
-//         msg: "success",
-//         data: data,
-//     });
-// })
-// .catch((error) => {
-//     res.status(400).json({
-//         status: false,
-//         msg: "error",
-//         error: error,
-//     });
-// });
-// }
-// let result = await Mobilerecharge.create(options);
-// console.log(result)
+let result = await newMobilerecharge.create(options);
+console.log(result)
 
-// request(options, function (error, response) {
-//   if (error){
-//     throw new Error(error);
-//     res.json(error) ;
-//   } 
+request(options, function (error, response) {
+  if (error){
+    throw new Error(error);
+    res.json(error) ;
+  } 
   
   //console.log(response.body);
-  newMobilerecharge
-  .save()
-  .then((data) => {
-      res.status(200).json({
-          status: true,
-          msg: "success",
-          data: data,
-      });
-  })
-  .catch((error) => {
-      res.status(400).json({
-          status: false,
-          msg: "error",
-          error: error,
-      });
-  });
-  }
-// })
+  // newMobilerecharge
+  // .save()
+  // .then((data) => {
+  //     res.status(200).json({
+  //         status: true,
+  //         msg: "success",
+  //         data: data,
+  //     });
+  // })
+  // .catch((error) => {
+  //     res.status(400).json({
+  //         status: false,
+  //         msg: "error",
+  //         error: error,
+  //     });
+  // });
+  // }
+})
  
-// }
+}
