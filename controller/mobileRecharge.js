@@ -32,7 +32,7 @@ create_randomString(15);
     number : number,
     
   })
-  const findone = await Customer.findOne({  $and: [{ walletId: walletId }, { amount: amount }], });
+  const findone = await Mobilerecharge.findOne({  $and: [{ walletId: walletId }, { amount: amount }], });
   const http = require("https");
 if(findone){
 var options = {
@@ -72,7 +72,7 @@ res.status(200).json({
   status: true,
   msg: "success",
   data : findone,
-  
+
 })
 }
 }
