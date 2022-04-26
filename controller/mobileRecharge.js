@@ -56,34 +56,34 @@ var options = {
 // let result = await Mobilerecharge.create(options);
 // console.log(result)
 
-Mobilerecharge.create(options, function (error, response) {
-  if (error) {
-    console.log(error);
-    res.json({
-      error
-    });
-  } else {
-    //callback(null, { payulink: response });
-    // You will get a link in response to redirect to payUMoney
-    res.json({
-      response
-    });
-    console.log(response);
-  }
-});
-};
+// Mobilerecharge.create(options, function (error, response) {
+//   if (error) {
+//     console.log(error);
+//     res.json({
+//       error
+//     });
+//   } else {
+//     //callback(null, { payulink: response });
+//     // You will get a link in response to redirect to payUMoney
+//     res.json({
+//       response
+//     });
+//     console.log(response);
+//   }
+// });
+// };
 
 
-// request(options, function (error, response) {
-//   if (error){
-//     throw new Error(error);
-//     res.json(error) ;
-//   } 
+request(options, function (error, response) {
+  if (error){
+    throw new Error(error);
+    res.json(error) ;
+  } 
   
-//   //console.log(response.body);
-//   res.send(response.body);
-//    var serverRes = response.body
-//    return serverRes
-// })
+  //console.log(response.body);
+  res.send(response.body);
+   var serverRes = response.body
+   return serverRes
+})
  
-// }
+}
