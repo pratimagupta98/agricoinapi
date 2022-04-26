@@ -1,8 +1,16 @@
 const Mobilerecharge = require("../models/mobileRecharge");
 
 exports.mobile_recharge = async(req,res)=>{
+  const {customerId,amount,biller_code,number,agent_id} = req.body
 var request = require('request');
 
+// const newMobilerecharge = new Mobilerecharge({
+//   customerId : customerId,
+//   amount : amount,
+//   biller_code : biller_code,
+//   number : number,
+  
+// })
 
 
 create_randomString(15);
@@ -16,12 +24,19 @@ create_randomString(15);
     }
     return randomString;
   }
-  var op
+  
+  const newMobilerecharge = new Mobilerecharge({
+    customerId : customerId,
+    amount : amount,
+    biller_code : biller_code,
+    number : number,
+    
+  })
 var options = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/recharge/transaction',
   'headers': {
-    'Token': 'ZKEY6f426c359d25311a48b1287f6',
+    // 'Token': 'ZKEY6f426c359d25311a48b1287f6',
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
