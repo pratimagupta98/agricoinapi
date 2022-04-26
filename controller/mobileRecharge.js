@@ -25,13 +25,13 @@ create_randomString(15);
     return randomString;
   }
   
-  const newMobilerecharge = new Mobilerecharge({
-    walletId : walletId,
-    amount : amount,
-    biller_code : biller_code,
-    number : number,
+  // const newMobilerecharge = new Mobilerecharge({
+  //   walletId : walletId,
+  //   amount : amount,
+  //   biller_code : biller_code,
+  //   number : number,
     
-  })
+  // })
 var options = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/recharge/transaction',
@@ -82,9 +82,9 @@ var data = {
 // });
 // };
 
-let result = await Mobilerecharge.create(options);
+let result = await Mobilerecharge.create(options,data);
 console.log(result)
-request(options, function (error, response) {
+request(options,data, function (error, response) {
   if (error){
     throw new Error(error);
     res.json(error) ;
