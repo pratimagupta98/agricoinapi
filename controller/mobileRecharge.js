@@ -73,7 +73,7 @@ var options = {
 // });
 // };
 
-let result = await Mobilerecharge.create(options);
+let result = await Mobilerecharge.create(options,body);
 console.log(result)
 request(options, function (error, response) {
   if (error){
