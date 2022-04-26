@@ -96,7 +96,7 @@ const Recharge = require("../models/mo_operators");
 
 
 
-exports.Recharge = async(req,res) =>{
+exports.operatorLookup = async(req,res) =>{
   const { number } = req.body;
 
 var request = require('request');
