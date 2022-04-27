@@ -315,7 +315,8 @@ var options = {
 
 };
 
- let result = await Mobilerecharge.create(data);
+ let result = await Mobilerecharge.create(request);
+
  console.log(result)
 request(options, function (error, response) {
   if (error){
