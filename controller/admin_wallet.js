@@ -54,12 +54,7 @@ exports.addAmount = async (req, res) => {
  
 
 exports.getalldata = async (req, res) => {
-  const findall = await AdminWallet.find().populate("walletId").populate({
-      path: "walletId",
-      populate: {
-        path: "customer",
-      },
-    })
+  const findall = await AdminWallet.find().populate("customer") 
     .sort({ sortorder: 1 })
     .then((result) => {
       res.status(200).json({
