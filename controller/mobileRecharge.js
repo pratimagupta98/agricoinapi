@@ -332,7 +332,8 @@ const getdetails = await Wallet.findOne({walletId :req.body.walletId}).populate(
 if(getdetails){
   let cmt = getdetails.amount
   let newamt =cmt - amount
-
+console.log("camt",cmt)
+console.log("new",newamt)
 const findandUpdateEntry1 = await Mobilerecharge.findOneAndUpdate(
   
   { walletId: req.body.walletId },
@@ -348,7 +349,7 @@ const findandUpdateEntry1 = await Mobilerecharge.findOneAndUpdate(
       status : true,
       msg : "success",
       data : data,
-      amount: currntamt, 
+      amount: newamt, 
   })
 }) .catch((error) => {
   res.status(400).json({
