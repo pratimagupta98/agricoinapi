@@ -1,5 +1,6 @@
 const Mobilerecharge = require("../models/mobileRecharge");
 const Wallet = require("../models/wallet");
+//const wallet = require("../models/wallet");
 
 // exports.mobile_recharge = async(req,res)=>{
  
@@ -326,15 +327,8 @@ request(options, function (error, response) {
   var serverRes = response.body
   return serverRes
 }); 
-data ={
-  walletId: req.body.walletId,
-
-  amount:req.body.amount,
-  biller_code:req.body.biller_code,
-  number: req.body.number,
-  agent_id:"SOXY" +randomString, 
-} 
-const getdetails = await Mobilerecharge.findOne({walletId :req.body.walletId})
+ 
+const getdetails = await Wallet.findOne({walletId :req.body.walletId}).populate("walletId")
 if(getdetails){
   let cmt = getdetails.amount
   let newamt =cmt - amount
