@@ -307,7 +307,7 @@ var options = {
     "request": {
       walletId: req.body.walletId,
       amount: req.body.amount,
-      biller_code:req.body.biller_code,
+      biller_code:req.body.bilpmler_code,
       number: req.body.number,
       agent_id:"SOXY" +randomString,
     }
