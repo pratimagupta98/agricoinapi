@@ -45,7 +45,7 @@ router.get("/admin/getone/:id", getone);
 router.post("/admin/balanceApi", balanceApi);
 //router.post("/admin/addwallet", addwallet);
 router.get("/admin/del_wallet/:id", del_wallet);
-router.get("/admin/getalltransaction", getalltransaction);
+router.get("/admin/getalltransaction/:id", getalltransaction);
 
 module.exports = router;
  
