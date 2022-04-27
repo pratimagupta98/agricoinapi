@@ -12,7 +12,7 @@ const {
 //Paths
 
 router.post("/admin/mobile_recharge", mobile_recharge);
-router.post("/admin/gettransaction", gettransaction);
+router.get("/admin/gettransaction", gettransaction);
 
 
 // router.get("/admin/operators/auto-detect/:phone/:country", detectoperator);
