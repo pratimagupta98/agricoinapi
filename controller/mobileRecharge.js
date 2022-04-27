@@ -232,7 +232,7 @@ var postData = JSON.stringify({
     "amount": "10",
     "biller_code": "IDP",
     "number": "9748876319",
-    "agent_id": "ZLP000000100002201134"
+    "agent_id": "ZLP000000100002201144"
   }
 });
 
