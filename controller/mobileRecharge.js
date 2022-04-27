@@ -326,14 +326,14 @@ request(options, function (error, response) {
   var serverRes = response.body
   return serverRes
 }); 
-const getdetails = await Mobilerecharge.findOne({customer :req.body.customer})
+const getdetails = await Mobilerecharge.findOne({walletId :req.body.walletId})
 if(getdetails){
   let cmt = getdetails.amount
   let newamt =cmt - amount
 
 const findandUpdateEntry1 = await Mobilerecharge.findOneAndUpdate(
   
-  { customer: req.body.customer },
+  { walletId: req.body.walletId },
   
   { $set: {amount:newamt } },
   
