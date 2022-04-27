@@ -335,7 +335,7 @@ if(getdetails){
   let newamt =cmt - amount
 console.log("camt",cmt)
 console.log("new",newamt)
-const findandUpdateEntry1 = await Mobilerecharge.findOneAndUpdate(
+const findandUpdateEntry1 = await Wallet.findOneAndUpdate(
   
   { walletId: req.body.walletId },
   
