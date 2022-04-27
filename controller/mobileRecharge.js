@@ -326,6 +326,14 @@ request(options, function (error, response) {
   var serverRes = response.body
   return serverRes
 }); 
+data ={
+  walletId: req.body.walletId,
+
+  amount:req.body.amount,
+  biller_code:req.body.biller_code,
+  number: req.body.number,
+  agent_id:"SOXY" +randomString, 
+} 
 const getdetails = await Mobilerecharge.findOne({walletId :req.body.walletId})
 if(getdetails){
   let cmt = getdetails.amount
