@@ -38,17 +38,18 @@ const MorechargeSchema = new Schema(
         //   Accept:String,
         //   Content_Type:String,        
         //   }],
-          options :[{ 
-            headers:[{
-              Token:String,
-              Accept:String,
-              Content_Type:String,        
-              }],
-              method:[{type:String},
-              {url :String}]
+        
+          // options :[{ 
+          //   headers:[{
+          //     Token:String,
+          //     Accept:String,
+          //     Content_Type:String,        
+          //     }],
+          //     method:[{type:String},
+          //     {url :String}]
              
-          }
-          ]
+          // }
+          // ]
 
     },
   

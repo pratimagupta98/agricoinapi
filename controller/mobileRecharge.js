@@ -1,4 +1,5 @@
 const Mobilerecharge = require("../models/mobileRecharge");
+const Wallet = require("../models/wallet");
 
 // exports.mobile_recharge = async(req,res)=>{
  
@@ -246,10 +247,17 @@ const Mobilerecharge = require("../models/mobileRecharge");
 //   var serverRes = response.body
 //   return serverRes
 
-
+ 
 // }
 
 exports.mobile_recharge = async(req,res)=>{
+  const{walletId} = req.body
+  // const getdata = await Wallet.findOne({customer :req.body.customer})
+  // if(getdata){
+
+  // }
+
+
 var request = require('request');
 create_randomString(15);
   function create_randomString(string_length) {
@@ -283,7 +291,7 @@ var options = {
 
 };
 
- let result = await Mobilerecharge.create(options);
+ let result = await Mobilerecharge.create(request);
  console.log(result)
 request(options, function (error, response) {
   if (error){
