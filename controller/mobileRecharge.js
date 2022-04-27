@@ -251,6 +251,19 @@ const Wallet = require("../models/wallet");
 // }
 
 exports.mobile_recharge = async(req,res)=>{
+
+  create_randomString(15);
+  function create_randomString(string_length) {
+    (randomString = ""),
+      (characters = "ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ");
+    for (var i, i = 0; i < string_length; i++) {
+      randomString += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return randomString;
+  }
+ 
   const data ={
     walletId: req.body.walletId,
   
@@ -268,17 +281,17 @@ exports.mobile_recharge = async(req,res)=>{
 
 
 var request = require('request');
-create_randomString(15);
-  function create_randomString(string_length) {
-    (randomString = ""),
-      (characters = "ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ");
-    for (var i, i = 0; i < string_length; i++) {
-      randomString += characters.charAt(
-        Math.floor(Math.random() * characters.length)
-      );
-    }
-    return randomString;
-  }
+// create_randomString(15);
+//   function create_randomString(string_length) {
+//     (randomString = ""),
+//       (characters = "ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ");
+//     for (var i, i = 0; i < string_length; i++) {
+//       randomString += characters.charAt(
+//         Math.floor(Math.random() * characters.length)
+//       );
+//     }
+//     return randomString;
+//   }
  
 var options = {
   'method': 'POST',
