@@ -7,14 +7,14 @@ const {
 
   mobile_recharge,
   gettransaction,
-  getonetransaction
+  getusertransaction
 } = require("../controller/mobileRecharge");
 
 //Paths
 
 router.post("/admin/mobile_recharge", mobile_recharge);
 router.get("/admin/gettransaction", gettransaction);
-router.get("/admin/getonetransaction/:id", getonetransaction);
+router.get("/admin/getusertransaction/:id", getusertransaction);
 
 
 
