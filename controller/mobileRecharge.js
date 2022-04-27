@@ -329,10 +329,10 @@ request(options, function (error, response) {
 }); 
  
 const getdetails = await Wallet.findOne({_id :req.body.walletId}) 
-console.log(getdetails)
+console.log("Value",getdetails)
 if(getdetails){
   let cmt = getdetails.amount
-  let newamt =cmt - amount
+  let newamt =cmt - req.body.amount
 console.log("camt",cmt)
 console.log("new",newamt)
 const findandUpdateEntry1 = await Wallet.findOneAndUpdate(
