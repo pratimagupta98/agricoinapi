@@ -351,7 +351,7 @@ const findandUpdateEntry1 = await Wallet.findOneAndUpdate(
       msg : "success",
       data : data,
       amount: newamt, 
-      serverres:serverRes
+     
       
   })
 }) .catch((error) => {
