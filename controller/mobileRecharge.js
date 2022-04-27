@@ -305,7 +305,7 @@ var options = {
   
   body: JSON.stringify({
     "request": {
-       
+      walletId: req.body.walletId,
       amount: req.body.amount,
       biller_code:req.body.biller_code,
       number: req.body.number,
