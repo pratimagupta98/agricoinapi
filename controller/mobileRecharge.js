@@ -185,7 +185,8 @@ var req = https.request(options, function (res) {
 var postData = JSON.stringify({
   "amount": 10,
   "biller_code": "IDP",
-  "number": 8121787777
+  "number": 8121787777,
+  "agent_id"  : ZLP000000100002201124
 });
 
 req.write(postData);
