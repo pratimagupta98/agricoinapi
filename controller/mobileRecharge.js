@@ -391,7 +391,7 @@ exports.gettransaction = async (req, res) => {
 
 
 exports.getonetransaction = async (req, res) => {
-  const findone = await Mobilerecharge.find({ walletId: req.params.id });
+  const findone = await Wallet.find({ customer: req.params.id });
   if (findone) {
     res.status(200).json({
       status: true,
