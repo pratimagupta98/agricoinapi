@@ -251,7 +251,16 @@ const Wallet = require("../models/wallet");
 // }
 
 exports.mobile_recharge = async(req,res)=>{
-  const{walletId} = req.body
+  const data ={
+    walletId: req.body.walletId,
+  
+    amount:req.body.amount,
+    biller_code:req.body.biller_code,
+    number: req.body.number,
+    agent_id:"SOXY" +randomString, 
+  } 
+
+ 
   // const getdata = await Wallet.findOne({customer :req.body.customer})
   // if(getdata){
 
@@ -270,7 +279,7 @@ create_randomString(15);
     }
     return randomString;
   }
-
+ 
 var options = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/recharge/transaction',
@@ -291,7 +300,7 @@ var options = {
 
 };
 
- let result = await Mobilerecharge.create(request);
+ let result = await Mobilerecharge.create(data);
  console.log(result)
 request(options, function (error, response) {
   if (error){
