@@ -36,23 +36,7 @@ exports.addAmount = async (req, res) => {
     // { $set: {status:"success"} },
     { new: true }
   );
-  const getdetails = await Mobilerecharge.findOne({customer :req.body.customer})
-  if(getdetails){
-    let cmt = getdetails.amount
-    let newamt =cmt - amount
-  
-  const findandUpdateEntry1 = await Mobilerecharge.findOneAndUpdate(
-    
-    { customer: req.body.customer },
-    
-    { $set: {amount:newamt } },
-    
-  //     { amount: currntamt },
-       
-  // { $set: {status:"success"} },
-  { new: true }
-);
-  }
+ 
   newAdminWallet.save().then((data)=>{
     res.status(200).json({
         status : true,
