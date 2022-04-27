@@ -149,6 +149,51 @@ const Mobilerecharge = require("../models/mobileRecharge");
 // }
 
 
+// exports.mobile_recharge =async(req,res)=>{
+// var https = require('follow-redirects').https;
+// var fs = require('fs');
+
+// var options = {
+//   'method': 'POST',
+//   'hostname': 'api.zuelpay.com',
+//   'path': '/utility/recharge/transaction',
+//   'headers': {
+//     'Token': 'ZKEY6f426c359d25311a48b1287f6',
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json'
+//   },
+//   'maxRedirects': 20
+// };
+
+// var req = https.request(options, function (res) {
+//   var chunks = [];
+
+//   res.on("data", function (chunk) {
+//     chunks.push(chunk);
+//   });
+
+//   res.on("end", function (chunk) {
+//     var body = Buffer.concat(chunks);
+//     console.log(body.toString());
+//   });
+
+//   res.on("error", function (error) {
+//     console.error(error);
+//   });
+// });
+
+// var postData = JSON.stringify({
+//   "amount": 10,
+//   "biller_code": "IDP",
+//   "number": 8121787777,
+//   "agent_id"  : "ZLP000000100002201124"
+// });
+
+// req.write(postData);
+
+// req.end();
+
+// }
 exports.mobile_recharge =async(req,res)=>{
 var https = require('follow-redirects').https;
 var fs = require('fs');
@@ -183,14 +228,15 @@ var req = https.request(options, function (res) {
 });
 
 var postData = JSON.stringify({
-  "amount": 10,
-  "biller_code": "IDP",
-  "number": 8121787777,
-  "agent_id"  : "ZLP000000100002201124"
+  "request": {
+    "amount": "10",
+    "biller_code": "IDP",
+    "number": "9748876319",
+    "agent_id": "ZLP000000100002201134"
+  }
 });
 
 req.write(postData);
 
 req.end();
-
 }
