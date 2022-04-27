@@ -194,54 +194,92 @@ const Mobilerecharge = require("../models/mobileRecharge");
 // req.end();
 
 // }
-exports.mobile_recharge =async(req,res)=>{
-var https = require('follow-redirects').https;
-var fs = require('fs');
 
+
+
+// exports.mobile_recharge =async(req,res)=>{
+// var https = require('follow-redirects').https;
+// var fs = require('fs');
+
+// var options = {
+//   'method': 'POST',
+//   'hostname': 'api.zuelpay.com',
+//   'path': '/utility/recharge/transaction',
+//   'headers': {
+//     'Token': 'ZKEY6f426c359d25311a48b1287f6',
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json'
+//   },
+//   'maxRedirects': 20
+// };
+
+// var req = https.request(options, function (res) {
+//   var chunks = [];
+
+//   res.on("data", function (chunk) {
+//     chunks.push(chunk);
+//   });
+
+//   res.on("end", function (chunk) {
+//     var body = Buffer.concat(chunks);
+//     console.log(body.toString());
+//   });
+
+//   res.on("error", function (error) {
+//     console.error(error);
+//   });
+// });
+
+// var postData = JSON.stringify({
+//   "request": {
+//     "amount": "10",
+//     "biller_code": "IDP",
+//     "number": "9748876319",
+//     "agent_id": "ZLP000000100002201154"
+//   }
+// });
+
+// req.write(postData);
+
+// req.end()
+// res.send(response.body);
+//   var serverRes = response.body
+//   return serverRes
+
+
+// }
+
+exports.mobile_recharge = async(req,res)=>{
+var request = require('request');
 var options = {
   'method': 'POST',
-  'hostname': 'api.zuelpay.com',
-  'path': '/utility/recharge/transaction',
+  'url': 'https://api.zuelpay.com/utility/recharge/transaction',
   'headers': {
     'Token': 'ZKEY6f426c359d25311a48b1287f6',
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
-  'maxRedirects': 20
+  body: JSON.stringify({
+    "request": {
+      "amount": "10",
+      "biller_code": "IDP",
+      "number": "9748876319",
+      "agent_id": "ZLP00000010000220154"
+    }
+  })
+
 };
-
-var req = https.request(options, function (res) {
-  var chunks = [];
-
-  res.on("data", function (chunk) {
-    chunks.push(chunk);
-  });
-
-  res.on("end", function (chunk) {
-    var body = Buffer.concat(chunks);
-    console.log(body.toString());
-  });
-
-  res.on("error", function (error) {
-    console.error(error);
-  });
-});
-
-var postData = JSON.stringify({
-  "request": {
-    "amount": "10",
-    "biller_code": "IDP",
-    "number": "9748876319",
-    "agent_id": "ZLP000000100002201144"
+request(options, function (error, response) {
+  if (error){
+   throw new Error(error);
+   res.json(error) ;
+  console.log(response.body);
   }
-});
-
-req.write(postData);
-
-req.end()
-res.send(response.body);
+  res.send(response.body);
   var serverRes = response.body
   return serverRes
-
+}); 
 
 }
+
+
