@@ -14,7 +14,7 @@ const {
 
 router.post("/admin/mobile_recharge", mobile_recharge);
 router.get("/admin/gettransaction", gettransaction);
-//router.get("/admin/getonetransaction/:id", getonetransaction);
+router.get("/admin/getonetransaction/:id", getonetransaction);
 
 
 
