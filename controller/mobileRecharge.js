@@ -119,24 +119,19 @@ const Mobilerecharge = require("../models/mobileRecharge");
 exports.mobile_recharge =async(req,res) =>{
 
 
-var request = require('request');
-var options = {
-  'method': 'POST',
-  'url': 'http://35.154.134.118/api/admin/mobile_recharge',
-  'headers': {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    "walletId": "62625fdcc456efae18998572",
-    "amount": 20,
-    "biller_code": "IDP",
-    "number": 9748876319
-  })
-
-};
-request(options, function (error, response) {
-  if (error) throw new Error(error);
-  console.log(response.body);
-});
+  var request = require('request');
+  var options = {
+    'method': 'POST',
+    'url': 'https://api.zuelpay.com/utility/recharge/transaction',
+    'headers': {
+      'Token': 'ZKEY6f426c359d25311a48b1287f6',
+      'Accept': 'application/json'
+    }
+  };
+  request(options, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(response.body);
+  });
+  
 
 }
