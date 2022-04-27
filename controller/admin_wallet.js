@@ -1,6 +1,7 @@
 const AdminWallet = require("../models/admin_wallet");
 const Wallet = require("../models/wallet");
 
+const Mobilerecharge = require("../models/mobileRecharge");
 
 
 exports.addAmount = async (req, res) => {
@@ -23,6 +24,7 @@ exports.addAmount = async (req, res) => {
       currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
       console.log("Result",currntamt)
     }
+  
   const findandUpdateEntry = await Wallet.findOneAndUpdate(
     
       { customer: req.body.customer },
@@ -34,6 +36,23 @@ exports.addAmount = async (req, res) => {
     // { $set: {status:"success"} },
     { new: true }
   );
+  const getdetails = await Mobilerecharge.findOne({customer :req.body.customer})
+  if(getdetails){
+    let cmt = getdetails.amount
+    let newamt =cmt - amount
+  
+  const findandUpdateEntry1 = await Mobilerecharge.findOneAndUpdate(
+    
+    { customer: req.body.customer },
+    
+    { $set: {amount:newamt } },
+    
+  //     { amount: currntamt },
+       
+  // { $set: {status:"success"} },
+  { new: true }
+);
+  }
   newAdminWallet.save().then((data)=>{
     res.status(200).json({
         status : true,
