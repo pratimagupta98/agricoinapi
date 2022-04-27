@@ -186,7 +186,7 @@ var postData = JSON.stringify({
   "amount": 10,
   "biller_code": "IDP",
   "number": 8121787777,
-  "agent_id"  : ZLP000000100002201124
+  "agent_id"  : "ZLP000000100002201124"
 });
 
 req.write(postData);
