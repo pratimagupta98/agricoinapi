@@ -251,6 +251,18 @@ const Mobilerecharge = require("../models/mobileRecharge");
 
 exports.mobile_recharge = async(req,res)=>{
 var request = require('request');
+create_randomString(15);
+  function create_randomString(string_length) {
+    (randomString = ""),
+      (characters = "ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ");
+    for (var i, i = 0; i < string_length; i++) {
+      randomString += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return randomString;
+  }
+
 var options = {
   'method': 'POST',
   'url': 'https://api.zuelpay.com/utility/recharge/transaction',
@@ -259,12 +271,13 @@ var options = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
+  
   body: JSON.stringify({
     "request": {
-      "amount": "10",
-      "biller_code": "IDP",
-      "number": "9748876319",
-      "agent_id": "ZLP00000010000220154"
+      amount: req.body.amount,
+      biller_code:req.body.biller_code,
+      number: req.body.number,
+      agent_id:"SOXY" +randomString,
     }
   })
 
