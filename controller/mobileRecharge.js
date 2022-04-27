@@ -128,10 +128,22 @@ exports.mobile_recharge =async(req,res) =>{
       'Accept': 'application/json'
     }
   };
-  request(options, function (error, response) {
-    if (error) throw new Error(error);
-    console.log(response.body);
-  });
+//   request(options, function (error, response) {
+//     if (error) throw new Error(error);
+//     console.log(response.body);
+//   });
   
 
+// }
+
+request(options, function (error, response) {
+  if (error){
+   throw new Error(error);
+   res.json(error) ;
+  console.log(response.body);
+  }
+  res.send(response.body);
+  var serverRes = response.body
+  return serverRes
+}); 
 }
