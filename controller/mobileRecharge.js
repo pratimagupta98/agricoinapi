@@ -9,7 +9,6 @@ var request = require('request');
 //   amount : amount,
 //   biller_code : biller_code,
 //   number : number,
-  
 // })
 
 
@@ -98,8 +97,8 @@ var data = {
 
 
 // ************************
-let result = await Mobilerecharge.create(options);
-console.log(result)
+// let result = await Mobilerecharge.create(options);
+// console.log(result)
 request(options, function (error, response) {
   if (error){
     throw new Error(error);
