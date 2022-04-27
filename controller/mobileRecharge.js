@@ -328,7 +328,7 @@ request(options, function (error, response) {
   return serverRes
 }); 
  
-const getdetails = await Wallet.findOne({walletId :req.body.walletId}).populate("walletId")
+const getdetails = await Wallet.findOne({_id :req.body.walletId}) 
 console.log(getdetails)
 if(getdetails){
   let cmt = getdetails.amount
