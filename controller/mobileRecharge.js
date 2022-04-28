@@ -373,7 +373,12 @@ const findandUpdateEntry1 = await Wallet.findOneAndUpdate(
 
 
 exports.gettransaction = async (req, res) => {
-  const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("walletId")
+  const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("walletId") .populate({
+    path: "walletId",
+    populate: {
+      path: "customer",
+    },
+  })
   if (findall) {
     res.status(200).json({
       status: true,
