@@ -267,7 +267,7 @@ exports.mobile_recharge = async(req,res)=>{
  
   const data ={
     walletId: req.body.walletId,
-  
+    status:req.body.status,
     amount:req.body.amount,
     biller_code:req.body.biller_code,
     number: req.body.number,

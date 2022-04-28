@@ -21,6 +21,9 @@ const MorechargeSchema = new Schema(
       ref: "wallet",
       
     },
+    status : {
+type :String
+    },
         amount:{
       type : Number
         },
