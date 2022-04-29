@@ -63,7 +63,7 @@ exports.deposite_wallet = async (req, res) => {
   const findandUpdateEntry = await Wallet.findOneAndUpdate(
       { customer: req.body.customer },
       
-      {$set: {amount:"currntamt"}} ,
+      {$set: {amount:currntamt}} ,
       
       
          
