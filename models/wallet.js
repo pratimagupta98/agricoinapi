@@ -26,6 +26,7 @@ const walletSchema = new mongoose.Schema(
       type: String,
       default:"Pending"
     },
+    
     // value :{
     // type :String
     // }
