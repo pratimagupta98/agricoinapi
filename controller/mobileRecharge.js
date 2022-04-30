@@ -347,25 +347,25 @@ const findandUpdateEntry1 = await Wallet.findOneAndUpdate(
 // { $set: {status:"success"} },
 { new: true },
 )
-.then((data)=>{
-  res.status(200).json({
-      status : true,
-      msg : "success",
-      data : data,
-      amount: newamt, 
+// .then((data)=>{
+//   res.status(200).json({
+//       status : true,
+//       msg : "success",
+//       data : data,
+//       amount: newamt, 
      
       
-  })
-}) .catch((error) => {
-  res.status(400).json({
-    status: false,
-    msg: "error",
-    error: "error",
-  });
-});
-}
-;
+//   })
+// }) .catch((error) => {
+//   res.status(400).json({
+//     status: false,
+//     msg: "error",
+//     error: "error",
+//   });
+// });
  }
+// ;
+  }
 
 
  

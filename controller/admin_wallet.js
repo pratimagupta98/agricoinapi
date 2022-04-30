@@ -5,10 +5,11 @@ const Mobilerecharge = require("../models/mobileRecharge");
 
 
 exports.addAmount = async (req, res) => {
-  const {customer, amount ,status} = req.body;
+  const {walletId,customer, amount ,status} = req.body;
 
   const newAdminWallet = new AdminWallet({
-    customer: customer,
+    //customer: customer,
+    walletId:walletId,
     //walletId: uuidv4(),
     amount: amount,
     status:status
@@ -16,7 +17,7 @@ exports.addAmount = async (req, res) => {
     
   });
 
-  const getdata = await Wallet.findOne({customer :req.body.customer})
+  const getdata = await Wallet.findOne({_id :req.body.walletId})
   console.log("Getdata",getdata)
   if(getdata){
     let oldamt = getdata.amount
