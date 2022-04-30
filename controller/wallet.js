@@ -43,7 +43,9 @@ const fs = require("fs");
 
  
 exports.deposite_wallet = async (req, res) => {
+
   const { customer, amount, pay_method,  status } = req.body;
+
   let wolwt= await Wallet.findOne({customer:req.body.customer})
   console.log(wolwt)
 let wolId=wolwt._id
@@ -70,6 +72,7 @@ let wolId=wolwt._id
   })
 
   }else{
+    console.log(wolwt)
 
   const newWallet = new Wallet({
     customer: customer,
@@ -90,11 +93,6 @@ let wolId=wolwt._id
       { customer: req.body.customer },
       
       {$set: {amount:currntamt}} ,
-      
-      
-         
-    
-    
     //{ $set: {status:"success"} },
     { new: true }
   );
@@ -128,7 +126,7 @@ let wolId=wolwt._id
   }
 
 exports.getone = async (req, res) => {
-  const getdata = await Wallet.findOne({_id:req.params.id})
+  const getdata = await Wallet.findOne({_id:req.params.id}).populate("customer")
 //   console.log(getdata)
  if(getdata){
 
@@ -189,40 +187,40 @@ exports.updatewallet = async (req, res) => {
 
 }
  
-exports.deposite_wallet = async (req, res) => {
-  const { customer, amount,pay_method,depsite_file,status} = req.body;
+// exports.deposite_wallet = async (req, res) => {
+//   const { customer, amount,pay_method,depsite_file,status} = req.body;
 
-  const newWallet = new Wallet({
-    customer: customer,
-    amount: amount,
-    pay_method :pay_method,
-    depsite_file :depsite_file,
-    status :status,
+//   const newWallet = new Wallet({
+//     customer: customer,
+//     amount: amount,
+//     pay_method :pay_method,
+//     depsite_file :depsite_file,
+//     status :status,
    
-  });
+//   });
  
-  if(req.file){
-        const resp = await cloudinary.uploader.upload(req.file.path);
-          if (resp) {
-            newWallet.depsite_file = resp.secure_url;
-            fs.unlinkSync(req.file.path);
+//   if(req.file){
+//         const resp = await cloudinary.uploader.upload(req.file.path);
+//           if (resp) {
+//             newWallet.depsite_file = resp.secure_url;
+//             fs.unlinkSync(req.file.path);
           
-  newWallet.save().then((data)=>{
-    res.status(200).json({
-        status : true,
-        msg : "success",
-        data : data
-    })
-}).catch((error)=>{
-    res.status(400).json({
-        status : false,
-        error : "error",
-        error : error
-    })
-})
-  }
-}
-}
+//   newWallet.save().then((data)=>{
+//     res.status(200).json({
+//         status : true,
+//         msg : "success",
+//         data : data
+//     })
+// }).catch((error)=>{
+//     res.status(400).json({
+//         status : false,
+//         error : "error",
+//         error : error
+//     })
+// })
+//   }
+// }
+// }
   
  
 
