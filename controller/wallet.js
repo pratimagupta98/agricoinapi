@@ -101,15 +101,15 @@ exports.deposite_wallet = async (req, res) => {
   }
 
 exports.getone = async (req, res) => {
-  const getdata = await Wallet.findOne({customer:req.params.id}).populate("customer")
-  console.log(getdata)
+  const getdata = await Wallet.findOne({_id:req.params.id})
+//   console.log(getdata)
  if(getdata){
 
-   let oldamt = getdata.amount
-   console.log("amout",oldamt)
+//    let oldamt = getdata.amount
+//    console.log("amout",oldamt)
   
-    currntbalance = parseInt(oldamt)+ parseInt(req.body.amount)
-   console.log("Result",currntbalance)
+//     currntbalance = parseInt(oldamt)+ parseInt(req.body.amount)
+//    console.log("Result",currntbalance)
  
 
     

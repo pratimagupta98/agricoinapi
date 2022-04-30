@@ -28,7 +28,7 @@ exports.addAmount = async (req, res) => {
   
   const findandUpdateEntry = await Wallet.findOneAndUpdate(
     
-      { customer: req.body.customer },
+      { _id: req.body.walletId },
       
       { $set: {amount:currntamt,status:"success"} },
       
