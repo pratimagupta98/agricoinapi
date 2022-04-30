@@ -44,6 +44,32 @@ const fs = require("fs");
  
 exports.deposite_wallet = async (req, res) => {
   const { customer, amount, pay_method,  status } = req.body;
+  let wolwt= await Wallet.findOne({customer:req.body.customer})
+  console.log(wolwt)
+let wolId=wolwt._id
+  if(wolwt)
+  {
+
+  let qur=  await Wallet.findOneAndUpdate(
+      { _id: wolId },
+      
+      {$set: {amount:req.body.amount,pay_method:req.body.pay_method,depsite_file:req.body.depsite_file,status:req.body.status}} ,
+      
+      
+         
+    
+    
+    //{ $set: {status:"success"} },
+    { new: true }
+  
+  );
+  res.status(200).json({
+    status: true,
+    msg: "success",
+    data: qur,
+  })
+
+  }else{
 
   const newWallet = new Wallet({
     customer: customer,
@@ -98,6 +124,7 @@ exports.deposite_wallet = async (req, res) => {
           });
         });
     }
+  }
   }
 
 exports.getone = async (req, res) => {
