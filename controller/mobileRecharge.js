@@ -334,9 +334,21 @@ console.log("Value",getdetails)
 let  newamt=0
 if(getdetails){
   let cmt = getdetails.amount
+  if (cmt>0){
    newamt =cmt - req.body.amount
-console.log("camt",cmt)
+   console.log("camt",cmt)
 console.log("new",newamt)
+}else{
+
+  console.log("insuficiet belence")
+
+  res.status(400).json({
+    status: false,
+    msg: "insuficiet belence ",
+  });
+ 
+}
+
 const findandUpdateEntry1 = await Wallet.findOneAndUpdate(
   
   { _id: req.body.walletId },
