@@ -44,14 +44,14 @@ const fs = require("fs");
  
 exports.deposite_wallet = async (req, res) => {
 
-  const { customer, amount, pay_method,  status } = req.body;
+  const { customer, amount, pay_method,  status,depsite_file } = req.body;
 
   let wolwt= await Wallet.findOne({customer:req.body.customer})
   console.log(wolwt)
-let wolId=wolwt._id
+
   if(wolwt)
   {
-
+    let wolId=wolwt._id
   let qur=  await Wallet.findOneAndUpdate(
       { _id: wolId },
       
@@ -83,10 +83,11 @@ let wolId=wolwt._id
   });
   const getdata = await Wallet.findOne({customer :req.body.customer})
   console.log("Getdata",getdata)
+  let  currntamt 
   if(getdata){
     let oldamt = getdata.amount
       console.log("amout",oldamt)
-      currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
+   currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
       console.log("Result",currntamt)
     }
   const findandUpdateEntry = await Wallet.findOneAndUpdate(
@@ -101,7 +102,7 @@ let wolId=wolwt._id
       if (resp) {
         newWallet.depsite_file = resp.secure_url;
         fs.unlinkSync(req.file.path);
-        newBrand.save().then(
+        newWallet.save().then(
           res.status(200).json({
             status: true,
             msg: "success",
