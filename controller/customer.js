@@ -27,6 +27,7 @@ exports.signup = async (req, res) => {
     mobile,
     password,
     cnfrmPassword,
+    walletId
   } = req.body;
 
   const salt = bcrypt.genSaltSync(saltRounds);
@@ -54,6 +55,7 @@ exports.signup = async (req, res) => {
     mobile: mobile,
     password: hashpassword,
     cnfrmPassword: hashpassword,
+    walletId:walletId
   });
 
   const findexist = await Customer.findOne({
@@ -95,37 +97,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-// exports.login = async (req, res) => {
-//   const { email,mobile, password } = req.body;
-
-//   // Find user with requested email
-//   Customer.findOne({ $or : [{email: email },{mobile:mobile}]}), function (err, user) {
-//     if (user === null) {
-//       return res.status(400).send({
-//         message: "User not found.",
-//       });
-//     } else {
-//       // console.log(process.env.TOKEN_SECRET);
-//       if (validatePassword(password, user.password)) {
-//         const token = jwt.sign({ userId: user._id }
-//           , process.env.TOKEN_SECRET, {
-//           expiresIn: "86400000",
-//         }
-//         );
-
-//         return res.status(201).send({
-//           message: "User Logged In",
-//           token: token,
-//           user: user,
-//         });
-//       } else {
-//         return res.status(400).send({
-//           message: "Wrong Password",
-//         });
-//       }
-//   }
-// }
-//   }
+ 
 
 exports.login = async (req, res) => {
   const { mobile, email, password } = req.body;
@@ -227,7 +199,7 @@ exports.Customerbysellerbytoken = async (req, res) => {
 };
 
 exports.getonecustomer = async (req, res) => {
-  const findone = await Customer.findOne({ customer: req.userId });
+  const findone = await Customer.findOne({ _id: req.userId });
   if (findone) {
     res.status(200).json({
       status: true,

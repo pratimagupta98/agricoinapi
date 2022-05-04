@@ -38,6 +38,10 @@ const customerSchema = new Schema(
     otp: {
       type: Number,
     },
+    walletId :{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "wallet",
+    },
   },
   { timestamps: true }
 );

@@ -2,7 +2,7 @@ const Wallet = require("../models/wallet");
 //const { v4: uuidv4 } = require("uuid");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
- 
+const Customer = require("../models/customer");
 
 
 // exports.deposite_wallet = async (req, res) => {
@@ -47,7 +47,7 @@ exports.deposite_wallet = async (req, res) => {
   const { customer, amount, pay_method,  status,depsite_file } = req.body;
 
   let wolwt= await Wallet.findOne({customer:req.body.customer})
-  console.log(wolwt)
+  console.log("11",wolwt)
 
   if(wolwt)
   {
@@ -56,10 +56,6 @@ exports.deposite_wallet = async (req, res) => {
       { _id: wolId },
       
       {$set: {amount:req.body.amount,pay_method:req.body.pay_method,depsite_file:req.body.depsite_file,status:req.body.status}} ,
-      
-      
-         
-    
     
     //{ $set: {status:"success"} },
     { new: true }
@@ -72,7 +68,7 @@ exports.deposite_wallet = async (req, res) => {
   })
 
   }else{
-    console.log(wolwt)
+    console.log("22",wolwt)
 
   const newWallet = new Wallet({
     customer: customer,
@@ -80,23 +76,23 @@ exports.deposite_wallet = async (req, res) => {
     pay_method: pay_method,
      depsite_file: depsite_file,
     status: status,
-  });
-  const getdata = await Wallet.findOne({customer :req.body.customer})
-  console.log("Getdata",getdata)
-  let  currntamt 
-  if(getdata){
+   });
+   const getdata = await Wallet.findOne({customer :req.body.customer})
+   console.log("Getdata",getdata)
+   let  currntamt 
+   if(getdata){
     let oldamt = getdata.amount
       console.log("amout",oldamt)
    currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
       console.log("Result",currntamt)
     }
-  const findandUpdateEntry = await Wallet.findOneAndUpdate(
+   const findandUpdateEntry = await Wallet.findOneAndUpdate(
       { customer: req.body.customer },
       
       {$set: {amount:currntamt}} ,
     //{ $set: {status:"success"} },
     { new: true }
-  );
+    );
    
       const resp = await cloudinary.uploader.upload(req.file.path);
       if (resp) {
@@ -123,7 +119,31 @@ exports.deposite_wallet = async (req, res) => {
           });
         });
     }
+   
   }
+  let wolwt1= await Customer.findOne({_id:req.body.customer})
+  console.log('cccc',wolwt1)
+  if(wolwt1)
+  {
+    let wolwt= await Wallet.findOne({customer:req.body.customer})
+    let wolId=wolwt._id
+    console.log("ttttt",wolwt1)
+  let qur=  await Customer.findOneAndUpdate(
+      { _id: req.body.customer },
+      
+      {$set: {walletId:wolId}} ,
+    
+    //{ $set: {status:"success"} },
+    { new: true }
+  
+  );
+  res.status(200).json({
+    status: true,
+    msg: "success",
+    data: qur,
+  })
+
+}
   }
 
 exports.getone = async (req, res) => {
