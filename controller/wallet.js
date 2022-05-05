@@ -4,42 +4,7 @@ const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 const Customer = require("../models/customer");
 
-
-// exports.deposite_wallet = async (req, res) => {
-//   const {customer, amount,pay_method,depsite_file } = req.body;
-
-//   const newWallet = new Wallet({
-//     customer: customer,
-//     //walletId: uuidv4(),
-//     amount: amount,
-//     depsite_file : depsite_file,
-//     pay_method :pay_method
-//   });
-    
-//   // if(req.file){
-//   //   const resp = await cloudinary.uploader.upload(req.file.path);
-//   //     if (resp) {
-//   //       newWallet.depsite_file = resp.secure_url;
-//   //       fs.unlinkSync(req.file.path);
-  
-//   newWallet.save(function (err, data) {
-//     if (err) {
-//       res.status(400).json({
-//         status: false,
-//         msg: "error occured",
-//         error: err,
-//       });
-//     } else {
-//       res.status(200).json({
-//         status: true,
-//         msg: "Amount added to wallet",
-//         data: newWallet,
-//       });
-//     }
-//   });
-// }
-// //};
-//}
+ 
 
  
 exports.deposite_wallet = async (req, res) => {
