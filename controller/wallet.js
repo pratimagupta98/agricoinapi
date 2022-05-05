@@ -147,7 +147,7 @@ exports.deposite_wallet = async (req, res) => {
   }
 
 exports.getone = async (req, res) => {
-  const getdata = await Wallet.findOne({_id:req.params.id}).populate("customer")
+  const getdata = await Wallet.findOne({customer:req.userId}).populate("customer")
 //   console.log(getdata)
  if(getdata){
 
