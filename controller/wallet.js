@@ -250,6 +250,24 @@ exports.getwallet = async (req, res) => {
     });
 };
 
+exports.getwalletbyuser = async (req, res) => {
+  const findall = await Wallet.find({}).populate("customer")
+    .sort({ sortorder: 1 })
+    .then((result) => {
+      res.status(200).json({
+        status: true,
+        msg: "success",
+        data: result,
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        status: false,
+        msg: "error",
+        error: "error",
+      });
+    });
+};
 
  
 exports.balanceApi = async (req,res)=>{
