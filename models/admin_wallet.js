@@ -20,7 +20,7 @@ const AdminwalletSchema = new mongoose.Schema(
         //type: String,
         //required: true,
         //},
-        wallet_amount: {
+        add_amount: {
             type: Number,
 
         },

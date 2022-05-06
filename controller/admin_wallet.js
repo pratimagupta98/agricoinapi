@@ -5,13 +5,13 @@ const Mobilerecharge = require("../models/mobileRecharge");
 
 
 exports.addAmount = async (req, res) => {
-  const {walletId,customer, amount ,status} = req.body;
+  const {walletId,customer, add_amount ,status} = req.body;
 
   const newAdminWallet = new AdminWallet({
     //customer: customer,
     walletId:walletId,
     //walletId: uuidv4(),
-    amount: amount,
+    add_amount: add_amount,
     status:status
     
     
@@ -22,7 +22,7 @@ exports.addAmount = async (req, res) => {
   if(getdata){
     let oldamt = getdata.amount
       console.log("amout",oldamt)
-      currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
+      currntamt = parseInt(oldamt)+ parseInt(req.body.add_amount)
       console.log("Result",currntamt)
     }
   
@@ -58,8 +58,13 @@ exports.addAmount = async (req, res) => {
  
 
 exports.getalldata = async (req, res) => {
-  const findall = await AdminWallet.find().populate("customer") 
-    .sort({ sortorder: 1 })
+  const findall = await AdminWallet.find().populate("walletId") .populate({
+    path: "walletId",
+    populate: {
+      path: "customer",
+    },
+  })
+    .sort({ sortorder: -1 })
     .then((result) => {
       res.status(200).json({
         status: true,
