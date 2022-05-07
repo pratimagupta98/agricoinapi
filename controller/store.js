@@ -15,7 +15,7 @@ cloudinary.config({
 
 exports.addstore = async (req, res) => {
   const {
-    seller,
+   // seller,
     store_name,
     storeImg,
     store_desc,
@@ -51,7 +51,7 @@ exports.addstore = async (req, res) => {
   } = req.body;
 
   const newStore = new Store({
-    seller: seller,
+    seller: req.sellerId,
     store_name: store_name,
     store_desc: store_desc,
     websiteUrl: websiteUrl,
@@ -72,7 +72,7 @@ exports.addstore = async (req, res) => {
     business_type: business_type,
     pan_no: pan_no,
     company_panno: company_panno,
-    address_proof_img: address_proof_img,
+    address_proof: address_proof,
     trendingPoint : trendingPoint,
     //gstImg: gstImg,
     // storepan_img: storepan_img,
@@ -274,7 +274,7 @@ exports.addstore = async (req, res) => {
 
 exports.getstore = async (req, res) => {
   //const getseller = await Seller.findOne({ _id: req.sellerId });
-  const findall = await Store.find().sort({ sortorder: 1 }).populate("seller");
+  const findall = await Store.find().populate("seller");
   if (findall) {
     res.status(200).json({
       status: true,
@@ -291,7 +291,7 @@ exports.getstore = async (req, res) => {
 };
 
 exports.getonestore = async (req, res) => {
-  const findone = await Store.findOne({ _id: req.params.id }).populate(
+  const findone = await Store.findOne( { _id: req.params.id  }).populate(
     "seller"
   );
   if (findone) {
@@ -309,18 +309,36 @@ exports.getonestore = async (req, res) => {
   }
 };
 
-exports.storebyseller = async (req, res) => {
-  //const getseller = await Seller.findOne({ _id: req.sellerId });
-
-  const findone = await Store.findOne({ seller: req.sellerId }).populate(
+exports.getonestorebytoken = async (req, res) => {
+  const findone = await Store.findOne({  $and: [{ id: req.sellerId }, { _id: req.params.id }], }).populate(
     "seller"
   );
-  if (getseller) {
+  if (findone) {
     res.status(200).json({
       status: true,
       msg: "success",
-      data: getseller,
-      store: findone,
+      data: findone,
+    });
+  } else {
+    res.status(400).json({
+      status: false,
+      msg: "error",
+      error: "error",
+    });
+  }
+};
+
+
+exports.storebyseller = async (req, res) => {
+  const findall = await Store.find({ seller: req.sellerId }).populate(
+    "seller"
+  );
+  if (findall) {
+    res.status(200).json({
+      status: true,
+      msg: "success",
+      data: findall,
+      // store: findall,
     });
   } else {
     res.status(400).json({
@@ -607,7 +625,7 @@ exports.editstore = async (req, res) => {
   if (data) {
     const findandUpdateEntry = await Store.findOneAndUpdate(
       {
-        _id: req.params.id,
+        $and: [{ id: req.sellerId }, { _id: req.params.id }],
       },
       { $set: data },
       { new: true }
@@ -665,9 +683,27 @@ exports.del_store = async (req, res) => {
 };
 
 
-//get counts
 exports.totalstore = async (req, res) => {
   await Store.countDocuments()
+    .then((data) => {
+      res.status(200).json({
+        status: true,
+        data: data,
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        status: false,
+        msg: "error",
+        error: error,
+      });
+    });
+};
+
+
+//get counts
+exports.totalstorebyseller = async (req, res) => {
+  await Store.countDocuments({seller :req.sellerId})
     .then((data) => {
       res.status(200).json({
         status: true,
