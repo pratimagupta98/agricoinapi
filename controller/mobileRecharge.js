@@ -413,7 +413,12 @@ exports.gettransaction = async (req, res) => {
 
 
 exports.getusertransaction = async (req, res) => {
-  const findone = await Mobilerecharge.find({ walletId: req.params.id }).populate("walletId")
+  const findone = await Mobilerecharge.find({ walletId: req.params.id })  .populate({
+    path: "walletId",
+    populate: {
+      path: "customer",
+    },
+  })
   if (findone) {
     res.status(200).json({
       status: true,
