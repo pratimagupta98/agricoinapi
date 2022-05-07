@@ -68,7 +68,7 @@ router.post(
   uploads.array("product_img"),
   editproduct
 );
-router.get("/admin/getproduct", tokenverify, getproduct);
+router.get("/admin/getproduct",  getproduct);
 router.get("/admin/getoneproduct/:id", getoneproduct);
 router.get("/admin/productbycategory/:id", productbycategory);
 router.get("/admin/productbybrand/:id", productbybrand);

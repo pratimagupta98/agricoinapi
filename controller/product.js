@@ -263,7 +263,7 @@ exports.editproduct = async (req, res) => {
 };
 
 exports.getproduct = async (req, res) => {
-  const findall = await Product.find({ seller: req.sellerId })
+  const findall = await Product.find()
     .sort({ sortorder: 1 })
     .populate("gstrate")
     .populate("productcategory")

@@ -49,11 +49,11 @@ let uploads = multer({ storage: storage });
 let multipleUpload = uploads.fields([
   { name: "storeImg", maxCount: 5 },
   { name: "shoplogo_img", maxCount: 5 },
-  { name: "gstImg", maxCount: 5 },
-  { name: "storepan_img", maxCount: 5 },
-  { name: "tradelicence_img", maxCount: 5 },
-  { name: "companypan_img", maxCount: 5 },
-  { name: "address_proof_img", maxCount: 5 },
+   { name: "gstImg", maxCount: 5 },
+   { name: "storepan_img", maxCount: 5 },
+  // { name: "tradelicence_img", maxCount: 5 },
+  // { name: "companypan_img", maxCount: 5 },
+  // { name: "address_proof_img", maxCount: 5 },
 ]);
 
 let checkitem = (req, res, next) => {
