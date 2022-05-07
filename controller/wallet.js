@@ -17,19 +17,23 @@ exports.deposite_wallet = async (req, res) => {
   if(wolwt)
   {
     let wolId=wolwt._id
-  let qur=  await Wallet.findOneAndUpdate(
-      { _id: wolId },
+    let amt=wolwt.amount
+    console.log("old amt",amt)
+    console.log("req",req.body.amount)
+  // let qur=  await Wallet.findOneAndUpdate(
+  //     { _id: wolId },
       
-      {$set: {amount:req.body.amount,pay_method:req.body.pay_method,depsite_file:req.body.depsite_file,status:req.body.status}} ,
+  //     {$set: {amount:amt+parseInt(req.body.amount),pay_method:req.body.pay_method,depsite_file:req.body.depsite_file,status:req.body.status}} ,
     
-    //{ $set: {status:"success"} },
-    { new: true }
+  //   //{ $set: {status:"success"} },
+  //   { new: true }
   
-  );
+  // );
   res.status(200).json({
     status: true,
     msg: "success",
-    data: qur,
+    data: wolwt,
+    add_amount:req.body.amount,
   })
 
   }else{
