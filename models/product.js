@@ -91,10 +91,7 @@ const productSchema = new Schema(
 
       type: Number,
     },
-    status: {
-      type: String,
-      default: "Active",
-    },
+     
   },
   { timestamps: true }
 );

@@ -41,7 +41,7 @@ exports.addproduct = async (req, res) => {
     product_img,
     offer_aplicable,
     sortorder,
-    status,
+     
   } = req.body;
 
   const newProduct = new Product({
@@ -70,7 +70,7 @@ exports.addproduct = async (req, res) => {
     product_img: product_img,
     offer_aplicable: offer_aplicable,
     sortorder: sortorder,
-    status: status,
+     
   });
 
   if (req.files) {
