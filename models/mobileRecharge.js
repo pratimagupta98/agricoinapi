@@ -36,6 +36,9 @@ type :String
         agent_id : {
           type : String
         },
+        recharge_type:{
+          type : String
+        },
         // headers:[{
         //   Token:String,
         //   Accept:String,

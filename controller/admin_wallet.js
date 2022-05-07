@@ -5,7 +5,7 @@ const Mobilerecharge = require("../models/mobileRecharge");
 
 
 exports.addAmount = async (req, res) => {
-  const {walletId,customer, add_amount ,status} = req.body;
+  const {walletId, add_amount ,status} = req.body;
 
   const newAdminWallet = new AdminWallet({
     //customer: customer,
