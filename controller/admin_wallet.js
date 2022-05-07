@@ -82,6 +82,34 @@ exports.getalldata = async (req, res) => {
 };
 
 
+
+exports.usersuccess_depositelist = async (req, res) => {
+  const findall = await AdminWallet.find({ $and: [{walletId: req.params.id },{status:"success"}]} ) .populate("walletId") .populate({
+    path: "walletId",
+    populate: {
+      path: "customer",
+    },
+  })
+    .sort({ sortorder: -1 })
+    .then((result) => {
+      res.status(200).json({
+        status: true,
+        msg: "success",
+        data: result,
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        status: false,
+        msg: "error",
+        error: "error",
+      });
+    });
+};
+
+
+
+
  
 exports.balanceApi = async (req,res)=>{
   // const{MobileNo,REQTYPE,} = req.body
