@@ -11,15 +11,7 @@ exports.deposite_wallet = async (req, res) => {
 
   const { customer, amount,reqamount, pay_method,  status,depsite_file } = req.body;
 
-  let wolwt= await Wallet.findOne({customer:req.body.customer})
-  console.log("11",wolwt)
-
-  if(wolwt)
-  {
-    let wolId=wolwt._id
-    let amt=wolwt.amount
-    console.log("old amt",amt)
-    console.log("req",req.body.amount)
+  
   // let qur=  await Wallet.findOneAndUpdate(
   //     { _id: wolId },
       
@@ -29,31 +21,30 @@ exports.deposite_wallet = async (req, res) => {
   //   { new: true }
   
   // );
-  res.status(200).json({
-    status: true,
-    msg: "success",
-    data: wolwt,
-    // add_amount:req.body.amount,
-  })
-
-  }else{
-    console.log("22",wolwt)
-
+let amt=0;
+  const getdata1 = await Wallet.findOne({customer :req.body.customer}).sort({createdAt:-1})
+  console.log("Getdata",getdata1)
+  if(getdata1){
+   amt=getdata1.amount
+  }
+  else{
+    amt=0
+  }
   const newWallet = new Wallet({
     customer: customer,
     reqamount :reqamount,
-    amount: 0,
+    amount: amt,
     pay_method: pay_method,
      depsite_file: depsite_file,
     status: status,
    });
-   const getdata = await Wallet.findOne({customer :req.body.customer})
+   const getdata = await Wallet.findOne({customer :req.body.customer}).sort({createdAt:-1})
    console.log("Getdata",getdata)
    let  currntamt 
    if(getdata){
     let oldamt = getdata.amount
       console.log("amout",oldamt)
-   currntamt = parseInt(oldamt)+ parseInt(req.body.amount)
+   currntamt = parseInt(oldamt)+ parseInt(req.body.reqamount)
       console.log("Result",currntamt)
     }
    const findandUpdateEntry = await Wallet.findOneAndUpdate(
@@ -90,12 +81,12 @@ exports.deposite_wallet = async (req, res) => {
         });
     }
    
-  }
-  let wolwt1= await Customer.findOne({_id:req.body.customer})
+  
+  let wolwt1= await Customer.findOne({_id:req.body.customer}).sort({createdAt:-1})
   console.log('cccc',wolwt1)
   if(wolwt1)
   {
-    let wolwt= await Wallet.findOne({customer:req.body.customer})
+    let wolwt= await Wallet.findOne({customer:req.body.customer}).sort({createdAt:-1})
     let wolId=wolwt._id
     console.log("ttttt",wolwt1)
   let qur=  await Customer.findOneAndUpdate(
@@ -120,7 +111,7 @@ exports.deposite_wallet = async (req, res) => {
 //     error:error
 //   })
 }
-  }
+}
 
 exports.getone = async (req, res) => {
   const getdata = await Wallet.findOne({customer:req.userId}).populate("customer")
@@ -244,7 +235,7 @@ exports.updatewallet = async (req, res) => {
 
 exports.getwallet = async (req, res) => {
   const findall = await Wallet.find().populate("customer")
-    .sort({ sortorder: 1 })
+    .sort({ createdAt: -1 })
     .then((result) => {
       res.status(200).json({
         status: true,
