@@ -60,11 +60,12 @@ const operators = require("./routes/operators");
 //const mo_operators = require("./routes/mo_operators");
 const utility_bill = require("./routes/utility_bill");
 const mo_recharge = require("./routes/mo_recharge");
-const electricity_operators = require("./routes/electricity_operators");
+const elec_recharge = require("./routes/elec_recharge");
 const ele_recharge = require("./routes/ele_recharge");
 const admin_wallet = require("./routes/admin_wallet");
 const circles_code = require("./routes/circles_code");
 const mobileRecharge = require("./routes/mobileRecharge");
+const elc_billerlist = require("./routes/elc_billerlist");
 
  
 //use
@@ -116,11 +117,12 @@ app.use("/", operators);
 //app.use("/", mo_operators);
 app.use("/", utility_bill);
 app.use("/", mo_recharge);
-app.use("/", electricity_operators);
+app.use("/", elec_recharge);
 app.use("/", ele_recharge);
 app.use("/", admin_wallet);
 app.use("/", circles_code );
 app.use("/", mobileRecharge );
+app.use("/", elc_billerlist );
 
 
  

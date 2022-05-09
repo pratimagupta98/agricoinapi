@@ -22,7 +22,8 @@ exports.addAmount = async (req, res) => {
   if(getdata){
     let oldamt = getdata.amount
       console.log("amout",oldamt)
-      currntamt = parseInt(oldamt)+ parseInt(req.body.add_amount)
+     
+         currntamt = parseInt(oldamt)+ parseInt(req.body.add_amount)
       console.log("Result",currntamt)
     }
   

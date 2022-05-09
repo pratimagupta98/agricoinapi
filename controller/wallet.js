@@ -33,7 +33,7 @@ exports.deposite_wallet = async (req, res) => {
     status: true,
     msg: "success",
     data: wolwt,
-    add_amount:req.body.amount,
+    // add_amount:req.body.amount,
   })
 
   }else{
@@ -41,7 +41,7 @@ exports.deposite_wallet = async (req, res) => {
 
   const newWallet = new Wallet({
     customer: customer,
-    amount: amount,
+    amount: 0,
     pay_method: pay_method,
      depsite_file: depsite_file,
     status: status,
@@ -106,12 +106,18 @@ exports.deposite_wallet = async (req, res) => {
     { new: true }
   
   );
-  res.status(200).json({
-    status: true,
-    msg: "success",
-    data: qur,
-  })
+//   res.status(200).json({
+//     status: true,
+//     msg: "success",
+//     data: qur,
+//   })
 
+// }else{
+//   res.status(400).json({
+//     status: true,
+//     msg: "error",
+//     error:error
+//   })
 }
   }
 

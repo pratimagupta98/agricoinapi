@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    Elec_Operator,
+    elec_recharge,
     getEleOperators
   
-} = require("../controller/electricity_operators.js");
+} = require("../controller/elec_recharge.js");
 
 //Paths
 
-router.post("/admin/Elec_Operator", Elec_Operator);
-router.get("/admin/getEleOperators", getEleOperators);
+router.post("/admin/elec_recharge", elec_recharge);
+//router.get("/admin/getEleOperators", getEleOperators);
  
 
 // router.get("/admin/operators/auto-detect/:phone/:country", detectoperator);
