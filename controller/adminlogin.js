@@ -11,7 +11,7 @@ const validatePassword = (password, dbpassword) => {
 };
 
 function generateAccessToken(mobile) {
-  return jwt.sign(mobile, process.env.TOKEN_SECRET, { expiresIn: "1800h" });
+  return jwt.sign(mobile, process.env.TOKEN_SECRET, { expiresIn: "1h" });
 }
 
 exports.createadmin = async (req, res) => {
@@ -83,7 +83,7 @@ exports.adminlogin = async (req, res) => {
         },
         process.env.TOKEN_SECRET,
         {
-          expiresIn: 86400000,
+          expiresIn: 3600000,
         }
       );
       res.header("auth-admintoken", token).status(200).send({
