@@ -84,7 +84,7 @@ exports.getalldata = async (req, res) => {
 
 
 
-exports.usersuccess_depositelist = async (req, res) => {
+exports.usersuccess_depositelist = async (req, res) => {   
   const findall = await AdminWallet.find({ $and: [{walletId: req.params.id },{status:"success"}]} ) .populate("walletId") .populate({
     path: "walletId",
     populate: {

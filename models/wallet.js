@@ -7,6 +7,10 @@ const walletSchema = new mongoose.Schema(
       ref: "customer",
 
     },
+
+    reqamount:{
+      type : Number
+    },
     amount: {
       type: Number,
       default: 0,

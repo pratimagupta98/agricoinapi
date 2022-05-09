@@ -9,7 +9,7 @@ const Customer = require("../models/customer");
  
 exports.deposite_wallet = async (req, res) => {
 
-  const { customer, amount, pay_method,  status,depsite_file } = req.body;
+  const { customer, amount,reqamount, pay_method,  status,depsite_file } = req.body;
 
   let wolwt= await Wallet.findOne({customer:req.body.customer})
   console.log("11",wolwt)
@@ -41,6 +41,7 @@ exports.deposite_wallet = async (req, res) => {
 
   const newWallet = new Wallet({
     customer: customer,
+    reqamount :reqamount,
     amount: 0,
     pay_method: pay_method,
      depsite_file: depsite_file,
