@@ -11,49 +11,58 @@ exports.deposite_wallet = async (req, res) => {
 
   const { customer, amount,reqamount, pay_method,  status,depsite_file } = req.body;
 
+  let wolwt= await Wallet.findOne({customer:req.body.customer})
+  console.log("11",wolwt)
+  if(wolwt){
+    let wolId=wolwt._id
+    let amt=wolwt.amount
+    console.log("old amt",amt)
   
-  // let qur=  await Wallet.findOneAndUpdate(
-  //     { _id: wolId },
+  let qur=  await Wallet.findOneAndUpdate(
+      { _id: wolId },
       
-  //     {$set: {amount:amt+parseInt(req.body.amount),pay_method:req.body.pay_method,depsite_file:req.body.depsite_file,status:req.body.status}} ,
+      {$set: {reqamount:parseInt(req.body.reqamount),pay_method:req.body.pay_method,depsite_file:req.body.depsite_file,status:"Pending"}} ,
     
-  //   //{ $set: {status:"success"} },
-  //   { new: true }
+    //{ $set: {status:"success"} },
+    { new: true }
   
-  // );
-let amt=0;
-  const getdata1 = await Wallet.findOne({customer :req.body.customer}).sort({createdAt:-1})
-  console.log("Getdata",getdata1)
-  if(getdata1){
-   amt=getdata1.amount
+  );
+  res.status(200).json({
+    status: true,
+    msg: "success",
+    data: qur,
+    // data: wolwt,
+  
+  })
   }
+
   else{
-    amt=0
-  }
+
+  
   const newWallet = new Wallet({
     customer: customer,
     reqamount :reqamount,
-    amount: amt,
+    amount: 0,
     pay_method: pay_method,
      depsite_file: depsite_file,
     status: status,
    });
-   const getdata = await Wallet.findOne({customer :req.body.customer}).sort({createdAt:-1})
-   console.log("Getdata",getdata)
-   let  currntamt 
-   if(getdata){
-    let oldamt = getdata.amount
-      console.log("amout",oldamt)
-   currntamt = parseInt(oldamt)+ parseInt(req.body.reqamount)
-      console.log("Result",currntamt)
-    }
-   const findandUpdateEntry = await Wallet.findOneAndUpdate(
-      { customer: req.body.customer },
+  //  const getdata = await Wallet.findOne({customer :req.body.customer}).sort({createdAt:-1})
+  //  console.log("Getdata",getdata)
+  //  let  currntamt 
+  //  if(getdata){
+  //   let oldamt = getdata.amount
+  //     console.log("amout",oldamt)
+  //  currntamt = parseInt(oldamt)+ parseInt(req.body.reqamount)
+  //     console.log("Result",currntamt)
+  //   }
+  //  const findandUpdateEntry = await Wallet.findOneAndUpdate(
+  //     { customer: req.body.customer },
       
-      {$set: {amount:currntamt}} ,
-    //{ $set: {status:"success"} },
-    { new: true }
-    );
+  //     {$set: {amount:currntamt}} ,
+  //   //{ $set: {status:"success"} },
+  //   { new: true }
+  //   );
    
       const resp = await cloudinary.uploader.upload(req.file.path);
       if (resp) {
@@ -79,6 +88,7 @@ let amt=0;
             error: error,
           });
         });
+      }
     }
    
   
