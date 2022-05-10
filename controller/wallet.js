@@ -96,9 +96,10 @@ exports.deposite_wallet = async (req, res) => {
   console.log('cccc',wolwt1)
   if(wolwt1)
   {
-    let wolwt= await Wallet.findOne({customer:req.body.customer}).sort({createdAt:-1})
+
+    let wolwt= await Wallet.findOne({customer:req.body.customer}) 
     let wolId=wolwt._id
-    console.log("ttttt",wolwt1)
+    console.log("ttttt",wolwt)
   let qur=  await Customer.findOneAndUpdate(
       { _id: req.body.customer },
       
