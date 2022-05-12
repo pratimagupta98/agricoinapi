@@ -250,6 +250,9 @@ const Wallet = require("../models/wallet");
 
  
 // }
+const ElecBlist = require('../models/elc_billerlist');
+
+
 
 exports.mobile_recharge = async(req,res)=>{
 
@@ -319,7 +322,9 @@ var options = {
 
  let result = await Mobilerecharge.create(data);
 
+
  console.log(result)
+
 request(options, function (error, response) {
   if (error){
    throw new Error(error);
@@ -431,7 +436,7 @@ exports.getusertransaction = async (req, res) => {
   }
 };
 
-exports.elec_recharge = async(req,res)=>{
+exports.elec_paybill = async(req,res)=>{
 
   create_randomString(15);
   function create_randomString(string_length) {
@@ -456,6 +461,7 @@ exports.elec_recharge = async(req,res)=>{
     optional2 :req.body.optional2,
     optional3 :req.body.optional3,
   } 
+
 
   var request = require('request');
   var options = {
@@ -549,13 +555,29 @@ if(findandUpdateEntry1){
 // ;
   }
 
-exports.Elec_gettransaction = async (req, res) => {
-  const findall = await EleRecharge.find().sort({ sortorder: 1 }).populate("walletId") .populate({
-    path: "walletId",
-    populate: {
-      path: "customer",
-    },
-  }).populate("code")
+exports.Elec_paybill = async (req, res) => {
+  const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("code")
+  
+  let codetype = await Mobilerecharge
+        .find({code:req.body.code })
+        console.log("codetype",codetype)
+        
+       console.log("result............", codetype);
+      // if (type == null) {
+      //   res.status(400).json({
+      //     status: false,
+      //     msg: "record not found",
+      //   });
+      // }
+       let codearr = [];
+      for (const element of codetype) {
+        if (element.code.type.toUpperCase() == "ELECTRICITY") {
+          console.log("element", element);
+          codearr.push(element.code.type);
+          
+        }
+      }
+   
   if (findall) {
     res.status(200).json({
       status: true,

@@ -42,6 +42,12 @@ type:Number
    
     bbps : {
       type : String
+    },
+    isText: {
+      type :String
+    },
+    bbpsStatus:{
+      type : String
     }
  
  
