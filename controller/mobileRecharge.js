@@ -597,11 +597,11 @@ if(findandUpdateEntry1){
 // ;
   }
 
-exports.Elec_paybill = async (req, res) => {
-  const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("code")
+exports.elec_bill_listadmin = async (req, res) => {
+ // const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("code")
   
   let codetype = await Mobilerecharge
-        .find({code:req.body.code })
+        .findOne({code:req.body.code })
         console.log("codetype",codetype)
         
        console.log("result............", codetype);

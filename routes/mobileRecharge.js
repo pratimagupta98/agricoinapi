@@ -9,7 +9,7 @@ const {
   gettransaction,
   getusertransaction,
   elec_paybill,
-  Elec_paybill,
+  elec_bill_listadmin,
   fetch_Bill
 } = require("../controller/mobileRecharge");
 
@@ -21,7 +21,7 @@ router.get("/admin/getusertransaction/:id", getusertransaction);
 router.post("/admin/elec_paybill", elec_paybill);
 router.post("/admin/fetch_Bill", fetch_Bill);
 
-//router.get("/admin/Elec_paybill", Elec_paybill);
+router.get("/admin/elec_bill_listadmin", elec_bill_listadmin);
 
 
 // router.get("/admin/operators/auto-detect/:phone/:country", detectoperator);

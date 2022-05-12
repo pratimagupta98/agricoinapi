@@ -15,6 +15,7 @@ exports.addproductsubcategory = async (req, res) => {
     req.body;
 
   const newProductsubcategory = new Productsubcategory({
+    seller :req.sellerId,
     name: name,
     desc: desc,
     productcategory: productcategory,

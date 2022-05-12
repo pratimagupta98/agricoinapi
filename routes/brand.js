@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const fs = require("fs");
+const { tokenverify } = require("../functions/tokenverify");
 
 const {
   addbrand,
@@ -43,7 +44,7 @@ const fileFilter = (req, file, cb) => {
 let uploads = multer({ storage: storage });
 
 //Paths
-router.post("/admin/addbrand", uploads.single("brand_img"), addbrand);
+router.post("/admin/addbrand", uploads.single("brand_img"),tokenverify, addbrand);
 router.post("/admin/editbrand/:id", uploads.single("brand_img"), editbrand);
 router.get("/admin/viewonebrand/:id", viewonebrand);
 router.get("/admin/allbrand", allbrand);
