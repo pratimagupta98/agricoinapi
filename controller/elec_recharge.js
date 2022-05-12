@@ -53,7 +53,7 @@ exports.elec_recharge = async(req,res)=>{
     })
   
   };
- let result = await EleRecharge.create(data).populate("code")
+ let result = await EleRecharge.create(data)
 
  console.log("Result",result)
 request(options, function (error, response) {
@@ -67,7 +67,7 @@ request(options, function (error, response) {
   return serverRes
 }); 
  
-const getdetails = await Wallet.findOne({_id :req.body.walletId}) 
+const getdetails = await Wallet.findOne({_id :req.body.walletId}) .populate("code")
 console.log("Value",getdetails)
 let  newamt=0
 if(getdetails){
