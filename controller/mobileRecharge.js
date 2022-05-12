@@ -436,6 +436,48 @@ exports.getusertransaction = async (req, res) => {
   }
 };
 
+
+exports.fetch_Bill = async(req,res)=>{
+
+  const data ={
+   
+    code:req.body.code,
+    account:req.body.account,
+    optional1 :req.body.optional1,
+    optional2 :req.body.optional2,
+    optional3 :req.body.optional3,
+  } 
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': 'https://zuelpay.com/api/utility/billpay/fetchBill',
+  'headers': {
+    'Token': 'ZKEY6f426c359d25311a48b1287f6',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    "request": {
+      code: req.body.code,
+      account: req.body.account,
+      optional1: req.body.optional1,
+      optional2: req.body.optional2,
+      optional3: req.body.optional3
+    }
+  })
+
+};
+request(options, function (error, response) {
+  if (error){
+    throw new Error(error);
+    res.json(error) ;
+  // console.log(response.body);
+   }
+   res.send(response.body);
+   var serverRes = response.body   
+   return serverRes
+});
+}
+
 exports.elec_paybill = async(req,res)=>{
 
   create_randomString(15);
