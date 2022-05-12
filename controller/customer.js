@@ -163,7 +163,7 @@ exports.editcustomer = async (req, res) => {
 };
 
 exports.allcustomer = async (req, res) => {
-  const findall = await Customer.find().sort({ sortorder: 1 });
+  const findall = await Customer.find().sort({ sortorder: 1 }).populate("walletId")
   if (findall) {
     res.status(200).json({
       status: true,

@@ -39,6 +39,29 @@ type :String
         recharge_type:{
           type : String
         },
+        email : {
+          type :String
+              },
+              code:{
+      
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "elc_billerlist"
+              },
+
+account :{
+          type : String
+        },
+
+        optional1 : {
+          type : String
+        },
+        optional2 : {
+          type : String
+        },
+        optional3: {
+          type : String
+        },
+         
         // headers:[{
         //   Token:String,
         //   Accept:String,

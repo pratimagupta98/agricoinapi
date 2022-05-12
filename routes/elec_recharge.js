@@ -3,14 +3,14 @@ const router = express.Router();
 
 const {
     elec_recharge,
-    getEleOperators
+    gettransaction
   
 } = require("../controller/elec_recharge.js");
 
 //Paths
 
-router.post("/admin/elec_recharge", elec_recharge);
-//router.get("/admin/getEleOperators", getEleOperators);
+// router.post("/admin/elec_recharge", elec_recharge);
+// router.get("/admin/gettransaction", gettransaction);
  
 
 // router.get("/admin/operators/auto-detect/:phone/:country", detectoperator);
