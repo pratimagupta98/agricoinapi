@@ -8,6 +8,8 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+const seller = require("../models/seller")
+
 
 exports.addbrand = async (req, res) => {
   const { name, brand_img, desc, sortorder, status } = req.body;

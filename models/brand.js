@@ -26,6 +26,10 @@ const brandSchema = new Schema(
       type: String,
       default: "Active",
     },
+    seller: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "seller",
+    },
   },
   { timestamps: true }
 );

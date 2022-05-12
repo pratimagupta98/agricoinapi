@@ -9,6 +9,8 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+const seller = require("../models/seller")
+
 
 exports.addproductsubcategory = async (req, res) => {
   const { name, desc, productcategory, product_img, sortorder, status } =
