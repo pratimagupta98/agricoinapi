@@ -13,9 +13,9 @@ const ElecRecharge = new Schema(
 type :String
     },
     code:{
-      type:String
-      // type: mongoose.Schema.Types.ObjectId,
-      // ref: "elc_billerlist"
+      
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "elc_billerlist"
     },
        
         agent_id : {

@@ -53,7 +53,7 @@ exports.elec_recharge = async(req,res)=>{
     })
   
   };
- let result = await EleRecharge.create(data);
+ let result = await EleRecharge.create(data).populate("code")
 
  console.log("Result",result)
 request(options, function (error, response) {
