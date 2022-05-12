@@ -9,7 +9,7 @@ const {
 
 //Paths
 
-router.post("/admin/Elec_Recharge", Elec_Recharge);
+//router.post("/admin/Elec_Recharge", Elec_Recharge);
 
 // router.get("/admin/operators/auto-detect/:phone/:country", detectoperator);
 // router.get("/admin/getoperatorbyid/:id", getoperatorbyid);

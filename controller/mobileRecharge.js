@@ -480,7 +480,7 @@ exports.elec_recharge = async(req,res)=>{
     })
   
   };
- let result = await EleRecharge.create(data)
+ let result = await Mobilerecharge.create(data)
 
  console.log("Result",result)
 request(options, function (error, response) {
