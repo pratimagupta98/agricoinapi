@@ -1,6 +1,6 @@
 const   EleRecharge = require("../models/elec_recharge.js");
 
- const Wallet = require("../models/wallet");
+const Wallet = require("../models/wallet");
   
 exports.elec_recharge = async(req,res)=>{
 
@@ -55,7 +55,7 @@ exports.elec_recharge = async(req,res)=>{
   };
  let result = await EleRecharge.create(data);
 
- console.log(result)
+ console.log("Result",result)
 request(options, function (error, response) {
   if (error){
    throw new Error(error);
@@ -63,7 +63,7 @@ request(options, function (error, response) {
   console.log(response.body);
   }
   res.send(response.body);
-  var serverRes = response.body
+  var serverRes = response.body   
   return serverRes
 }); 
  
