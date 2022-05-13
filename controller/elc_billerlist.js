@@ -69,3 +69,6 @@ exports.electricity_operator = async(req,res)=>{
         });
       });
   };
+
+
+   

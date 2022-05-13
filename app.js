@@ -66,6 +66,7 @@ const admin_wallet = require("./routes/admin_wallet");
 const circles_code = require("./routes/circles_code");
 const mobileRecharge = require("./routes/mobileRecharge");
 const elc_billerlist = require("./routes/elc_billerlist");
+const pre_post_dth = require("./routes/pre_post_dth");
 
  
 //use
@@ -123,6 +124,7 @@ app.use("/", admin_wallet);
 app.use("/", circles_code );
 app.use("/", mobileRecharge );
 app.use("/", elc_billerlist );
+app.use("/", pre_post_dth );
 
 
  

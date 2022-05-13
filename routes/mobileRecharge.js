@@ -10,7 +10,8 @@ const {
   getusertransaction,
   elec_paybill,
   elec_bill_listadmin,
-  fetch_Bill
+  fetch_Bill,
+  dth_recharge
 } = require("../controller/mobileRecharge");
 
 //Paths
@@ -22,6 +23,8 @@ router.post("/admin/elec_paybill", elec_paybill);
 router.post("/admin/fetch_Bill", fetch_Bill);
 
 router.get("/admin/elec_bill_listadmin", elec_bill_listadmin);
+router.post("/admin/dth_recharge", dth_recharge);
+
 
 
 // router.get("/admin/operators/auto-detect/:phone/:country", detectoperator);
