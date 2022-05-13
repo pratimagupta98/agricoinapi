@@ -23,45 +23,51 @@ exports.addbrand = async (req, res) => {
     status: status,
   });
 
-  // if (req.file) {
-    const findexist = await Brand.findOne({
-      $and:[{seller: req.sellerId},{name: name}]});
+  if (req.file) {
+    const findexist = await Brand.findOne({ name: name });
     if (findexist) {
-      await Brand.findOneAndUpdate(
-        {
-          $and :[{seller: req.sellerId},{name :name}
-          ]
-      },
-      {new :true}
-      )
       res.status(400).json({
         status: false,
         msg: "Already Exists",
         data: {},
       });
-    }else if (req.files) {
-      if (req.files.brand_img) {
-        alluploads = [];
-        for (let i = 0; i < req.files.brand_img.length; i++) {
-          const resp = await cloudinary.uploader.upload(
-            req.files.brand_img[i].path,
-            { use_filename: true, unique_filename: false }
-          );
-          fs.unlinkSync(req.files.brand_img[i].path);
-          alluploads.push(resp.secure_url);
-        }
-        newBrand.brand_img = alluploads;
-      }
-     
-      newBrand
-        .save()
-        .then((data) => {
+    } else {
+      const resp = await cloudinary.uploader.upload(req.file.path);
+      if (resp) {
+        newBrand.brand_img = resp.secure_url;
+        fs.unlinkSync(req.file.path);
+        newBrand.save().then(
           res.status(200).json({
             status: true,
             msg: "success",
-            data: data,
-          });
-        })
+            data: newBrand,
+          })
+        );
+      } else {
+        res.status(200).json({
+          status: false,
+          msg: "img not uploaded",
+        });
+      }
+    }
+  } else {
+    const findexist = await Brand.findOne({ name: name });
+    if (findexist) {
+      res.status(400).json({
+        status: false,
+        msg: "Already Exists",
+        data: {},
+      });
+    } else {
+      newBrand
+        .save()
+        .then(
+          res.status(200).json({
+            status: true,
+            msg: "success",
+            data: newBrand,
+          })
+        )
         .catch((error) => {
           res.status(400).json({
             status: false,
@@ -69,9 +75,11 @@ exports.addbrand = async (req, res) => {
             error: error,
           });
         });
+    }
+  }
+};
+
   
-  }
-  }
 
 exports.editbrand = async (req, res) => {
   const { name, brand_img, desc, sortorder, status } = req.body;

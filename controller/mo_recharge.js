@@ -1,4 +1,4 @@
-const Recharge = require("../models/mo_operators");
+const Recharge = require("../models/mo_recharge");
 
 
 // exports.moRecharge = async (req,res)=>{

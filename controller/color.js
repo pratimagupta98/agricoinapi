@@ -1,14 +1,26 @@
  const Color = require("../models/color");
 
-exports.addcolor = async (req, res) => {
+ exports.addcolor = async (req, res) => {
   const { colorName } = req.body;
 
   const newColor = new Color({
-   colorName : colorName,
+    colorName: colorName,
+    seller: req.sellerId,
   });
 
-  const findexist = await Color.findOne({ colorName: colorName });
+  const findexist = await Color.findOne({ 
+    $and:[{seller: req.sellerId},{colorName: colorName}]});
+
   if (findexist) {
+    await Color.findOneAndUpdate(
+      {
+      $and :[
+        { seller: req.sellerId },
+        {colorName: colorName}
+      ]
+    },
+    {new :true}
+    )
     res.status(400).json({
       status: false,
       msg: "Already Exists",

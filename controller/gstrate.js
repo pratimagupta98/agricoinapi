@@ -5,6 +5,7 @@ exports.addgst = async (req,res)=>{
 const {gst_title,value,desc} =req.body
 
 const newGstrate= new Gstrate({
+    seller :req.sellerId,
     gst_title:gst_title,
     value:value,  
     desc:desc,

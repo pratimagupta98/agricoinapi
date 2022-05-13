@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { tokenverify } = require("../functions/tokenverify");
 
 const {
     addgst,
@@ -10,7 +11,7 @@ const {
 } = require("../controller/gstrate");
 
 //path
-router.post("/admin/addgst", addgst);
+router.post("/admin/addgst",tokenverify, addgst);
 router.get("/admin/viewonegst/:id", viewonegst);
  router.get("/admin/viewallgst", viewallgst);
  router.post("/admin/editgst/:id", editgst);

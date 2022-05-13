@@ -15,6 +15,10 @@ const gstrateSchema = new mongoose.Schema(
             type: String,
             reuire: true,
           },
+          seller: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "seller",
+          },
 },
 { timestamps: true }
 )

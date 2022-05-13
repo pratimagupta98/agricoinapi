@@ -10,4 +10,4 @@ const RechargeSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("mo_operators", RechargeSchema);
+module.exports = mongoose.model("mo_recharge", RechargeSchema);
