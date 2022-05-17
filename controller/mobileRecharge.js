@@ -397,7 +397,7 @@ exports.gettransaction = async (req, res) => {
     populate: {
       path: "customer",
     },
-  })
+  }).populate("dth_code")
   if (findall) {
     res.status(200).json({
       status: true,
@@ -597,6 +597,9 @@ if(findandUpdateEntry1){
 // ;
   }
 
+
+
+
 exports.elec_bill_listadmin = async (req, res) => {
  // const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("code")
   
@@ -653,7 +656,7 @@ exports.dth_recharge = async(req,res)=>{
  
   const data ={
     walletId: req.body.walletId,
-     
+    dth_code :req.body.dth_code,
     amount:req.body.amount,
     biller_code:req.body.biller_code,
     number: req.body.number,
@@ -692,6 +695,7 @@ var options = {
   body: JSON.stringify({
     "request": {
       walletId: req.body.walletId,
+      dth_code : req.body.dth_code,
       amount: req.body.amount,
       biller_code:req.body.biller_code,
       number: req.body.number,

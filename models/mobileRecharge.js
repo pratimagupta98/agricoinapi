@@ -29,6 +29,7 @@ type :String
         },
         biller_code :{
           type : String
+             
         },
         number : {
           type : Number
@@ -44,8 +45,9 @@ type :String
               },
               code:{
       
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "elc_billerlist"
+                // type: mongoose.Schema.Types.ObjectId,
+                // ref: "elc_billerlist"
+                type:String 
               },
 
 account :{
@@ -61,6 +63,10 @@ account :{
         optional3: {
           type : String
         },
+        dth_code :{
+            type: mongoose.Schema.Types.ObjectId,
+                ref: "pre_post_dth"
+        }
          
         // headers:[{
         //   Token:String,
