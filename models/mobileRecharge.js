@@ -49,6 +49,10 @@ type :String
                 // ref: "elc_billerlist"
                 type:String 
               },
+              electricity_code : {
+ type: mongoose.Schema.Types.ObjectId,
+                ref: "elc_billerlist"
+              },
 
 account :{
           type : String
