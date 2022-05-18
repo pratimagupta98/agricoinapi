@@ -420,7 +420,7 @@ exports.getusertransaction = async (req, res) => {
     populate: {
       path: "customer",
     },
-  })
+  }).populate("electricity_code")
   if (findone) {
     res.status(200).json({
       status: true,
