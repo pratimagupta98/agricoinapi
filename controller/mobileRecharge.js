@@ -824,7 +824,12 @@ if(findandUpdateEntry1){
 
 
 exports.elec_bill_listadmin = async (req, res) => {
-  const findall = await Mobilerecharge.find({  type: "ELECTRICITY"}).populate("electricity_code").populate("walletId")
+  const findall = await Mobilerecharge.find({  type: "ELECTRICITY"}).populate("electricity_code").populate("walletId") .populate({
+    path: "walletId",
+    populate: {
+      path: "customer",
+    },
+  })
        //{status : "Approve"}
     .then((data) => {
       res.status(200).json({
@@ -845,7 +850,12 @@ exports.elec_bill_listadmin = async (req, res) => {
 
 exports.Dth_listadmin = async (req, res) => {
   const findall = await Mobilerecharge.find({  type: "DTH"}).populate("dth_code").populate("walletId")
-       //{status : "Approve"}
+  .populate({
+    path: "walletId",
+    populate: {
+      path: "customer",
+    },
+  })
     .then((data) => {
       res.status(200).json({
         status: true,
