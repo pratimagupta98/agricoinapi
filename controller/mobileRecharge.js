@@ -256,6 +256,146 @@ const ElecBlist = require('../models/elc_billerlist');
 
 
 
+// exports.mobile_recharge = async(req,res)=>{
+
+//   create_randomString(15);
+//   function create_randomString(string_length) {
+//     (randomString = ""),
+//       (characters = "ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ");
+//     for (var i, i = 0; i < string_length; i++) {
+//       randomString += characters.charAt(
+//         Math.floor(Math.random() * characters.length)
+//       );
+//     }
+//     return randomString;
+//   }
+ 
+//   const data ={
+//     walletId: req.body.walletId,
+//     status:req.body.status,
+//     amount:req.body.amount,
+//     biller_code:req.body.biller_code,
+//     number: req.body.number,
+//    // mobile_code :req.body.mobile_code,
+//     // type:type,
+//     agent_id:"SOXY" +randomString, 
+//   } 
+
+ 
+//   // const getdata = await Wallet.findOne({customer :req.body.customer})
+//   // if(getdata){
+
+//   // }
+
+
+// var request = require('request');
+// // create_randomString(15);
+// //   function create_randomString(string_length) {
+// //     (randomString = ""),
+// //       (characters = "ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ");
+// //     for (var i, i = 0; i < string_length; i++) {
+// //       randomString += characters.charAt(
+// //         Math.floor(Math.random() * characters.length)
+// //       );
+// //     }
+// //     return randomString;
+// //   }
+ 
+// var options = {
+//   'method': 'POST',
+//   'url': 'https://api.zuelpay.com/utility/recharge/transaction',
+//   'headers': {
+//     'Token': 'ZKEY6f426c359d25311a48b1287f6',
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json'
+//   },
+  
+//   body: JSON.stringify({
+//     "request": {
+//       walletId: req.body.walletId,
+//       amount: req.body.amount,
+//       biller_code:req.body.biller_code,
+//       // type :req.body.type,
+//       number: req.body.number,
+//       agent_id:"SOXY" +randomString,
+//     //  mobile_code :req.body.mobile_code
+//     }
+//   })
+
+// };
+
+//  let result = await Mobilerecharge.create(data);
+
+
+//  console.log(result)
+
+// request(options, function (error, response) {
+//   if (error){
+//    throw new Error(error);
+//    res.json(error) ;
+//   console.log(response.body);
+//   }
+//   res.send(response.body);
+//   var serverRes = response.body
+//   return serverRes
+// }); 
+ 
+// const getdetails = await Wallet.findOne({_id :req.body.walletId}) 
+// console.log("Value",getdetails)
+// let  newamt=0
+// if(getdetails){
+//   let cmt = getdetails.amount
+//   if (cmt>0){
+//    newamt =cmt - req.body.amount
+//    console.log("camt",cmt)
+// console.log("new",newamt)
+// }else{
+
+//   console.log("Insufficient belence")
+
+//   res.status(400).json({
+//     status: false,
+//     msg: "Insufficient belence ",
+//   });
+ 
+// }
+
+// const findandUpdateEntry1 = await Wallet.findOneAndUpdate(
+  
+//   { _id: req.body.walletId },
+  
+//   { $set: {amount:newamt } },
+ 
+// //     { amount: currntamt },
+     
+// // { $set: {status:"success"} },
+// { new: true },
+// )
+// if(findandUpdateEntry1){
+//   console.log("newamt",newamt)
+// }
+
+// // .then((data)=>{
+// //   res.status(200).json({
+// //       status : true,
+// //       msg : "success",
+// //       data : data,
+// //       amount: newamt, 
+     
+      
+// //   })
+// // }) .catch((error) => {
+// //   res.status(400).json({
+// //     status: false,
+// //     msg: "error",
+// //     error: "error",
+// //   });
+// // });
+//  }
+// // ;
+//   }
+
+
 exports.mobile_recharge = async(req,res)=>{
 
   create_randomString(15);
@@ -276,8 +416,7 @@ exports.mobile_recharge = async(req,res)=>{
     amount:req.body.amount,
     biller_code:req.body.biller_code,
     number: req.body.number,
-   // mobile_code :req.body.mobile_code,
-    // type:type,
+    recharge_type :req.body.recharge_type,
     agent_id:"SOXY" +randomString, 
   } 
 
@@ -315,10 +454,9 @@ var options = {
       walletId: req.body.walletId,
       amount: req.body.amount,
       biller_code:req.body.biller_code,
-      // type :req.body.type,
       number: req.body.number,
       agent_id:"SOXY" +randomString,
-    //  mobile_code :req.body.mobile_code
+      recharge_type :req.body.recharge_type
     }
   })
 
@@ -351,11 +489,11 @@ if(getdetails){
 console.log("new",newamt)
 }else{
 
-  console.log("Insufficient belence")
+  console.log("insuficiet belence")
 
   res.status(400).json({
     status: false,
-    msg: "Insufficient belence ",
+    msg: "insuficiet belence ",
   });
  
 }
