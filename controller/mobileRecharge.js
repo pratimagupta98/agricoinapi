@@ -1001,7 +1001,7 @@ if(findandUpdateEntry1){
 // ;
   }
 
-  exports.deloffer = async (req, res) => {
+  exports.del_recharges = async (req, res) => {
     try {
       const deleteentry = await Mobilerecharge.deleteOne({ _id: req.params.id });
       res.status(200).json({
