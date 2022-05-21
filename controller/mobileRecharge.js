@@ -1,5 +1,7 @@
 const Mobilerecharge = require("../models/mobileRecharge");
 const Wallet = require("../models/wallet");
+const PrePostDth = require('../models/pre_post_dth');
+
 //const wallet = require("../models/wallet");
 
 // exports.mobile_recharge = async(req,res)=>{
@@ -274,7 +276,8 @@ exports.mobile_recharge = async(req,res)=>{
     amount:req.body.amount,
     biller_code:req.body.biller_code,
     number: req.body.number,
-    recharge_type :req.body.recharge_type,
+    mobile_code :req.body.mobile_code,
+    type:type,
     agent_id:"SOXY" +randomString, 
   } 
 
@@ -312,9 +315,10 @@ var options = {
       walletId: req.body.walletId,
       amount: req.body.amount,
       biller_code:req.body.biller_code,
+      type :req.body.type,
       number: req.body.number,
       agent_id:"SOXY" +randomString,
-      recharge_type :req.body.recharge_type
+      mobile_code :req.body.mobile_code
     }
   })
 
@@ -347,11 +351,11 @@ if(getdetails){
 console.log("new",newamt)
 }else{
 
-  console.log("insuficiet belence")
+  console.log("Insufficient belence")
 
   res.status(400).json({
     status: false,
-    msg: "insuficiet belence ",
+    msg: "Insufficient belence ",
   });
  
 }
@@ -421,6 +425,7 @@ exports.getusertransaction = async (req, res) => {
       path: "customer",
     },
   }).populate("electricity_code")
+  .populate("mobile_code")
   if (findone) {
     res.status(200).json({
       status: true,
@@ -617,6 +622,7 @@ exports.elec_paybill = async(req,res)=>{
         account : req.body.account,
         agent_id :"SOXY" +randomString,
         amount: req.body.amount,
+        type:req.body.type,
         optional1: req.body.optional1,
         optional2: req.body.optional2,
         optional3: req.body.optional3,
@@ -640,6 +646,7 @@ var options = {
         account : req.body.account,
         agent_id :"SOXY" +randomString,
         amount: req.body.amount,
+        type:req.body.type,
         optional1: req.body.optional1,
         optional2: req.body.optional2,
         optional3: req.body.optional3,
@@ -672,11 +679,11 @@ if(getdetails){
 console.log("new",newamt)
 }else{
 
-  console.log("insuficiet belence")
+  console.log("Insufficient belence")
 
   res.status(400).json({
     status: false,
-    msg: "insuficiet belence ",
+    msg: "Insufficient belence ",
   });
  
 }
@@ -720,45 +727,140 @@ if(findandUpdateEntry1){
 
 
 
-exports.elec_bill_listadmin = async (req, res) => {
- // const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("code")
+//   exports.elec_bill_listadmin = async (req, res) => {
+//     // const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("code")
   
-  let codetype = await Mobilerecharge
-        .findOne({code:req.body.code })
-        console.log("codetype",codetype)
-        
-       console.log("result............", codetype);
-      // if (type == null) {
-      //   res.status(400).json({
-      //     status: false,
-      //     msg: "record not found",
-      //   });
-      // }
-       let codearr = [];
-      for (const element of codetype) {
-        if (element.code.type.toUpperCase() == "ELECTRICITY") {
-          console.log("element", element);
-          codearr.push(element.code.type);
-          
-        }
-      }
-   
-  if (findall) {
-    res.status(200).json({
-      status: true,
-      msg: "success",
-      data: findall,
+//     // let elec = await ElecBlist.findOne({
+//     //   _id: req.body.electricity_code,
+//     // })
+//     let ELEC = await ElecBlist.find({id: req.body.id});
+//     console.log("ELEC", ELEC);
+  
+//     // const sumHSD = Hsd.sumHSD;
+//     //   console.log(sumHSD);
+//     var Eltyp = ELEC.map(function (value) {
+//       return value.type;
+//     });
+//     console.log("Eltyp", Eltyp);
+//     // const elec  = await ElecBlist.findOne({id :req.body.electricity_code})
+//     // console.log(elec)
+//     // if (elec){
+//     //   console.log(elec)
+//     //        const gettype = await ElecBlist.findOne({_id :elec.type })
+//     //       console.log(gettype)
+
+      
+//     // }
+
+  
+//  //   let abc = codetype.type;
+//    // console.log(abc);
+//     // console.log("result............", elec);
+//     // if (Eltyp.ELECTRICITY == null) {
+//     //   res.status(400).json({
+//     //     status: false,
+//     //     msg: "record not found",
+//     //   });
+//     // } else 
+//       let record = [];
+//       for (const element of Eltyp) {
+//         if (element.Eltyp.ELECTRICITY.toUpperCase() == "ELECTRICITY") {
+//           console.log("element", element);
+//           record.push(element.Eltyp.ELECTRICITY);
+//         }
+//       }
+    
+  
+//     if (ELEC) {
+//       res.status(200).json({
+//         status: true,
+//         msg: "success",
+//         data: ELEC,
+//       });
+//     } else {
+//       res.status(400).json({
+//         status: false,
+//         msg: "error",
+//         error: "error",
+//       });
+//     }
+//   };
+
+
+// exports.elec_bill_listadmin = async (req, res) => {
+//   // const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("code")
+
+//   // let elec = await ElecBlist.findOne({
+//   //   _id: req.body.electricity_code,
+//   // })
+//   let ELEC = await ElecBlist.find({id: req.body.id});
+//   console.log("ELEC", ELEC);
+
+//    const findall = await ElecBlist.find({type :"ELECTRICITY"})
+//    console.log(findall)
+//     let record = [];
+//     for (const element of ELEC) {
+//       if (element.type.toUpperCase() == "ELECTRICITY") {
+//         console.log("element", element);
+//         record.push(element.type.ELECTRICITY);
+//       }
+//     }
+  
+
+//   if (ELEC) {
+//     res.status(200).json({
+//       status: true,
+//       msg: "success",
+//       data: ELEC,
+//     });
+//   } else {
+//     res.status(400).json({
+//       status: false,
+//       msg: "error",
+//       error: "error",
+//     });
+//   }
+// };
+
+
+exports.elec_bill_listadmin = async (req, res) => {
+  const findall = await Mobilerecharge.find({  type: "ELECTRICITY"}).populate("electricity_code")
+       //{status : "Approve"}
+    .then((data) => {
+      res.status(200).json({
+        status: true,
+        msg: "success",
+        data: data,
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        status: false,
+        error: "error",
+        error: error,
+      });
     });
-  } else {
-    res.status(400).json({
-      status: false,
-      msg: "error",
-      error: "error",
-    });
-  }
 };
 
 
+exports.Dth_listadmin = async (req, res) => {
+  const findall = await Mobilerecharge.find({  type: "DTH"}).populate("dth_code")
+       //{status : "Approve"}
+    .then((data) => {
+      res.status(200).json({
+        status: true,
+        msg: "success",
+        data: data,
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        status: false,
+        error: "error",
+        error: error,
+      });
+    });
+};
 
 exports.dth_recharge = async(req,res)=>{
 
@@ -777,6 +879,7 @@ exports.dth_recharge = async(req,res)=>{
   const data ={
     walletId: req.body.walletId,
     dth_code :req.body.dth_code,
+    type : req.body.type,
     amount:req.body.amount,
     biller_code:req.body.biller_code,
     number: req.body.number,
@@ -816,6 +919,7 @@ var options = {
     "request": {
       walletId: req.body.walletId,
       dth_code : req.body.dth_code,
+      type : req.body.type,
       amount: req.body.amount,
       biller_code:req.body.biller_code,
       number: req.body.number,
@@ -853,11 +957,11 @@ if(getdetails){
 console.log("new",newamt)
 }else{
 
-  console.log("insuficiet belence")
+  console.log("Insufficient belence")
 
   res.status(400).json({
     status: false,
-    msg: "insuficiet belence ",
+    msg: "Insufficient belence ",
   });
  
 }
@@ -896,3 +1000,20 @@ if(findandUpdateEntry1){
  }
 // ;
   }
+
+  exports.deloffer = async (req, res) => {
+    try {
+      const deleteentry = await Mobilerecharge.deleteOne({ _id: req.params.id });
+      res.status(200).json({
+        status: true,
+        msg: "success",
+        data: deleteentry,
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: false,
+        msg: "error",
+        error: error,
+      });
+    }
+  };

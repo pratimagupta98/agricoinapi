@@ -162,6 +162,40 @@ exports.editcustomer = async (req, res) => {
   }
 };
 
+
+exports.changepass_user = async (req, res) => {
+  const { password, cnfrmPassword } = req.body
+  if (password === cnfrmPassword) {
+  const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(password, salt);
+  const findandUpdateEntry = await Customer.findOneAndUpdate(
+    {
+      _id: req.userId
+    },
+    { $set: { password: hashPassword, cnfrmPassword: hashPassword } },
+    { new: true }
+  );
+  if (findandUpdateEntry) {
+    res.status(200).json({
+      status: true,
+      msg: "success",
+      data: findandUpdateEntry,
+    });
+  } else {
+    res.status(400).json({
+      status: false,
+      msg: "error",
+      error: "error",
+    });
+  }
+} else {
+  res.status(400).json({
+    status: false,
+    msg: "error",
+    error: "Password not matched",
+  })
+}
+}
 exports.allcustomer = async (req, res) => {
   const findall = await Customer.find().sort({ sortorder: 1 }).populate("walletId")
   if (findall) {

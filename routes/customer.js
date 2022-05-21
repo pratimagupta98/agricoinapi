@@ -17,6 +17,7 @@ const {
   forgotPassword,
   resetpassword,
   Customerbysellerbytoken,
+  changepass_user
 } = require("../controller/customer");
 
 router.post("/user/signup", signup);
@@ -35,5 +36,8 @@ router.get(
   tokenverify,
   Customerbysellerbytoken
 );
+
+router.post("/user/changepass_user", verifytoken, changepass_user);
+
 
 module.exports = router;

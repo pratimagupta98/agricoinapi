@@ -70,7 +70,14 @@ account :{
         dth_code :{
             type: mongoose.Schema.Types.ObjectId,
                 ref: "pre_post_dth"
-        }
+        },
+        mobile_code:{
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "pre_post_dth"
+        },
+        type :{
+          type : String
+        },
          
         // headers:[{
         //   Token:String,

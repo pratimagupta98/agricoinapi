@@ -11,7 +11,8 @@ const {
   elec_paybill,
   elec_bill_listadmin,
   fetch_Bill,
-  dth_recharge
+  dth_recharge,
+  deloffer
 } = require("../controller/mobileRecharge");
 
 //Paths
@@ -25,6 +26,7 @@ router.post("/admin/fetch_Bill", fetch_Bill);
 router.get("/admin/elec_bill_listadmin", elec_bill_listadmin);
 router.post("/admin/dth_recharge", dth_recharge);
 
+router.get("/admin/deloffer/:id", deloffer);
 
 
 // router.get("/admin/operators/auto-detect/:phone/:country", detectoperator);
