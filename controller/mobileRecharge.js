@@ -1026,7 +1026,7 @@ exports.dth_recharge = async(req,res)=>{
  
   const data ={
     walletId: req.body.walletId,
-    dth_code :req.body.dth_code,
+   // dth_code :req.body.dth_code,
     //type : req.body.type,
     amount:req.body.amount,
     biller_code:req.body.biller_code,
@@ -1066,7 +1066,7 @@ var options = {
   body: JSON.stringify({
     "request": {
       walletId: req.body.walletId,
-      dth_code : req.body.dth_code,
+     // dth_code : req.body.dth_code,
      // type : req.body.type,
       amount: req.body.amount,
       biller_code:req.body.biller_code,
