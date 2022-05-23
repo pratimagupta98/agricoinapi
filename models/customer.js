@@ -9,7 +9,7 @@ const customerSchema = new Schema(
       ref: "seller",
      },
     customerId: {
-      type: String,
+      type: Number,
     },
     firstname: {
       type: String,

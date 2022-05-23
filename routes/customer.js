@@ -17,7 +17,9 @@ const {
   forgotPassword,
   resetpassword,
   Customerbysellerbytoken,
-  changepass_user
+  forgetpass_user ,
+  verifycode,
+  updatePassword
 } = require("../controller/customer");
 
 router.post("/user/signup", signup);
@@ -37,7 +39,10 @@ router.get(
   Customerbysellerbytoken
 );
 
-router.post("/user/changepass_user", verifytoken, changepass_user);
+router.post("/user/forgetpass_user", verifytoken, forgetpass_user);
+router.post("/user/verifycode", verifycode);
+router.post("/user/updatePassword", verifytoken, updatePassword);
 
 
 module.exports = router;
+ 

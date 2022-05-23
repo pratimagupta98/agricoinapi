@@ -33,21 +33,22 @@ exports.signup = async (req, res) => {
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashpassword = bcrypt.hashSync(password, salt);
 
-  create_random_string(6);
-  function create_random_string(string_length) {
-    (random_string = ""),
-      (characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz");
-    for (var i, i = 0; i < string_length; i++) {
-      random_string += characters.charAt(
-        Math.floor(Math.random() * characters.length)
-      );
-    }
-    return random_string;
-  }
+  // create_random_string(6);
+  // function create_random_string(string_length) {
+  //   (random_string = ""),
+  //     (characters =
+  //       "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz");
+  //   for (var i, i = 0; i < string_length; i++) {
+  //     random_string += characters.charAt(
+  //       Math.floor(Math.random() * characters.length)
+  //     );
+  //   }
+  //   return random_string;
+  // }
+  let otpcode = Math.floor(Math.random() * 10000 + 1);
 
   const newCustomer = new Customer({
-    customerId: random_string,
+    customerId: otpcode,
     // seller :req.sellerId,
     firstname: firstname,
     lastname: lastname,
@@ -163,7 +164,7 @@ exports.editcustomer = async (req, res) => {
 };
 
 
-exports.changepass_user = async (req, res) => {
+exports.forgetpass_user = async (req, res) => {
   const { password, cnfrmPassword } = req.body
   if (password === cnfrmPassword) {
   const salt = await bcrypt.genSalt(10);
@@ -196,6 +197,77 @@ exports.changepass_user = async (req, res) => {
   })
 }
 }
+
+exports.verifycode = async (req, res) => {
+  const { customerId } = req.body;
+
+   
+    const findone = await Customer.findOne({ customerId: customerId });
+    if (findone) {
+      if (findone) {
+        const token = jwt.sign(
+          {
+            userId: findone._id,
+          },
+          process.env.TOKEN_SECRET,
+          {
+            expiresIn: 86400000,
+          }
+        )
+          res.header("auth-token", token).status(200).json({
+            status: true,
+            token: token,
+            msg: "otp verified",
+            data: findone,
+          });
+        }
+      } else {
+        res.status(400).json({
+          status: false,
+          msg: "Incorrect Code",
+        });
+      }
+    }
+  
+    exports.updatePassword = async (req, res) => {
+      const { oldPassword, password,cnfrmPassword } = req.body;
+    
+      try {
+        // get user
+        const user = await Customer.findOne({_id :req.userId});
+        if (!user) {
+            return res.status(400).send('User not found');
+        }
+    
+        // validate old password
+        const isValidPassword = await bcrypt.compare(oldPassword, user.password,);
+        if (!isValidPassword) {
+             res.status(400).json({
+               status:false,
+               msg:'Please enter correct old password'
+              });
+        }
+    
+        // hash new password
+        const hashedPassword = await bcrypt.hash(password, 12);
+    
+        // update user's password
+         
+        user.password = hashedPassword;
+       
+        const updatedUser = await user.save();
+    
+        return res.json({ user: updatedUser });
+        
+      } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+          status : false,
+          msg:'Something went wrong. Try again'
+        });
+      }
+    };
+ 
 exports.allcustomer = async (req, res) => {
   const findall = await Customer.find().sort({ sortorder: 1 }).populate("walletId")
   if (findall) {

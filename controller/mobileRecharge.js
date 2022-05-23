@@ -1056,7 +1056,7 @@ var request = require('request');
  
 var options = {
   'method': 'POST',
-  'url': 'https://api.zuelpay.com/utility/recharge/transaction',
+  'url': 'https://zuelpay.com/api/utility/recharge/transaction',
   'headers': {
     'Token': 'ZKEY6f426c359d25311a48b1287f6',
     'Accept': 'application/json',
