@@ -142,7 +142,7 @@ exports.login = async (req, res) => {
 exports.editcustomer = async (req, res) => {
   const findandUpdateEntry = await Customer.findOneAndUpdate(
     {
-      customer: req.userId,
+      _id: req.userId,
     },
     { $set: req.body },
     { new: true }
@@ -313,7 +313,7 @@ exports.Customerbysellerbytoken = async (req, res) => {
 };
 
 exports.getonecustomer = async (req, res) => {
-  const findone = await Customer.findOne({ userId: req.userId });
+  const findone = await Customer.findOne({ _id: req.userId });
   if (findone) {
     res.status(200).json({
       status: true,
