@@ -236,7 +236,11 @@ exports.verifycode = async (req, res) => {
         // get user
         const user = await Customer.findOne({_id :req.userId});
         if (!user) {
-            return res.status(400).send('User not found');
+            return res.status(400).json({
+              status : false,
+              msg : "User Not Found",
+              error : error
+            })
         }
     
         // validate old password
@@ -257,16 +261,20 @@ exports.verifycode = async (req, res) => {
        
         const updatedUser = await user.save();
     
-        return res.json({ user: updatedUser });
+         res.status(200).json({
+           status:true,
+           msg:"success" ,
+           user: updatedUser 
+          });
         
-      } catch (err) {
-        console.log(err);
-        return res.status(500).json({
-          status : false,
-          msg:'Something went wrong. Try again'
-        });
-      }
-    };
+      } catch(error) {
+        res.status(400).json({
+        status : false,
+        msg : "Something went Wrong",
+        error : error
+      })
+     }
+   }
  
 exports.allcustomer = async (req, res) => {
   const findall = await Customer.find().sort({ sortorder: 1 }).populate("walletId")
@@ -305,7 +313,7 @@ exports.Customerbysellerbytoken = async (req, res) => {
 };
 
 exports.getonecustomer = async (req, res) => {
-  const findone = await Customer.findOne({ _id: req.userId });
+  const findone = await Customer.findOne({ userId: req.userId });
   if (findone) {
     res.status(200).json({
       status: true,
