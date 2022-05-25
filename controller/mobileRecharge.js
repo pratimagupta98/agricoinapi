@@ -416,7 +416,7 @@ exports.mobile_recharge = async(req,res)=>{
     amount:req.body.amount,
     biller_code:req.body.biller_code,
     number: req.body.number,
-    type:"Mobile",
+    // type:"Mobile",
     agent_id:"SOXY" +randomString, 
   } 
 
@@ -456,7 +456,7 @@ var options = {
       biller_code:req.body.biller_code,
       number: req.body.number,
       agent_id:"SOXY" +randomString,
-      type:"Mobile"
+      // type:"Mobile"
     }
   })
 
