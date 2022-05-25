@@ -250,28 +250,46 @@ exports.verifycode = async (req, res) => {
         }
     
         // hash new password
-        const hashedPassword = await bcrypt.hash(password, 12);
-    
-        // update user's password
-        user.password = hashedPassword;
-        const updatedUser = await user.save();
-    
-        // return res.json({ user: updatedUser });
-        res.status(200).json({
-          status:true,
-          msg:"success",
-          user:updatedUser
+        if (req.body.password === req.body.cnfrmPassword) {
+  const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(password, salt);
+  const findandUpdateEntry = await Customer.findOneAndUpdate(
+    {
+      _id: req.userId
+    },
+    { $set: { password: hashPassword, cnfrmPassword: hashPassword } },
+    { new: true }
+  );
+  if (findandUpdateEntry) {
+    res.status(200).json({
+      status: true,
+      msg: "success",
+      data: findandUpdateEntry,
+    });
+  } else {
+    res.status(400).json({
+      status: false,
+      msg: "error",
+      error: "error",
+    });
+  }
+} else {
+  res.status(400).json({
+    status: false,
+    msg: "error",
+    error: "Password not matched",
+  })
+}
 
-        })
-      } catch (err) {
-        console.log(err);
-        return res.status(500).json({
-          status:false,
-          msg:"Something Went Wrong"
-        })
-        
-      }
-    };
+    }catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        status:false,
+        msg:"Something Went Wrong"
+      })
+      
+    }
+  }
   
 
   // }
