@@ -234,47 +234,41 @@ exports.verifycode = async (req, res) => {
     
       try {
         // get user
-        const user = await Customer.findOne({_id :req.userId});
+        const user = await Customer.findOne({_id : req.userId});
         if (!user) {
-            return res.status(400).json({
-              status : false,
-              msg : "User Not Found",
-              error : error
-            })
+            return res.status(400).send('User not found');
         }
     
         // validate old password
-        const isValidPassword = await bcrypt.compare(oldPassword, user.password,);
+        const isValidPassword = await bcrypt.compare(oldPassword, user.password);
         if (!isValidPassword) {
-             res.status(400).json({
-               status:false,
-               msg:'Please enter correct old password'
-              });
+            return res.status(400).send('Please enter correct old password');
         }
     
         // hash new password
         const hashedPassword = await bcrypt.hash(password, 12);
     
         // update user's password
-         
         user.password = hashedPassword;
-       
         const updatedUser = await user.save();
     
-         res.status(200).json({
-           status:true,
-           msg:"success" ,
-           user: updatedUser 
-          });
-        
-      } catch(error) {
-        res.status(400).json({
-        status : false,
-        msg : "Something went Wrong",
-        error : error
-      })
-     }
-   }
+        return res.json({ user: updatedUser });
+      } catch (err) {
+        console.log(err);
+        return res.status(500).send('Something went wrong. Try again');
+      }
+    };
+  
+
+  // }
+  // catch(error){
+  //   res.status(400).json({
+  //       status:false,
+  //       msg:"error",
+  //       error:error
+  //   })
+  // }
+
  
 exports.allcustomer = async (req, res) => {
   const findall = await Customer.find().sort({ sortorder: 1 }).populate("walletId")

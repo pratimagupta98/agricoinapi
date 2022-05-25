@@ -13,7 +13,8 @@ const {
   fetch_Bill,
   dth_recharge,
   del_recharges,
-  Dth_listadmin
+  Dth_listadmin,
+  elec_bill_admin
 } = require("../controller/mobileRecharge");
 
 //Paths
@@ -29,6 +30,7 @@ router.post("/admin/dth_recharge", dth_recharge);
 
 router.get("/admin/del_recharges/:id", del_recharges);
 router.get("/admin/Dth_listadmin", Dth_listadmin);
+router.get("/admin/elec_bill_admin", elec_bill_admin);
 
 
 

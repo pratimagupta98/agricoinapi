@@ -986,29 +986,7 @@ exports.elec_bill_listadmin = async (req, res) => {
 };
 
 
-exports.Dth_listadmin = async (req, res) => {
-  const findall = await Mobilerecharge.find({  type: "DTH"}).populate("dth_code").populate("walletId")
-  .populate({
-    path: "walletId",
-    populate: {
-      path: "customer",
-    },
-  })
-    .then((data) => {
-      res.status(200).json({
-        status: true,
-        msg: "success",
-        data: data,
-      });
-    })
-    .catch((error) => {
-      res.status(400).json({
-        status: false,
-        error: "error",
-        error: error,
-      });
-    });
-};
+ 
 
 exports.dth_recharge = async(req,res)=>{
 
@@ -1149,6 +1127,30 @@ if(findandUpdateEntry1){
 // ;
   }
 
+  exports.Dth_listadmin = async (req, res) => {
+    const findall = await Mobilerecharge.find({  type: "DTH"}).populate("dth_code").populate("walletId")
+    .populate({
+      path: "walletId",
+      populate: {
+        path: "customer",
+      },
+    })
+      .then((data) => {
+        res.status(200).json({
+          status: true,
+          msg: "success",
+          data: data,
+        });
+      })
+      .catch((error) => {
+        res.status(400).json({
+          status: false,
+          error: "error",
+          error: error,
+        });
+      });
+  };
+
   exports.del_recharges = async (req, res) => {
     try {
       const deleteentry = await Mobilerecharge.deleteOne({ _id: req.params.id });
@@ -1162,6 +1164,58 @@ if(findandUpdateEntry1){
         status: false,
         msg: "error",
         error: error,
+      });
+    }
+  };
+
+
+  exports.elec_bill_admin = async (req, res) => {
+    // const findall = await Mobilerecharge.find().sort({ sortorder: 1 }).populate("code")
+  
+    // let elec = await ElecBlist.findOne({
+    //   _id: req.body.electricity_code,
+    // })
+
+    const elec  = await ElecBlist.find({id :req.body.electricity_code}) 
+    // console.log(elec)
+    // if (elec){
+    //   console.log(elec)
+    //        const gettype = await ElecBlist.findOne({_id :elec.type })
+    //       console.log(gettype)
+
+      
+    // }
+
+  
+ //   let abc = codetype.type;
+   // console.log(abc);
+    console.log("result............", elec);
+    if (elec.type == null) {
+      res.status(400).json({
+        status: false,
+        msg: "record not found",
+      });
+    } else {
+      let record = [];
+      for (const element of elec) {
+        if (element.electricity_code.type.toUpperCase() == "ELECTRICITY") {
+          console.log("element", element);
+          record.push(element.electricity_code.ELECTRICITY);
+        }
+      }
+    }
+  
+    if (elec) {
+      res.status(200).json({
+        status: true,
+        msg: "success",
+        data: elec,
+      });
+    } else {
+      res.status(400).json({
+        status: false,
+        msg: "error",
+        error: "error",
       });
     }
   };
