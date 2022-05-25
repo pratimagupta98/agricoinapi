@@ -242,7 +242,11 @@ exports.verifycode = async (req, res) => {
         // validate old password
         const isValidPassword = await bcrypt.compare(oldPassword, user.password);
         if (!isValidPassword) {
-            return res.status(400).send('Please enter correct old password');
+            return res.status(400).json({
+              status : false,
+              msg: "Please enter correct old password"
+            })
+            // send('Please enter correct old password');
         }
     
         // hash new password
@@ -252,10 +256,20 @@ exports.verifycode = async (req, res) => {
         user.password = hashedPassword;
         const updatedUser = await user.save();
     
-        return res.json({ user: updatedUser });
+        // return res.json({ user: updatedUser });
+        res.status(200).json({
+          status:true,
+          msg:"success",
+          user:updatedUser
+
+        })
       } catch (err) {
         console.log(err);
-        return res.status(500).send('Something went wrong. Try again');
+        return res.status(500).json({
+          status:false,
+          msg:"Something Went Wrong"
+        })
+        
       }
     };
   
