@@ -145,7 +145,7 @@ if(findandUpdateEntry1){
   }
 
   exports.mobile_rechargelist= async (req, res) => {
-    const findall = await Mobilerecharge.find({type: ""}).populate("").populate("walletId")
+    const findall = await Mobilerecharge.find({type: "Mobile"}).populate("").populate("walletId")
     .populate({
       path: "walletId",
       populate: {
