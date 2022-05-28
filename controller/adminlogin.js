@@ -83,7 +83,7 @@ exports.adminlogin = async (req, res) => {
         },
         process.env.TOKEN_SECRET,
         {
-          expiresIn: 3600000,
+          expiresIn: "1m",
         }
       );
       res.header("auth-admintoken", token).status(200).send({
