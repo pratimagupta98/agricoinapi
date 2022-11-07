@@ -259,7 +259,7 @@ console.log(value)
       msg: "success",
       data: findone,
      gsttotal: gsttotal, 
-   ttl :gsttotal    
+   ttl :sum    
     });
   } else {
     res.status(400).json({
