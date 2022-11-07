@@ -247,19 +247,19 @@ console.log(value)
       let element_price = findone[i].product_price;
       let element_qty = findone[i].product_qty;
        
-    //  let element_gst = findone[i].gsttotal;
+    // let element_gst = findone[i].gsttotal;
        sum =(element_price * element_qty);
       // let sum = 0;
       // sum =  (element_price * element_qty);
-      //  gsttotal = value +(element_price*element_qty)
-      //   console.log(gsttotal)
+       gsttotal = value +(element_price*element_qty)
+        console.log(gsttotal)
      }
     res.status(200).json({
       status: true,
       msg: "success",
       data: findone,
-    //  gsttotal: gsttotal, 
-  //  ttl :gsttotal    
+     gsttotal: gsttotal, 
+   ttl :gsttotal    
     });
   } else {
     res.status(400).json({
