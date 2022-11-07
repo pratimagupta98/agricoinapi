@@ -13,7 +13,7 @@ const seller = require("../models/seller")
 
 
 exports.addproductsubcategory = async (req, res) => {
-  const { name, desc, productcategory, product_img, sortorder, status } =
+  const { name, desc, productcategory, sortorder, status } =
     req.body;
 
   const newProductsubcategory = new Productsubcategory({
@@ -21,7 +21,7 @@ exports.addproductsubcategory = async (req, res) => {
     name: name,
     desc: desc,
     productcategory: productcategory,
-    product_img: product_img,
+ //   product_img: product_img,
     sortorder: sortorder,
     status: status,
   });
@@ -52,33 +52,35 @@ exports.addproductsubcategory = async (req, res) => {
         });
       }
     }
-  } else {
-    const findexist = await Productsubcategory.findOne({ name: name });
-    if (findexist) {
-      res.status(400).json({
-        status: false,
-        msg: "Already Exists",
-        data: {},
-      });
-    } else {
-      newProductsubcategory
-        .save()
-        .then((data) => {
-          res.status(200).json({
-            status: true,
-            msg: "success",
-            data: data,
-          });
-        })
-        .catch((error) => {
-          res.status(400).json({
-            status: false,
-            msg: "error",
-            error: error,
-          });
-        });
-    }
-  }
+  } 
+  
+  // else {
+  //   const findexist = await Productsubcategory.findOne({ name: name });
+  //   if (findexist) {
+  //     res.status(400).json({
+  //       status: false,
+  //       msg: "Already Exists",
+  //       data: {},
+  //     });
+  //   } else {
+  //     newProductsubcategory
+  //       .save()
+  //       .then((data) => {
+  //         res.status(200).json({
+  //           status: true,
+  //           msg: "success",
+  //           data: data,
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         res.status(400).json({
+  //           status: false,
+  //           msg: "error",
+  //           error: error,
+  //         });
+  //       });
+  //   }
+  // }
 };
 
 exports.getproductsubcategory = async (req, res) => {

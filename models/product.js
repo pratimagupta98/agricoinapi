@@ -57,7 +57,7 @@ const productSchema = new Schema(
       type: Number,
     },
      
-    unit: { type: Schema.Types.ObjectId, ref: "unit" },
+  //  unit: { type: Schema.Types.ObjectId, ref: "unit" },
      color: [{ type: Schema.Types.ObjectId, ref: "color" }],
      size: [{ type: Schema.Types.ObjectId, ref: "size" }],
 

@@ -32,13 +32,10 @@ exports.deposite_wallet = async (req, res) => {
     msg: "success",
     data: qur,
     // data: wolwt,
-  
   })
   }
 
   else{
-
-  
   const newWallet = new Wallet({
     customer: customer,
     reqamount :reqamount,

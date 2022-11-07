@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const fs = require("fs");
+const { admintoken } = require("../functions/admintoken");
 
 const {
   adminlogin,
@@ -42,7 +43,7 @@ let uploads = multer({ storage: storage });
 router.post("/admin/createadmin", uploads.single("image"), createadmin);
 router.post("/admin/adminlogin", adminlogin);
 router.post("/admin/editadmin/:id", editadmin);
-router.get("/admin/getoneadmin/:id", getoneadmin);
+router.get("/admin/getoneadmin",admintoken, getoneadmin);
 router.get("/admin/getall", getall);
 
 module.exports = router;

@@ -4,6 +4,7 @@ const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
+ 
 
 const validatePassword = (password, dbpassword) => {
   bcrypt.compareSync(password, dbpassword);
@@ -79,11 +80,12 @@ exports.adminlogin = async (req, res) => {
     if (validPass) {
       const token = jwt.sign(
         {
+          email:admin.email,
           adminId: admin._id,
         },
         process.env.TOKEN_SECRET,
         {
-          expiresIn: "1m",
+          expiresIn: '1min',
         }
       );
       res.header("auth-admintoken", token).status(200).send({
@@ -168,7 +170,7 @@ exports.editadmin = async (req, res) => {
 };
 
 exports.getoneadmin = async (req, res) => {
-  const findone = await Adminlogin.findOne({ _id: req.params.id });
+  const findone = await Adminlogin.findOne({ _id: req.adminId });
   if (findone) {
     res.status(200).json({
       status: true,

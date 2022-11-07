@@ -91,8 +91,8 @@ exports.addstore = async (req, res) => {
       msg: "Already Exist",
       data: {},
     });
-  } else if (req.files) {
-    if (req.files.storeImg[0].path) {
+  } else  {
+    if (req.files.storeImg) {
       alluploads = [];
       for (let i = 0; i < req.files.storeImg.length; i++) {
         // console.log(i);
@@ -106,7 +106,7 @@ exports.addstore = async (req, res) => {
       newStore.storeImg = alluploads;
     }
 
-    if (req.files.shoplogo_img[0].path) {
+    if (req.files.shoplogo_img) {
       // console.log(req.files.shoplogo_img);
       shoplogo_arry = [];
       //console.log(req.files.shoplogo_img.length);
@@ -130,7 +130,7 @@ exports.addstore = async (req, res) => {
       // console.log(newStore);
     }
 
-    if (req.files.gstImg[0].path) {
+    if (req.files.gstImg) {
       //console.log(req.files.gstImg);
       gstImg_arry = [];
       // console.log(req.files.gstImg.length);
@@ -153,7 +153,7 @@ exports.addstore = async (req, res) => {
       newStore.gstImg = gstImg_arry;
       //console.log(newStore);
     }
-    if (req.files.storepan_img[0].path) {
+    if (req.files.storepan_img) {
       //console.log(req.files.storepan_img);
       storepan_img_arry = [];
       //console.log(req.files.storepan_img.length);
@@ -176,7 +176,7 @@ exports.addstore = async (req, res) => {
       newStore.storepan_img = storepan_img_arry;
       //console.log(newStore);
     }
-    if (req.files.tradelicence_img[0].path) {
+    if (req.files.tradelicence_img) {
       // console.log(req.files.tradelicence_img);
       tradelicence_img_arry = [];
       //console.log(req.files.tradelicence_img.length);
@@ -200,7 +200,7 @@ exports.addstore = async (req, res) => {
       //console.log(newStore);
     }
 
-    if (req.files.companypan_img[0].path) {
+    if (req.files.companypan_img) {
       //console.log(req.files.companypan_img);
       companypan_img_arry = [];
       // console.log(req.files.companypan_img.length);
@@ -224,7 +224,7 @@ exports.addstore = async (req, res) => {
       // console.log(newStore);
     }
 
-    if (req.files.address_proof_img[0].path) {
+    if (req.files.address_proof_img) {
       // console.log(req.files.address_proof_img);
       address_proof_img_arry = [];
       //console.log(req.files.address_proof_img.length);
@@ -264,12 +264,13 @@ exports.addstore = async (req, res) => {
           error: error,
         });
       });
-  } else {
-    res.status(200).json({
-      status: false,
-      msg: "img not uploaded",
-    });
-  }
+  } 
+  // else {
+  //   res.status(200).json({
+  //     status: false,
+  //     msg: "img not uploaded",
+  //   });
+  // }
 };
 
 exports.getstore = async (req, res) => {
