@@ -268,7 +268,7 @@ exports.getproduct = async (req, res) => {
     .populate("gstrate")
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+   // .populate("unit")
     .populate("brand")
     .populate("color")
     .populate("size");
@@ -293,7 +293,7 @@ exports.getoneproduct = async (req, res) => {
   const findone = await Product.findOne({ _id: req.params.id })
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+   // .populate("unit")
     .populate("brand")
     //   .populate("gstrate")
     .populate("color")
@@ -337,7 +337,7 @@ exports.productbycategory = async (req, res) => {
     .populate("store")
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+   // .populate("unit")
     .populate("brand")
     .populate("size")
     .populate("color")
@@ -362,7 +362,7 @@ exports.productbybrand = async (req, res) => {
     .populate("store")
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+   // .populate("unit")
     .populate("brand")
     .populate("size")
     .populate("color");
@@ -388,7 +388,7 @@ exports.productbysubcategory = async (req, res) => {
     .populate("store")
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+   // .populate("unit")
     .populate("brand")
     .sort({ sortorder: 1 })
     .then((data) => {
@@ -551,7 +551,7 @@ exports.productbystore = async (req, res) => {
     .sort({ sortorder: 1 })
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+   // .populate("unit")
     .populate("brand")
     .populate("color")
     .populate("size")
@@ -578,7 +578,7 @@ exports.productbysellerbytoken = async (req, res) => {
     .sort({ sortorder: 1 })
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+   // .populate("unit")
     .populate("brand")
     .populate("color")
     .populate("size")
@@ -683,7 +683,7 @@ exports.productbycolor = async (req, res) => {
     .populate("store")
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+  //  .populate("unit")
     .populate("brand")
     .populate("size");
   if (findall) {
@@ -707,7 +707,7 @@ exports.productbysize = async (req, res) => {
     .populate("store")
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+    //.populate("unit")
     .populate("brand")
     .populate("size");
   if (findall) {
@@ -735,7 +735,7 @@ exports.productbypricerange = async (req, res) => {
     .populate("store")
     .populate("productcategory")
     .populate("productsubcategory")
-    .populate("unit")
+  //  .populate("unit")
     .populate("brand")
     .populate("size");
   if (findall) {
